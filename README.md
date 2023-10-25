@@ -1,74 +1,51 @@
 # WeAreAdults
-Projekt predmeta Programsko Inzinjerstvo
+Dobrodošli u repozitorij naše grupe. Ovjde će te moći pronaći opis projektnog zadatka, raspored trenutnih poslova te upute kako ga pokrenuti.
+Upute će biti dodane kasnije
 
-# Kopiran git tutorial s drugog repozitorija
+# Aktialni raspored poslova
+### Zrinka Cvitanović
+- obrasci uporabe za verifikaciju korisnika (UC13), dodavanje termin dane krvi u povijest davanja (UC14) i za glavni meni (UC15)
+- itrada UML dijagrama obrasca uporabe _administrator - korisnik_
+- izrada UML dijagrama obrasca uporabe _administrator - baza podataka_
 
-Mozete skineti kopiju repozitorija sa
-```git clone https://github.com/LimeThing/WeAreAdults.git```
-samo pazite da vam je cmd/terminal u folderu u kojem zelite skinut repozitorij
+### Mirta Hrnčić
+- obrasci uporabe za pregledavanje aktivnih lokacija davanja krvi (UC1), pregled informacija (UC2) i prijava (UC3)
 
-commit messages se uvijek pisu kao da nastavljaju recenicu 'If you download this commit, it will:'
-to je samo neki git obicaj
-Takoder, pisemo sve komentare i poruke na hrvatski
+### Nikica Ivandić
+- obrasci uporabe za registraciju (UC4), rezervacija termina (UC5), pregledavanje profila (UC6) 
 
-```
-git status     -> pregled statusa (promjenjene datoteke, trenutni branch itd)
-git status -s   -> pregled samo promjenjenih datoteka ( -s znaci short)
+### Robert Klečar
+- obrasci uporabe za dodavanje (UC10), uređivanje (UC11) i arhiviranje povremenih akcija (UC12) davanja krvi Hrvatski Crvenog Križa
 
-git log --decorate --graph   -> za pregledavanje svih prijasnjih commitova selectanom branchu
+### Tin Lovreković
+- obrasci uporabe za odjavu (UC7), otkazivanje termina (UC8), uređivanje nekih osobnih informacija (adresa, primarni KBC) (UC9) 
 
-git checkout imeBrancha     -> prebaci se na granu imeBrancha
+### Iva Rengel
+- pisanje opisa projetknog zadatka
+- raspisavanje ovog dokumenta
 
-git checkout -b noviBranch    -> stvori novu granu i odmah se prebaci na nju
+### Josipa Sever
+- izrada dokumentacije
+- spajanje obrazada uporabe i dijagrama u dokument
+- izrada UML dijagrama obrasca uporabe _gost - administrator_
 
-git add filename    -> za dodavanje datoteke filename na listu spremnih za commitanje (ide ili ime datoteke ili put do datoteke ako je u nekom folderu)
 
-git add .     -> za dodavanje svih datoteka na kojima su napravljene promjene u 'datoteke spremne za commit' (staged files)
+# Donori Krvi - projektni zadatak
+Naš zadatak svodi se na izradu programske potpore za web aplikaciju (trenutno nema ime) koja će služiti tome da svim donorima i zaposlenicima Hrvatskog Crvenog Križa olakša neke akcije vezane za darivanje krvi. 
 
-git restore --staged fileName   -> makni file iz liste spremnih za commit (staged files)
+Ukratko, koristeći našu aplikaciju, korisnici zainteresirani za davanje krvi moći će se prijaviti u sustav, pregledavati sve aktivne lokacije davanja krvi, prijavljivati se na njih i rezervirati termine, te pregledavati neke osnovne informacije o aplikaciji i Hrvatskiom Crvenom Križu, te o podacima svog profila.
 
-git commit -m "Custom message"   -> commitanje promjena (lokalno)
+Zaposlenici Hrvatskog Crvenog Križa moći će pregledavati koliko ljudi će prisustvovati određenoj akciji, te će moći upisivati sva darivanja koja će se prikazivati na našoj aplikacji. Moći će organizirati i uređivati povremene akcije darivanja krvi koje se mogu održati na bilo kojoj aplikaciji, i najvažnije, sa hitnom porukom moći će obavijestiti sve korisnike o nedostatku krvi na određenom području.
 
-git push -u origin imeBrancha       -> pushaj granu na remote repozitorij, to je ovaj koji nam git hosta. ime grane na lokalnom repozitoriju mora bit isti kao i na remote (ako nije, onda ce se kod ove komande samo stvoriti ta grana na remote repozitoriju)
+Lokacije na kojima je moguće dati krv sastoje se od dva tipa lokacija zasnovanih na stalnosti termina za davanje krvi:
+1. Zdravstvene ustanove sa stalnim terminima
+2. Lokacije privremenih akcija koje organizira Hrvatski Crveni Križ
 
-git diff   -> razlike izmedu onog sto imam i onog sto je spremno za commit
+U prvu kategoriju spadaju KBC Osijek, KBC Rijeka, KBC
+Split, OB Dubrovnik, OB Varaždin, OB Zadar i Hrvatskom zavodu za transfuzijsku medicinu Zagreb. 
 
-git diff --staged ili --cached   -> razlika izmedu onog sto sam spremila za commit i onog sto je na serveru
-
-git merge imeBrancha    -> mergaj selectanu granu na imeBrancha (preferiramo rebase)
-
-git rebase imeBrancha    -> stavi selectanu granu na imeBrancha (kao da je commit poslje njega)
-
-git pull     -> skini promjene s remote repozitorija na svoje lokalno racunalo
-
-git pull --rebase  -> skini promjene te ih odmah spoji sa datotekama na lokalnom racunalu
-
-git reset --hard main^   -> vrati selectani branch (ex main) za jedan commit unatrag
-
-git commit --amend    -> za ispraljanje sitnih greskica/typos u commit message, moras napravit prije pushanja
-
-git push --force-with-lease origin imeBranch   -> ako je tvoja promjena novija pushaj imeBrancha   da prebrise origin/branch
-
-git checkout imeFilea     -> izbrisi sve promjene koje nisu commitane iz tog filea
-
-git stash     -> spremanje na stash, to je kao neki privremeni spremnik za necommitane promjene na koje ces se brzo natrag vratit
-
-git stash pop    -> vrati promjene iz stasha na trenutni kod, jako pazit moras da si na istoj grani na kojoj si napravio git stash jer ce ti inace sve za***at
-
-git branch list   ->   pregled svih grana koje postoje na tvom lokalnom racunalu
-```
-
-To su sve komande koje ce nam ikad trebat. Preporucam da isprobate checkout, branch, add, push, commit, pull, merge i rebase
-Napravite puno grana, igrajte se s njima
-sa git log mozete vidjet sve commitove unatrag, sve do prvog
-
-# Errori
-
-Ako dobijate ovaj error u terminalu
-```
-remote: Support for password authentication was removed on August 13, 2021.
-remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
-fatal: Authentication failed for 'https://github.com/LimeThing/gitplayground.git/'
-```
-sljedite upute na ovoj stranici: https://stackoverflow.com/questions/68775869/message-support-for-password-authentication-was-removed
-umjesto git password samo kopirajte izgenerirani token 
+Korisnici koji će koristiti našu aplikaciju dijele se u tri kategorije: gost, korisnik, i admin. Potreba za ova tri moda korižtenja aplikacije proizlaze iz toga da dio aplikacije treba biti vidljiv i još neprijavljenim korisnicima, i toga da prosječan donor krvi te zaposlenik Hrvatskog Crvenog Križa koriste aplikaciju na znatno različite načine.
+- **gost** - način korištenja aplikacije kada korisnik nije prijavljen u sustav. U ovom modu moguće je prijaviti se ili registrirati novi korisnički račun. Osim toga, moguć je pregled svih lokacija vađenja krvi, i onih stalnih i trenutno aktivnih povremenih akcija, ali bez mogućnosti naručivanja termina. Također, gostu je dostupna stranica sa osnovnim informacijama o aplikaciji i Hrvatskom Crvenom Križu.
+- **korisnik** - kad se gost prijavi u sustav, jedna od mogućih opcija je napraviti račun za donora krvi. Takav račun nazivamo korisnik. U ovom modu korištenja aplikacije korisnik može napraviti sve što i gost, sa još dodatnim funkcionalnostima. Kod pregleda lokacija, prikazuje mu se gumb koji ga vodi na odabit termina i rezervaciju istog. Dostupna mu je i mogućnost pregleda vlastitog profila s brojnim informacijama koje će mo u detalje navesti kasnije. Također, kad admin pošalje obavijest za hitnom akcijom, korisnik dobiva poruku na mail. Kad stitne na link u mailu, ili pristupi aplikaciji preusmjerit će se na stranicu na kojoj ima mogućnost odazvati se na hitni poziv.
+- **admin** - dalje u tekstu nazvan i Hrvatski Crveni Križ ili samo Crveni Križ. Također ima sve opcije iste kao i gost s još nekim dodatnim mogućnostima. Admin verificira korisnika koji se registrira, nakon čega se korisnik može prijaviti u sustav. Također, dodaje i manipulira akcijama darivanja krvi. Može zapisivati kad je netko 
+ 
