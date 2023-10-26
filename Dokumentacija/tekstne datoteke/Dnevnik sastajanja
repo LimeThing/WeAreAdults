@@ -1,0 +1,61 @@
+# 24.10.2023.
+
+- dogovorene nove uloge: korisnik, gost, Crveni Križ (admin)
+- prepravljena lista poslova
+- u registraciju dodat spol, adresu, datum rodenja (provjera punoljetnosti), broj zdravstvene kartice?, email, ime i prezime, krvna grupa, predefinirani KBC, 
+- piatnje za asistenta: od kud dobijamo podatke za verifikaciju korisnika?
+- UML dijagrami:
+   - jedan veliki uml dijagram sa svim korisnicima I bazom
+    - gost – pregledavanje lokacija UC1, informacija UC2 I prijava/registracija UC3 i UC4
+    - korisnik – pregled lokacija, informacija, rezerviranje termina UC5, pregled profila UC6, odjava UC7, otkazivat termin UC8, uredit neke osobne informacije (adresa, primarni KBC) UC9
+    - Crveni Križ – dodavanje UC10, uređivanje  UC11I arhiviranje akcija UC12 , verifikacija korisnika UC13, dodavanje povijesti korisnika kad da krv UC14, pregled statistike (opcionalno), odjavit se, pregled rezervacija (opcionalno),
+
+Dijagrami: gost I administrator, administrator I korisnik, administrator I baza
+
+- opcionalne feature neće mo dodavat još u UML dijagrame 
+- Crveni Križ I admin su ista osoba, moraju imat mogućnosti dodavat povijest darivanja korisnika dok prisustvuju nekoj akciji, manipulaciju akcijama, davanje potvrda, verificiranje korisnika, pregled statistike (*)
+- hitni slučajevi se šalju prema adresi I prema krvnoj grupi
+- korisnik se može prijavit za termint, ali I otkazat termin → ima pregled rezerviranih termina
+- checklist potvrda (treba proguglat)
+- sistem izdaje potvrde, dođe obavijest
+- necemo imat bazu, radimo svoj mockup
+- podjela posla:
+   - Josipa – Dokumentacija - gost i administrator dijagrm
+   - Iva – opis zadatka administrator i baza dijagram
+   - Zrinka -  Uc 13 - 14 - korisnik i administrator dijagram
+   - Robert - UC 10 - 12
+   - Tin - UC 7 - 9
+   - Nikica - UC 4 - 6
+   - Mirta - UC 1 - 3
+
+
+
+# 26.10.2023.
+
+Razdvojit će mo korisnike različito:
+Korisnik
+- neregistrirani
+- registrirani
+  - Darivatelj
+  - admin (Crveni Križ)
+Baza podataka
+- Davanje krvi (jedna istanca, za povijest) K mbo
+- Korisnik darivatelj (informacije koje su jedinstvene za korinika) K mbo, ili K email a Unique mbo
+- Tablica iz koje admin verificira korisnika (stvari koje se upisuju u registraciju) K mbo
+- sve akcije
+- Korisnik zaposlenik Crvenog Križa
+- rezervirani termini
+
+Razlika između crvenog ili darivatelja je nastavak na mailu
+Dal je proslo dovoljno vremena da opet dade krv -> ako je obavjest na stranici (i mail)
+Na informacije mozemo dodat "Tko može/nemože dat krv"
+Pitanje asistenta: za sekvencijske, dal ima dovoljno UC
+Posao:
+Z UML idjagrama
+M arhitektura
+I skinut izvorni kod basic i nadopunit opis zadatka
+N sekvencijski
+J spojit UC sve
+T baza
+R baza
+
