@@ -1,0 +1,41 @@
+UC10 – Dodavanje akcija
+• Glavni sudionik: Admin
+• Cilj: Dodavanje akcije crvenog križa za darivanje krvi
+• Sudionici: Baza podataka
+• Preduvjet:
+	– Admin je prijavljen
+• Opis osnovnog tijeka:
+	1. Admin odredi lokacije i vrijeme održavanja akcije 
+	2. Admin potvrđuje svoje odabire
+• Opis mogućih odstupanja:
+	2.a Admin nije potvrdio odabire 
+		1. Aplikacija upozorava da promjene nisu spremljene
+
+UC11 – Uređivanje akcija
+• Glavni sudionik: Admin
+• Cilj: Uređivanje podataka aktivne akcije
+• Sudionici: Baza podataka
+• Preduvjet:
+	– Admin je prijavljen
+	– Akcija je aktivna
+• Opis osnovnog tijeka:
+	1. Admin odabire akciju koju želi urediti
+	2. Admin uredi podatke koje želi
+	3. Admin potvrđuje svoje odabire
+• Opis mogućih odstupanja:
+	3.a Admin nije potvrdio odabire 
+		1. Aplikacija upozorava da promjene nisu spremljene
+
+UC12 – Arhiviranje akcija
+• Glavni sudionik: Admin
+• Cilj: Arhivirati aktivnu akciju
+• Sudionici: Baza podataka
+• Preduvjet:
+	–  Admin je prijavljen
+	–  Akcija je aktivna
+• Opis osnovnog tijeka:
+	1. Admin odabire akciju koju želi arhivirati
+	2. Admin potvrđuje svoje odabire
+• Opis mogućih odstupanja:
+	2.a Admin nije potvrdio odabire 
+		1. Aplikacija upozorava da promjene nisu spremljene
