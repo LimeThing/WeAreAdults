@@ -1,0 +1,25 @@
+UC9: Uređivanje osobnih podataka 
+
+Glavni sudionik: Korisnik
+
+Cilj: Promjeniti netočne ili zastarjele osobne podatke. 
+
+Sudionici: Baza podataka 
+
+Preduvjet: Korisnik je prijavljen u sustav. 
+
+Opis osnovnog tijeka:
+	1) Korisnik otvara profilnu stranicu
+	2) Korisnik odabire opciju "Uređivanje podataka"
+	3) Otvara se prozor za uređivanje podataka
+	4) Korisnik mjenja podatke 
+	5) Korisnik spreman promjene
+	6) Baza podataka se ažurira s novim podatcima
+	
+Opis mogućih odstupanja:
+	5.a) Korisnik odustaje od promjena
+		1) Promjene se ne spremaju i korisnik se vraća na profilnu stranicu
+	5.b) Korisnik ne sprema promjene
+		1) Sustav obavještava korisnika da promjene nisu spremljne
+		2) Korisnik sprema sprema promjene i vraća se na profilnu stranicu
+	    
