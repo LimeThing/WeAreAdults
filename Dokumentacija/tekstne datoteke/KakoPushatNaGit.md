@@ -27,8 +27,32 @@ Gdje . označava da spremate sve promjene koje već nisu spremljene. I sad ih co
 
 ```git commit -m "Opis promjene koji nije pre dug"```
 
-Ako će trebati duže raspisati opis, moći ćete to kasnije napraviti u Pull Requestu. Možete naoraviti koliko god commitova želite na nekoj grani. Kada sve commitate i završite cijelokupni posao koji ste htjeli napraviti na svojoj grani, vrijeme je da pushate granu na remote repozitorij.
+Ako će trebati duže raspisati opis, moći ćete to kasnije napraviti u Pull Requestu. Možete naoraviti koliko god commitova želite na nekoj grani. Kada sve commitate i završite c![](https://i.imgur.com/fle4Lkl.png)ijelokupni posao koji ste htjeli napraviti na svojoj grani, vrijeme je da pushate granu na remote repozitorij.
 
 ```git push -u origin Iva-UML-dijagram```
 
 Nakon što izvrtite ovu komandu, odlaskom na github stranicu repozitorija pojavit će vam se popup koji izgleda ovako:
+
+![](https://i.imgur.com/fle4Lkl.png)
+
+Nakon što pritisnete *Compare & pull request* prikaže se ovakava stranica:
+
+![](https://i.imgur.com/3WT4XJJ.png)
+
+Ono na što trebate najviše obratitit poyornost je ovaj dio ispod naslova, na koji *base* branch želite mergat svoj. defaultno je uvijek postavljen master, trebate ga promjeniti na dev ili devdoc, ovisno dal radite kod ili dokumentaciju. 
+
+Na reviewers mozete postaviti mene ili bilo koga koga zelite da bude obavijesten dok napravite pull request. na Assagnees stavite sebe (klik na gumb *assign yourself*). Možete još urediti i naziv featura, i dodati dulji opis ako je potrebno. 
+Nakon toga pritisnete gumb *Create pull request* i završili ste!
+
+Ukratko, trebaju vam sljedeće komande za svaki novi feature:
+
+```
+git checkout devdoc
+git pull
+git checkout -b nova-grana
+/* Radim promjene */
+git add .
+git commit -m "Kratak opis promjena"
+git push -u origin nova-grana 
+/* Stvaram pull request */
+```
