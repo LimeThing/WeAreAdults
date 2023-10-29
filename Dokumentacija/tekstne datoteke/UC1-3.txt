@@ -1,0 +1,32 @@
+UC1 - Prijava korisnika 
+• Glavni sudionik: Korisnik 
+• Cilj: Prijaviti se u korisnički račun radi pristupa stranici.
+• Sudionici: Baza podataka
+• Opis osnovnog tijeka:
+1. Korisnik odabire opciju prijave.
+2. Korisnik unosi tražene podatke (korisničko ime i lozinku).
+3. Korisnik dobiva pristup korisničkim funkcijama.
+• Opis mogućih odstupanja: 
+2.a. Korisnik unosi pogrešno korisničko ime ili lozinku.
+	 	 1. Sustav obavještava korisnika o pogrešci i vraća ga na stranicu za prijavu kao 	 	
+	 	 	 neregistriranog korisnika.
+		
+
+UC2 - Pregled akcija darivanja krvi 
+• Glavni sudionik: Neregistrirani korisnik
+• Cilj: Pregledati sve dostupne lokacije i termine darivanja krvi 
+• Sudionici: Baza podataka
+• Opis osnovnog tijeka: 
+1. Prilikom učitavanja aplikacije prikazana je karta.
+2. Korisnik na karti odabire lokaciju za koju želi vidjeti informacije (bolnicu ili upisanu akciju 
+	 	 Crvenog križa)
+3. Prikazuju se adresa i vrijeme u koje je moguće dati krv na odabranoj lokaciji.
+UC3 - Pregled informacija 
+• Glavni sudionik: Neregistrirani korisnik
+• Cilj: Pregled stranice s općenitim informacijama o Crvenom križu te njihovim akcijama darivanja 
+krvi.
+• Sudionici: -
+• Opis osnovnog tijeka:
+1. Korisnik u navigaciskoj traci odabire “O nama”.
+2. Korisniku se prikažu informacije o Crvenom križu, njegovoj djelatnosti i akcijama 	 	
+	 	 darivanja krvi koje organiziraju.
