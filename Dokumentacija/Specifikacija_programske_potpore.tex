@@ -13,8 +13,8 @@
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
+				\item Neregistrirani korisnik
+				\item Registrirani korisnik
 				\item ...
 				
 			\end{packed_enum}
@@ -61,41 +61,325 @@
 					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
 					
 
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					\noindent \underbar{\textbf{UC1-Prijava korisnika}}
 					\begin{packed_item}
 	
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
+						\item \textbf{Glavni sudionik: }Registrirani korisnik
+						\item  \textbf{Cilj:} Prijaviti se u korisnički račun radi pristupa stranici
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je registriran
 						\item  \textbf{Opis osnovnog tijeka:}
 						
 						\item[] \begin{packed_enum}
 	
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item Korisnik odabire opciju prijava
+							\item Unosi tražene podatke (korisničko ime i lozinku)
+							\item Pristup korisničkim funkcijama
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						
 						\item[] \begin{packed_item}
 	
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
+							\item[2.a] Pogrešno korisničko ime ili lozinka
 							\item[] \begin{packed_enum}
 								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
+								\item Sustav obavještava korisnika o pogrešci i vraća ga na stranicu za prijavu kao neregistriranog korisnika
+							
 							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
 							
 						\end{packed_item}
 					\end{packed_item}
 				
+				
+				\noindent \underbar{\textbf{UC2-Pregled akcija darivanja krvi}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Neregistrirani korisnik
+					\item  \textbf{Cilj:} Pregledati sve dostupne lokacije i termine darivanja krvi
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Korisniku se na karti prikazuju lokacije na kojima je moguće darivati krv (bolnice i akcije Crvenog Križa)
+						\item Odabir jedne od prikazanih lokacija
+						\item Prikaz adrese i vremena za moguću rezervaciju
+						
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				
+				
+				\noindent \underbar{\textbf{UC3-Pregled informacija}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Neregistrirani korisnik
+					\item  \textbf{Cilj:} Pregled općih informacija o Crvenom Križu i akcijama darivanja krvi
+					\item  \textbf{Sudionici:} -
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Odabir "O nama" u navigacijskoj traci
+						\item Prikaz informacija o Crvenom Križu, njegovoj djelatnosti i akcijama 	 	
+						darivanja krvi koje organiziraju
+					\end{packed_enum}
+					
+						
+				\end{packed_item}
+				
+				
+				
+				\noindent \underbar{\textbf{UC7-Odjava korisnika}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Registrirani korisnik
+					\item  \textbf{Cilj:} Odjava iz aplikacije nakon završetka rada
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen u sustav
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Odabir opcije "Odjavi se"
+						\item Povratak na početni zaslon kao Gost
+					
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				
+				
+				\noindent \underbar{\textbf{UC8-Otkazivanje termina}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Registrirani korisnik
+					\item  \textbf{Cilj:} Otkazivanje rezerviranog termina
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen u sustav i ima rezerviran termin
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Korisnik otvara profilnu stranicu
+						\item Pregledava svoje nadolazeće rezervacije
+						\item Odabire termin koji želi otkazati i opciju "Otkaži termin"
+						\item Od korisnika se traži potvrda
+						\item Korisnik potvrđuje akciju
+						\item Termin se briše iz Baze podataka i uklanja s Korisnikovog popisa rezervacija
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[5.a] Korisnik odustaje od akcije
+						\item[] \begin{packed_enum}
+							
+							\item Rezervacija se ne briše i korisnik se vraća na profilnu stranicu
+							
+						\end{packed_enum}		
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				\noindent \underbar{\textbf{UC9-Uređivanje osobnih podataka}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Registrirani korisnik
+					\item  \textbf{Cilj:} Promjena netočnih osobnih podataka
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen u sustav
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Korisnik otvara profilnu stranicu
+						\item Odabir opcije "Uređivanje podataka"
+						\item Promjena podataka u otvorenom prozoru za uređivanje
+						\item Spremanje promjena i ažuriranje Baze podataka
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[4.a] Korisnik odustaje od promjena
+						\item[] \begin{packed_enum}
+							
+							\item Promjene se ne spremaju i korisnik se vraća na profilnu stranicu
+							
+						\end{packed_enum}	
+						\item[4.b] Korisnik ne sprema promjene
+						\item[] \begin{packed_enum}
+							
+							\item Sustav obavještava korisnika da promjene nisu spremljene
+							\item Korisnik sprema promjene i vraća se na profilnu stranicu
+						\end{packed_enum}	
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				
+				\noindent \underbar{\textbf{UC10-Dodavanje akcija}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Administrator
+					\item  \textbf{Cilj:} Dodavanje akcije Crvenog Križa za darivanje krvi
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Administrator je prijavljen u sustav
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Administrator odredi lokacije i vrijeme održavanja akcije
+						\item Potvrđuje svoje odabir
+						
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[2.a] Administrator nije potvrdio odabir
+						\item[] \begin{packed_enum}
+							
+							\item Sustav upozorava da promjene nisu spremljene
+							
+						\end{packed_enum}		
+						
+					\end{packed_item}
+				\end{packed_item}
+					
+					
+					
+					\noindent \underbar{\textbf{UC11-Uređivanje akcija}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Administrator
+						\item  \textbf{Cilj:} Uređivanje podataka aktivne akcije
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen, akcija je aktivna
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire akciju koju želi urediti
+							\item Uređuje željene podatke
+							\item Potvrđuje promjene
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[3.a] Administrator nije potvrdio promjene
+							\item[] \begin{packed_enum}
+								
+								\item Sustav upozorava da promjene nisu spremljene
+								
+							\end{packed_enum}		
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					
+					\noindent \underbar{\textbf{UC12-Arhiviranje akcija}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Administrator
+						\item  \textbf{Cilj:} Arhivirati aktivnu akciju
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Administrator je prijavljen, akcija je aktivna
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator odabire akciju koju želi arhivirati
+							\item Potvrđuje odabir
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[2.a] Administrator nije potvrdio odabir
+							\item[] \begin{packed_enum}
+								
+								\item Sustav upozorava da promjene nisu spremljene
+								
+							\end{packed_enum}		
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					
+					\noindent \underbar{\textbf{UC13-Verifikacija kritičnih podataka}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Korisnik, Administrator
+						\item  \textbf{Cilj:} Verificirati podatke novog korisnika pri registraciji
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik se registrirao, administrator je prijavljen u sustav
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator pristupa popisu registriranih korisnika
+							\item Za neverificirane korisnike sustav provjerava ima li osoba barem 18 godina, postoji li njezin MBO u Bazi i, ako postoji, odgovara li ime i prezime toj osobi
+							\item Pri uspješnoj provjeri omogućava se gumb "Verificiraj"
+							\item Administrator klikom na gumb verificira korisnika
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[4.a] Korisnik ne zadovoljava kriterije
+							\item[] \begin{packed_enum}
+								
+								\item Administrator klikne na gumb "Odbij"
+								\item Korisnik se briše s liste neverificiranih korisnika i iz baze podataka
+								
+							\end{packed_enum}		
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					
+					\noindent \underbar{\textbf{UC14-Evidentiranje darivanja krvi}}
+					\begin{packed_item}
+						
+						\item \textbf{Glavni sudionik: }Registrirani korisnik, Administrator
+						\item  \textbf{Cilj:} Dodati darivanje krvi u povijest darivanja i u bazu podataka
+						\item  \textbf{Sudionici:} Baza podataka
+						\item  \textbf{Preduvjet:} Korisnik je darovao krv, Administrator je prijavljen
+						\item  \textbf{Opis osnovnog tijeka:}
+						
+						\item[] \begin{packed_enum}
+							
+							\item Administrator pristupa bazi podataka
+							\item Odabire unos novog zapisa
+							\item Popunjava obrazac koji traži ime, prezime, mbo, datum i krvnu grupu osobe
+							\item Obrazac se validira i podaci se unose u Bazu
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						
+						\item[] \begin{packed_item}
+							
+							\item[4.a] Neki od traženih podataka nije upisan, unesen je datum iz budućnosti, nije unesena odgovarajuća krvna grupa ili je MBO u pogrešnom formatu
+							\item[] \begin{packed_enum}
+								
+								\item Sustav javlja grešku
+								
+						\end{packed_enum}				
+							
+						\end{packed_item}
+					\end{packed_item}
+					
+					
 					
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
