@@ -13,9 +13,13 @@
 			
 			\begin{packed_enum}
 				
-				\item Neregistrirani korisnik
+				\item Neregistrirani korisnik (gost)
 				\item Registrirani korisnik
-				\item ...
+				\begin{packed_enum}
+					\item Donor Krvi
+					\item Zaposlenik Hrvatskog Crvenog Križa (admin)
+				\end{packed_enum}
+				\item Razvojni tim
 				
 			\end{packed_enum}
 			
@@ -23,30 +27,48 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
+				\item  \underbar{Korisnik može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					\begin{packed_enum}
-						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
-				
-					\end{packed_enum}
-					\item  funkcionalnost 3
+					\item Pregledavati stranicu s općim informacijama
+					\item Pregledavati stranicu s lokacijama na kojima može darivati krv
+					\item Prijaviti u sustav
+					\item Registrirati u sustav
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Aktor 2 (sudionik) može:}
+				\item  \underbar{Registrirani korisnik može:}
 				
 				\begin{packed_enum}
 					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item Pregledati vlastiti profil
+					\begin{packed_enum}
+						\item Pregledati i uređivati osobne informacije
+						\item Pregledati prijavljene rezervacije termina i otkazati ih
+						\item Pregledati povijest darivanja krvi
+						\item Pregledati dobivene potvrde
+					\end{packed_enum}
+					\item Registrirati termin za akciju po izboru
+					\item Odjaviti se
 					
 				\end{packed_enum}
+
+				\item  \underbar{Zaposlenik Crvenog Križa (admin) može:}
+
+				\begin{packed_enum}
+
+					\item Dodati nove akcije
+					\item Urediti postojeće akcije
+					\begin{packed_enum}
+						\item Urediti podatke o akciji
+						\item Prijevremeno arhivirati akciju
+					\end{packed_enum}
+					\item Verificirati korisnika
+					\item Bilježiti istance davanja krvi
+
+				\end{packed_enum}
+
 			\end{packed_enum}
 			
 			\eject 
