@@ -16,8 +16,8 @@
 				\item Neregistrirani korisnik (gost)
 				\item Registrirani korisnik
 				\begin{packed_enum}
-					\item Donor Krvi
-					\item Zaposlenik Hrvatskog Crvenog Križa (admin)
+					\item donor krvi
+					\item zaposlenik Hrvatskog Crvenog Križa (admin)
 				\end{packed_enum}
 				\item Razvojni tim
 				
@@ -27,55 +27,55 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Korisnik može:}
+				\item  \underbar{Korisnik(inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item Pregledavati stranicu s općim informacijama
-					\item Pregledavati stranicu s lokacijama na kojima može darivati krv
-					\item Prijaviti u sustav
-					\item Registrirati u sustav
+					\item pregledavati stranicu s općim informacijama
+					\item pregledavati stranicu s lokacijama na kojima može darivati krv
+					\item prijaviti se u sustav
+					\item registrirati se u sustav
 					
 				\end{packed_enum}
 			
-				\item  \underbar{Registrirani korisnik može:}
+				\item  \underbar{Registrirani korisnik(inicijator) može:}
 				
 				\begin{packed_enum}
 					
-					\item Pregledati vlastiti profil
+					\item pregledavati vlastiti profil
 					\begin{packed_enum}
-						\item Pregledati i uređivati osobne informacije
-						\item Pregledati prijavljene rezervacije termina i otkazati ih
-						\item Pregledati povijest darivanja krvi
-						\item Pregledati dobivene potvrde
+						\item pregledavati i uređivati osobne informacije
+						\item pregledavati prijavljene rezervacije termina i otkazati ih
+						\item pregledavati povijest darivanja krvi
+						\item pregledavati dobivene potvrde
 					\end{packed_enum}
-					\item Registrirati termin za akciju po izboru
-					\item Odjaviti se
+					\item rezervirati termin za akciju po izboru
+					\item odjaviti se
 					
 				\end{packed_enum}
 
-				\item  \underbar{Zaposlenik Crvenog Križa (admin) može:}
+				\item  \underbar{Zaposlenik Crvenog Križa ili admin(inicijator) može:}
 
 				\begin{packed_enum}
 
-					\item Dodati nove akcije
-					\item Urediti postojeće akcije
+					\item dodati nove akcije
+					\item urediti postojeće akcije
 					\begin{packed_enum}
-						\item Urediti podatke o akciji
-						\item Prijevremeno arhivirati akciju
+						\item urediti podatke o akciji
+						\item prijevremeno arhivirati akciju
 					\end{packed_enum}
-					\item Verificirati korisnika
-					\item Bilježiti istance davanja krvi
-					\item Postaviti hitnu akciju za određenu krvnu grupu
+					\item verificirati korisnika
+					\item bilježiti instance davanja krvi
+					\item postaviti hitnu akciju za određenu krvnu grupu
 
 				\end{packed_enum}
 
-				\item  \underbar{Baza podataka može:}
+				\item  \underbar{Baza podataka(sudionik) može:}
 
 				\begin{packed_enum}
 
-					\item Pohranjivati podatke o donorima, rezerviranim terminima i povijesti darivanja krvi
-					\item Pohranjivati podatke o akcijama i zdravstvenim ustanovama
+					\item pohranjivati podatke o donorima, rezerviranim terminima i povijesti darivanja krvi
+					\item pohranjivati podatke o akcijama i zdravstvenim ustanovama
 
 				\end{packed_enum}
 
@@ -93,7 +93,7 @@
 					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
 					
 
-					\noindent \underbar{\textbf{UC1-Prijava korisnika}}
+					\noindent \underbar{\textbf{UC1 - Prijava korisnika}}
 					\begin{packed_item}
 	
 						\item \textbf{Glavni sudionik: }Registrirani korisnik
@@ -124,7 +124,7 @@
 					\end{packed_item}
 				
 				
-				\noindent \underbar{\textbf{UC2-Pregled akcija darivanja krvi}}
+				\noindent \underbar{\textbf{UC2 - Pregled akcija darivanja krvi}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik: }Neregistrirani korisnik
@@ -144,7 +144,7 @@
 				
 				
 				
-				\noindent \underbar{\textbf{UC3-Pregled informacija}}
+				\noindent \underbar{\textbf{UC3 - Pregled informacija}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik: }Neregistrirani korisnik
@@ -164,7 +164,7 @@
 				
 				
 				
-				\noindent \underbar{\textbf{UC7-Odjava korisnika}}
+				\noindent \underbar{\textbf{UC7 - Odjava korisnika}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik: }Registrirani korisnik
@@ -175,7 +175,7 @@
 					\item[] \begin{packed_enum}
 						
 						\item Odabir opcije "Odjavi se"
-						\item Povratak na početni zaslon kao Gost
+						\item Povratak na početni zaslon kao gost
 					
 					\end{packed_enum}
 					
@@ -183,10 +183,10 @@
 				
 				
 				
-				\noindent \underbar{\textbf{UC8-Otkazivanje termina}}
+				\noindent \underbar{\textbf{UC8 - Otkazivanje termina}}
 				\begin{packed_item}
 					
-					\item \textbf{Glavni sudionik: }Registrirani korisnik
+					\item \textbf{Glavni sudionik: }Donor krvi
 					\item  \textbf{Cilj:} Otkazivanje rezerviranog termina
 					\item  \textbf{Sudionici:} Baza podataka
 					\item  \textbf{Preduvjet:} Korisnik je prijavljen u sustav i ima rezerviran termin
@@ -199,7 +199,7 @@
 						\item Odabire termin koji želi otkazati i opciju "Otkaži termin"
 						\item Od korisnika se traži potvrda
 						\item Korisnik potvrđuje akciju
-						\item Termin se briše iz Baze podataka i uklanja s Korisnikovog popisa rezervacija
+						\item Termin se briše iz baze podataka i uklanja s donorovog popisa rezervacija
 					\end{packed_enum}
 					
 					\item  \textbf{Opis mogućih odstupanja:}
@@ -216,7 +216,7 @@
 					\end{packed_item}
 				\end{packed_item}
 				
-				\noindent \underbar{\textbf{UC9-Uređivanje osobnih podataka}}
+				\noindent \underbar{\textbf{UC9 - Uređivanje osobnih podataka}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik: }Registrirani korisnik
@@ -230,7 +230,7 @@
 						\item Korisnik otvara profilnu stranicu
 						\item Odabir opcije "Uređivanje podataka"
 						\item Promjena podataka u otvorenom prozoru za uređivanje
-						\item Spremanje promjena i ažuriranje Baze podataka
+						\item Spremanje promjena i ažuriranje baze podataka
 					\end{packed_enum}
 					
 					\item  \textbf{Opis mogućih odstupanja:}
@@ -254,7 +254,7 @@
 				\end{packed_item}
 				
 				
-				\noindent \underbar{\textbf{UC10-Dodavanje akcija}}
+				\noindent \underbar{\textbf{UC10 - Dodavanje akcija}}
 				\begin{packed_item}
 					
 					\item \textbf{Glavni sudionik: }Administrator
@@ -286,7 +286,7 @@
 					
 					
 					
-					\noindent \underbar{\textbf{UC11-Uređivanje akcija}}
+					\noindent \underbar{\textbf{UC11 - Uređivanje akcija}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Administrator
@@ -317,7 +317,7 @@
 					\end{packed_item}
 					
 					
-					\noindent \underbar{\textbf{UC12-Arhiviranje akcija}}
+					\noindent \underbar{\textbf{UC12 - Arhiviranje akcija}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Administrator
@@ -347,7 +347,7 @@
 					\end{packed_item}
 					
 					
-					\noindent \underbar{\textbf{UC13-Verifikacija kritičnih podataka}}
+					\noindent \underbar{\textbf{UC13 - Verifikacija kritičnih podataka}}
 					\begin{packed_item}
 						
 						\item \textbf{Glavni sudionik: }Korisnik, Administrator
@@ -359,7 +359,7 @@
 						\item[] \begin{packed_enum}
 							
 							\item Administrator pristupa popisu registriranih korisnika
-							\item Za neverificirane korisnike sustav provjerava ima li osoba barem 18 godina, postoji li njezin MBO u Bazi i, ako postoji, odgovara li ime i prezime toj osobi
+							\item Za neverificirane korisnike sustav provjerava ima li osoba barem 18 godina, postoji li njezin MBO u bazi i, ako postoji, odgovara li ime i prezime toj osobi
 							\item Pri uspješnoj provjeri omogućava se gumb "Verificiraj"
 							\item Administrator klikom na gumb verificira korisnika
 						\end{packed_enum}
@@ -380,10 +380,10 @@
 					\end{packed_item}
 					
 					
-					\noindent \underbar{\textbf{UC14-Evidentiranje darivanja krvi}}
+					\noindent \underbar{\textbf{UC14 - Evidentiranje darivanja krvi}}
 					\begin{packed_item}
 						
-						\item \textbf{Glavni sudionik: }Registrirani korisnik, Administrator
+						\item \textbf{Glavni sudionik: }Donor krvi, Administrator
 						\item  \textbf{Cilj:} Dodati darivanje krvi u povijest darivanja i u bazu podataka
 						\item  \textbf{Sudionici:} Baza podataka
 						\item  \textbf{Preduvjet:} Korisnik je darovao krv, Administrator je prijavljen
@@ -393,7 +393,7 @@
 							
 							\item Administrator pristupa bazi podataka
 							\item Odabire unos novog zapisa
-							\item Popunjava obrazac koji traži ime, prezime, mbo, datum i krvnu grupu osobe
+							\item Popunjava obrazac koji traži ime, prezime, MBO, datum i krvnu grupu osobe
 							\item Obrazac se validira i podaci se unose u Bazu
 						\end{packed_enum}
 						
