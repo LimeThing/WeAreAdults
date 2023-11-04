@@ -1,6 +1,6 @@
 import React from "react";
 import Meni from "./komponente/Meni";
-import Informacije from "./komponente/stranice/informacije/Informacije";
+import Informacije from "./komponente/stranice/Informacije";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
