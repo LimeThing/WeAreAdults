@@ -4,6 +4,7 @@ import Informacije from "./komponente/stranice/Informacije";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StvaranjeAkcija from "./komponente/stranice/StvaranjeAkcija";
 
+import Lokacije from "./komponente/stranice/Lokacije";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Meni />}>
           <Route path="info" element={<Informacije />} />
           <Route path="stvaranje-akcija" element={<StvaranjeAkcija />} />
+          <Route path="lokacije" element={<Lokacije />} />
         </Route>
       </Routes>
     </BrowserRouter>
