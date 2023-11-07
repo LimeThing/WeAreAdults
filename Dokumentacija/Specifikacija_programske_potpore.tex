@@ -164,6 +164,103 @@
 				
 				
 				
+					\noindent \underbar{\textbf{UC4 - Registracija}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Neregistrirani korisnik
+					\item  \textbf{Cilj:} Registracija novog korisnika
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Korisnik nije registriran
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Neregistrirani korisnik odabire opciju za registraciju
+						\item Aplikacija ga preusmjerava na stranicu za registraciju
+						\item Ispunjava obrazac
+						\item Aplikacija provjerava unesene podatke i stvara korisnički račun te šalje poveznicu za verifikaciju mail adrese
+						\item Korisnik aktivira račun verifikacijom mail adrese
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[3.a] Korisnik odustaje od registracije
+						\item[] \begin{packed_enum}
+							
+							\item Povratak na početnu stranicu
+							
+						\end{packed_enum}
+						\item[4.a] Neki od unesenih podataka ne zadovoljavaju kriterije obrasca
+						\item[] \begin{packed_enum}
+							
+							\item Sustav javlja grešku
+							
+						\end{packed_enum}		
+						\item[4.b] Korisnik pokušava registrirati račun mail adresom koja već ima registrirani račun na web aplikaciji
+						\item[] \begin{packed_enum}
+							
+							\item Sustav javlja grešku
+							
+						\end{packed_enum}		
+						
+					\end{packed_item}
+				\end{packed_item}
+				
+				
+					\noindent \underbar{\textbf{UC5 - Rezervacija termina}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Donor krvi
+					\item  \textbf{Cilj:} Rezervacija termina za darivanje krvi
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen u sustav, nalazi se na stranici "Karta" s označenim mogućim lokacijama
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Korisnik odabire željenu lokaciju
+						\item Aplikacija izbacuje prozor s dostupnim terminima za rezervaciju
+						\item Korisnik odabire termin
+						\item Aplikacija provjerava podobnost korisnika i potvrđuje rezervaciju te vraća poruku potvrde
+					\end{packed_enum}
+					
+					\item  \textbf{Opis mogućih odstupanja:}
+					
+					\item[] \begin{packed_item}
+						
+						\item[2.a] Na odabranoj lokaciji nema dostupnih termina
+						\item[] \begin{packed_enum}
+							\item Sustav javlja grešku
+						\end{packed_enum}		
+						\item[4.a] Korisnik pokušava rezervirati termin u kojem zbog zdravstvenih razloga ne može darivati krv
+						\item[] \begin{packed_enum}
+							\item Sustav javlja grešku
+						\end{packed_enum}
+					\end{packed_item}
+				\end{packed_item}
+				
+				
+					\noindent \underbar{\textbf{UC6 - Pregled profila}}
+				\begin{packed_item}
+					
+					\item \textbf{Glavni sudionik: }Registrirani korisnik
+					\item  \textbf{Cilj:} Pregled vlastitog profila i informacija
+					\item  \textbf{Sudionici:} Baza podataka
+					\item  \textbf{Preduvjet:} Korisnik je prijavljen u sustav
+					\item  \textbf{Opis osnovnog tijeka:}
+					
+					\item[] \begin{packed_enum}
+						
+						\item Korisnik odabire karticu "Moj profil"
+						\item Aplikacija ga preusmjerava na stranicu profila i prikazuje korisničke podatke
+					\end{packed_enum}
+					
+				\end{packed_item}
+				
+				
+				
 				\noindent \underbar{\textbf{UC7 - Odjava korisnika}}
 				\begin{packed_item}
 					
