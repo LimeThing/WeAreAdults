@@ -1,6 +1,12 @@
 import { styled } from "styled-components";
 
-export const FlexBox = styled.div<{ $direction?: string, $height?: string, $width?: string, $align?: string, $justify?: string }>`
+export const FlexBox = styled.div<{
+  $direction?: string;
+  $height?: string;
+  $width?: string;
+  $align?: string;
+  $justify?: string;
+}>`
   width: ${(props) => (props.$width ? props.$width : "100%")};
   display: flex;
   height: ${(props) => (props.$height ? props.$height : "fit-content")};
@@ -57,4 +63,21 @@ export const TextBox = styled.div<{ $size?: string }>`
   text-align: center;
   color: white;
   font-size: ${(props) => (props.$size ? props.$size + "rem" : "1.5rem")};
+`;
+
+export const NovaAkcija = styled.div`
+  width: 80%;
+  background: #dd4444;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto;
+  & > form {
+    display: grid;
+    & > label {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
 `;
