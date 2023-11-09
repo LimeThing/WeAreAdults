@@ -1,6 +1,9 @@
-import { faArrowRightFromBracket, faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightFromBracket,
+  faBars,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import {
   FlexBox,
@@ -12,12 +15,18 @@ import {
 } from "./stilovi";
 
 export default function Meni() {
+  const [showMobileMeni, setShowMobileMeni] = useState(false);
+
   return (
     <>
-      <div style={{ background: "#dd4444" }}>
+      <div style={{ background: "#dd4444", padding: "0 1rem 0 1rem" }}>
         <FlexBox $justify="space-between" $height="3rem">
           <HiddenOnDesktopDiv>
-            <IconButton>
+            <IconButton
+              onClick={() => {
+                setShowMobileMeni(!showMobileMeni);
+              }}
+            >
               <FontAwesomeIcon
                 icon={faBars}
                 size="xl"
@@ -47,6 +56,28 @@ export default function Meni() {
           </HiddenOnMobileDiv>
         </FlexBox>
       </div>
+      {showMobileMeni && (
+        <HiddenOnDesktopDiv>
+          <div
+            style={{
+              background: "#dd4444",
+              height: "100%",
+              width: "fit-content",
+            }}
+          >
+            <FlexBox
+              $direction="column"
+              $height="100%"
+              $width="fit-content"
+              style={{ padding: "1rem 1rem 1rem 1rem", background: "#cc4444" }}
+            >
+              <MeniButton>O nama</MeniButton>
+              <MeniButton>Lokacije</MeniButton>
+              <MeniButton>Registriraj se</MeniButton>
+            </FlexBox>
+          </div>
+        </HiddenOnDesktopDiv>
+      )}
       <Outlet />
     </>
   );
