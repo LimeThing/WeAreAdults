@@ -7,19 +7,20 @@ export const FlexBox = styled.div<{ $direction?: string, $height?: string, $widt
   align-items: ${(props) => (props.$align ? props.$align : "center")};
   justify-content: ${(props) => (props.$justify ? props.$justify : "center")};
   flex-direction: ${(props) => (props.$direction ? props.$direction : "row")};
+  gap: 1rem;
 `;
 
 export const HiddenOnMobileDiv = styled.div`
   display: inline;
-  @media only screen and (min-width: 768px) {
-    display: "none";
+  @media only screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
 export const HiddenOnDesktopDiv = styled.div`
   display: inline;
-  @media only screen and (max-width: 768px) {
-    display: "none";
+  @media only screen and (min-width: 768px) {
+    display: none;
   }
 `;
 
