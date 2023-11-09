@@ -7,10 +7,7 @@ Zaposlenici Hrvatskog Crvenog Križa lako bi trebali moći stvarati nove akcije,
 
 Nadamo se i stjecanju znanja oko toga kako uspiješno organizirati proces stvaranja aplikacije, te i naučiti kako svladati i implementirati sve funkcionalnosti koje si zadajemo u planiranju.
 
-- frontend:
-```npm start```
-- backend:
-```uvicorn main:app --reload```
+Nadamo se i stjecanju znanja oko toga kako uspiješno organizirati proces stvaranja aplikacije, te i naučiti kako svladati i implementirati sve funkcionalnosti koje si zadajemo u planiranju.
 
 # Funkcijski zahtjevi
 Naša aplikacija zamišlena je sa funkcijama prijave korisnika, podržavanjem više korisnika u isto vrijeme te slanje obavijesti unutar aplikacija između korisnika koje su aktualne i odmah vidljive aktivnim korisnicima.
