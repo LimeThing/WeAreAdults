@@ -1,22 +1,34 @@
 import React from "react";
-import { CustomTextBox } from "../stilovi";
+import { CustomTextBox, FlexBox, OverFlowDiv, TextBox } from "../stilovi";
+import { mockKBC, mockAkcija } from "./komunalije/mock_podatci";
 
-type MockType = {
-    adresa: string
-}
 
-const mock : MockType[] = [{
-    adresa: "Stjepana radiva 4"
-},
-{
-    adresa: "Hrvatskih radova 34"
-}]
 
 export default function Lokacije() {
+  const kbcs = 
+    mockKBC.map((kbc, index) => {
+      return <>
+      <div style={{width: "90%" }}>
+        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>{kbc.ime}</TextBox>
+        <TextBox style={{padding: "0.5rem 0 0 0"}}>{kbc.adresa}</TextBox>
+      </div>
+      {index !== mockKBC.length-1 && <hr style={{border: "solid black", width: "99%"}}/>}
+      </>
+    } )
+   
   return (
     <>
+      <FlexBox $justify="space-around" $height="100vh">
+        <OverFlowDiv $height="400px" $direction="column" $width="40%" style={{padding: "1rem 0rem 1rem 0rem", background: "red", border: "solid black 4px"}}>
+          {kbcs}
+        </OverFlowDiv>
+        <FlexBox $width="40%" style={{background: "black"}}>
+          d
+        </FlexBox>
+      </FlexBox>
+        
       <div>Lokacije</div>
-      <button>{mock[0].adresa}</button>
+      <button>{mockKBC[0].adresa}</button>
       <CustomTextBox>Text</CustomTextBox>
     </>
   );
