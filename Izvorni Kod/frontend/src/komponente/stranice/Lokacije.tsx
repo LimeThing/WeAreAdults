@@ -20,13 +20,15 @@ export default function Lokacije() {
     mockAkcija.map((akcija, index) => {
       return <>
       <div style={{width: "90%" }}>
-        <TextBox>
+        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>
           {akcija.adresa}
         </TextBox>
-        <TextBox>
-          {"Početak: "+akcija.vrijemePoc}
+        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>
+          {"Početak: "+akcija.vrijemePoc.toDateString()}
         </TextBox>
-        <TextBox>{"Kraj: "+akcija.vrijemeKraj}</TextBox>
+        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>
+          {"Kraj: "+akcija.vrijemeKraj.toDateString()}
+        </TextBox>
       </div>
       {index !== mockAkcija.length-1 && <hr style={{border: "solid black", width: "100%"}}/>}
       </>
@@ -35,15 +37,19 @@ export default function Lokacije() {
   return (
     <>
       <FlexBox $justify="space-around" $height="100vh">
+
         <OverFlowDiv $height="400px" $width="40%" style={{border: "solid black 4px"}}>
           <FlexBox $direction="column"  style={{padding: "1rem 0rem 1rem 0rem", background: "red"}}>
-          {kbcs}
+            {kbcs}
           </FlexBox>
-          
         </OverFlowDiv>
-        <FlexBox $width="40%" style={{background: "black"}}>
-          d
-        </FlexBox>
+
+        <OverFlowDiv $height="400px" $width="40%" style={{border: "solid black 4px"}}>
+          <FlexBox $direction="column"  style={{padding: "1rem 0rem 1rem 0rem", background: "red"}}>
+            {akcije}
+          </FlexBox>
+        </OverFlowDiv>
+
       </FlexBox>
         
       <div>Lokacije</div>
