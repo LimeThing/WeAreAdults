@@ -15,6 +15,22 @@ export default function Lokacije() {
       {index !== mockKBC.length-1 && <hr style={{border: "solid black", width: "100%"}}/>}
       </>
     } )
+  
+  const akcije = 
+    mockAkcija.map((akcija, index) => {
+      return <>
+      <div style={{width: "90%" }}>
+        <TextBox>
+          {akcija.adresa}
+        </TextBox>
+        <TextBox>
+          {"Početak: "+akcija.vrijemePoc}
+        </TextBox>
+        <TextBox>{"Kraj: "+akcija.vrijemeKraj}</TextBox>
+      </div>
+      {index !== mockAkcija.length-1 && <hr style={{border: "solid black", width: "100%"}}/>}
+      </>
+    })
    
   return (
     <>
