@@ -30,7 +30,7 @@ A unutar mape projekta/Izvorni Kod/backend ```pip install```
 Zatim, unutar frontend mape izvršavanjem komande ```npm start``` pokreće se frontend dio projekta, a unutar backend mape ```uvicorn main:app --reload``` pokreće se backend dio aplikacije.
 
 # Članovi tima 
-Mentori ovog projekta su prof. [Vlado Sruk](https://www.fer.unizg.hr/vlado.sruk) i demos Mateja Gledec. Iva Rengel je voditelj rada na projektu, te ga radi zajedno sa suradnicima Zrinka Cvitanović, Mirta Hrnčić, Nikica Ivandić, Tin Lovreković, Robert Klečar i Josipa Sever.
+Mentori ovog projekta su prof. [Vlado Sruk](https://www.fer.unizg.hr/vlado.sruk) i demos Mateja Golec. Iva Rengel je voditelj rada na projektu, te ga radi zajedno sa suradnicima Zrinka Cvitanović, Mirta Hrnčić, Nikica Ivandić, Tin Lovreković, Robert Klečar i Josipa Sever.
 
 Pravila o organizaciji tima i kontribucije izdvojene su u datoteci [CONTRIBUTING.md](CONTRIBUTING.md)
 
