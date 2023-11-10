@@ -12,15 +12,18 @@ export default function Lokacije() {
         <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>{kbc.ime}</TextBox>
         <TextBox style={{padding: "0.5rem 0 0 0"}}>{kbc.adresa}</TextBox>
       </div>
-      {index !== mockKBC.length-1 && <hr style={{border: "solid black", width: "99%"}}/>}
+      {index !== mockKBC.length-1 && <hr style={{border: "solid black", width: "100%"}}/>}
       </>
     } )
    
   return (
     <>
       <FlexBox $justify="space-around" $height="100vh">
-        <OverFlowDiv $height="400px" $direction="column" $width="40%" style={{padding: "1rem 0rem 1rem 0rem", background: "red", border: "solid black 4px"}}>
+        <OverFlowDiv $height="400px" $width="40%" style={{border: "solid black 4px"}}>
+          <FlexBox $direction="column"  style={{padding: "1rem 0rem 1rem 0rem", background: "red"}}>
           {kbcs}
+          </FlexBox>
+          
         </OverFlowDiv>
         <FlexBox $width="40%" style={{background: "black"}}>
           d
