@@ -16,13 +16,9 @@ export const FlexBox = styled.div<{
   gap: 1rem;
 `;
 export const OverFlowDiv = styled.div<{ $direction?: string, $height?: string, $width?: string, $align?: string, $justify?: string }>`
-  width: ${(props) => (props.$width ? props.$width : "100%")};
-  display: flex;
+
   height: ${(props) => (props.$height ? props.$height : "fit-content")};
-  align-items: ${(props) => (props.$align ? props.$align : "center")};
-  justify-content: ${(props) => (props.$justify ? props.$justify : "center")};
-  flex-direction: ${(props) => (props.$direction ? props.$direction : "row")};
-  gap: 1rem;
+  overflow-x: hidden;
   overflow-y: scroll;
 `;
 

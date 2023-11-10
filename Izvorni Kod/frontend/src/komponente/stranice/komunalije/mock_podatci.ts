@@ -20,6 +20,32 @@ export const mockAkcija : MockAkcija_Type[] = [{
     idAkcija: 0,
     hitna: true,
     krGrupa: "AB-" 
+}, {
+    adresa: "Bogatinska ul. 13-1, 10000, Zagreb",
+    vrijemePoc: new Date(2023, 12, 26),
+    vrijemeKraj: new Date(2024, 1, 28),
+    idAkcija: 1,
+    hitna: false
+}, {
+    adresa: "Ul. Mikše Pelegrinovića 25, 10000, Zagreb",
+    vrijemePoc: new Date(2023, 12, 30),
+    vrijemeKraj: new Date(2024, 2, 5),
+    idAkcija: 2,
+    hitna: false
+}, {
+    adresa: "Krbavska ul. 26, 31000, Osijek",
+    vrijemePoc: new Date(2023, 12, 7),
+    vrijemeKraj: new Date(2024, 2, 17),
+    idAkcija: 3,
+    hitna: true,
+    krGrupa: "B+" 
+}, {
+    adresa: "Ul. Narodnog preporoda 25, 51500, Krk",
+    vrijemePoc: new Date(2024, 1, 26),
+    vrijemeKraj: new Date(2024, 3, 29),
+    idAkcija: 4,
+    hitna: false,
+    krGrupa: undefined
 }
 
 ]
