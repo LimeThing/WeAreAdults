@@ -4,7 +4,7 @@ import { NovaAkcija } from "../stilovi";
 
 export default function StvaranjeAkcija() {
     const [hitnaAkcija, setHitnaAkcija] = useState(false);
-
+    
     const handleCheckboxChange = (e: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
        setHitnaAkcija(e.target.checked);
     };
@@ -35,6 +35,6 @@ export default function StvaranjeAkcija() {
             <input type="submit" value="Submit"></input>
             </form>
             <br/>
-            <Outlet /></NovaAkcija></>
+            </NovaAkcija></>
     )
 }
