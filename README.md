@@ -1,74 +1,71 @@
-# WeAreAdults
-Projekt predmeta Programsko Inzinjerstvo
+# DraculaCharity
+Ovaj projekt je rezltat timskog rada u sklopu projeknog zadatka kolegija [Programsko inženjerstvo](https://www.fer.unizg.hr/predmet/proinz) na Fakultetu elektrotehnike i računarstva Sveučilišta u Zagrebu. 
 
-# Kopiran git tutorial s drugog repozitorija
+DraculaCharity je web aplikacija razvijena s ciljem olakšavanja procesa davanja i skupljanja krvi svim sudionicima ovog procesa. Manjak krvi u nekoj zdravstvenoj ustanovi može dovesti do života teških posljedica, zbog čega je važno pokušati što više pojednostaviti, olakšati i ubrzati ovaj proces.
 
-Mozete skineti kopiju repozitorija sa
-```git clone https://github.com/LimeThing/WeAreAdults.git```
-samo pazite da vam je cmd/terminal u folderu u kojem zelite skinut repozitorij
+Zaposlenici Hrvatskog Crvenog Križa lako bi trebali moći stvarati nove akcije, te bi o tim akcijama trebalo moći obavijestiti što više ljudi, a ljudima koji su voljni sudjelovati treba se omogućiti laka prijava bez zabušenja. Naš je cilj pokušati sve to uspješno omogućiti našim korisnicima.
 
-commit messages se uvijek pisu kao da nastavljaju recenicu 'If you download this commit, it will:'
-to je samo neki git obicaj
-Takoder, pisemo sve komentare i poruke na hrvatski
+Nadamo se i stjecanju znanja oko toga kako uspiješno organizirati proces stvaranja aplikacije, te i naučiti kako svladati i implementirati sve funkcionalnosti koje si zadajemo u planiranju.
 
-```
-git status     -> pregled statusa (promjenjene datoteke, trenutni branch itd)
-git status -s   -> pregled samo promjenjenih datoteka ( -s znaci short)
 
-git log --decorate --graph   -> za pregledavanje svih prijasnjih commitova selectanom branchu
+# Funkcijski zahtjevi
+Naša aplikacija zamišlena je sa funkcijama prijave korisnika, podržavanjem više korisnika u isto vrijeme te slanje obavijesti unutar aplikacija između korisnika koje su aktualne i odmah vidljive aktivnim korisnicima.
 
-git checkout imeBrancha     -> prebaci se na granu imeBrancha
+Registrirani korisnici dijele se na Donore Krvi i Zaposlenike Hrvatskog Crvenog Križa (kraće donori i admini). Donori mogu pregledati vlastiti profil i mijenjati ga, vidjeti aktivne lokacije davanja krvi i prijaviti se za darivanje ako zadovoljavaju određene kriterije. Kasnije svoje rezervacije mogu i otkazati.
 
-git checkout -b noviBranch    -> stvori novu granu i odmah se prebaci na nju
+Admini imaju mogućnost stvaranja novih akcija, obićnih i hitnih. Kad akcija postane aktivna, odmah se prikazuje donorima. Kad hitna akcija postane aktivna, kroz aplikaciju i na mailove donora dolazi obavijest za prijavu kako bi što više ljudi moglo pomoći u hitnom nabavljanju krvi. Također, admin verificira podatke iz registracije korisnika i uređuje ili arhivira već napravljene akcije.
 
-git add filename    -> za dodavanje datoteke filename na listu spremnih za commitanje (ide ili ime datoteke ili put do datoteke ako je u nekom folderu)
 
-git add .     -> za dodavanje svih datoteka na kojima su napravljene promjene u 'datoteke spremne za commit' (staged files)
+# Tehnologije
+Za komunikaciju među timom koristimo Discord, a sa komunikaciju s demosicom i profesorom koristimo MS Teams. Dokumentacija je rađena u latexu, a za dijagrame je korištena stranica [VisualParadigm](https://www.visual-paradigm.com/). 
 
-git restore --staged fileName   -> makni file iz liste spremnih za commit (staged files)
+Za frontend primarno koristimo [React](https://react.dev/) i [ReactQuery](https://tanstack.com/query/v3/), dok za backend spajamo [MySQL](https://www.mysql.com/) i [python3](https://www.python.org/). API endpointe ostvarit će mo korištenjem [FastAPI](https://fastapi.tiangolo.com/). Sigurnost podataka baze čuvamo s [Auth0](https://auth0.com/), Te ćemo aplikaciju postaviti na [Vercel](https://vercel.com/)
 
-git commit -m "Custom message"   -> commitanje promjena (lokalno)
+# Deployment
+Aplikacija je deployana korištenjem aplikacije vercel na [sljedećoj poveznici](https://we-are-adults.vercel.app/)
 
-git push -u origin imeBrancha       -> pushaj granu na remote repozitorij, to je ovaj koji nam git hosta. ime grane na lokalnom repozitoriju mora bit isti kao i na remote (ako nije, onda ce se kod ove komande samo stvoriti ta grana na remote repozitoriju)
+# Instalcija
+Unutar mape projekta/Izvorni Kod/frontend, potrebno je izvrtiti ```npm install```
 
-git diff   -> razlike izmedu onog sto imam i onog sto je spremno za commit
+A unutar mape projekta/Izvorni Kod/backend ```pip install```
 
-git diff --staged ili --cached   -> razlika izmedu onog sto sam spremila za commit i onog sto je na serveru
+Zatim, unutar frontend mape izvršavanjem komande ```npm start``` pokreće se frontend dio projekta, a unutar backend mape ```uvicorn main:app --reload``` pokreće se backend dio aplikacije.
 
-git merge imeBrancha    -> mergaj selectanu granu na imeBrancha (preferiramo rebase)
+# Članovi tima 
+Mentori ovog projekta su prof. [Vlado Sruk](https://www.fer.unizg.hr/vlado.sruk) i demos Mateja Golec. Iva Rengel je voditelj rada na projektu, te ga radi zajedno sa suradnicima Zrinka Cvitanović, Mirta Hrnčić, Nikica Ivandić, Tin Lovreković, Robert Klečar i Josipa Sever.
 
-git rebase imeBrancha    -> stavi selectanu granu na imeBrancha (kao da je commit poslje njega)
+Pravila o organizaciji tima i kontribucije izdvojene su u datoteci [CONTRIBUTING.md](CONTRIBUTING.md)
 
-git pull     -> skini promjene s remote repozitorija na svoje lokalno racunalo
 
-git pull --rebase  -> skini promjene te ih odmah spoji sa datotekama na lokalnom racunalu
+## 📝 Kodeks ponašanja [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
 
-git reset --hard main^   -> vrati selectani branch (ex main) za jedan commit unatrag
 
-git commit --amend    -> za ispraljanje sitnih greskica/typos u commit message, moras napravit prije pushanja
 
-git push --force-with-lease origin imeBranch   -> ako je tvoja promjena novija pushaj imeBrancha   da prebrise origin/branch
+## 📝 Licenca
+Važeča (1)
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
 
-git checkout imeFilea     -> izbrisi sve promjene koje nisu commitane iz tog filea
+Ovaj repozitorij sadrži otvoreni obrazovni sadržaji (eng. Open Educational Resources)  i licenciran je prema pravilima Creative Commons licencije koja omogućava da preuzmete djelo, podijelite ga s drugima uz 
+uvjet da navođenja autora, ne upotrebljavate ga u komercijalne svrhe te dijelite pod istim uvjetima [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License HR][cc-by-nc-sa].
+>
+> ### Napomena:
+>
+> Svi paketi distribuiraju se pod vlastitim licencama.
+> Svi upotrijebleni materijali  (slike, modeli, animacije, ...) distribuiraju se pod vlastitim licencama.
 
-git stash     -> spremanje na stash, to je kao neki privremeni spremnik za necommitane promjene na koje ces se brzo natrag vratit
+[![CC BY-NC-SA 4.0][cc-by-nc-sa-image]][cc-by-nc-sa]
 
-git stash pop    -> vrati promjene iz stasha na trenutni kod, jako pazit moras da si na istoj grani na kojoj si napravio git stash jer ce ti inace sve za***at
+[cc-by-nc-sa]: https://creativecommons.org/licenses/by-nc/4.0/deed.hr 
+[cc-by-nc-sa-image]: https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png
+[cc-by-nc-sa-shield]: https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg
 
-git branch list   ->   pregled svih grana koje postoje na tvom lokalnom racunalu
-```
+Orginal [![cc0-1.0][cc0-1.0-shield]][cc0-1.0]
+>
+>COPYING: All the content within this repository is dedicated to the public domain under the CC0 1.0 Universal (CC0 1.0) Public Domain Dedication.
+>
+[![CC0-1.0][cc0-1.0-image]][cc0-1.0]
 
-To su sve komande koje ce nam ikad trebat. Preporucam da isprobate checkout, branch, add, push, commit, pull, merge i rebase
-Napravite puno grana, igrajte se s njima
-sa git log mozete vidjet sve commitove unatrag, sve do prvog
+[cc0-1.0]: https://creativecommons.org/licenses/by/1.0/deed.en
+[cc0-1.0-image]: https://licensebuttons.net/l/by/1.0/88x31.png
+[cc0-1.0-shield]: https://img.shields.io/badge/License-CC0--1.0-lightgrey.svg
 
-# Errori
-
-Ako dobijate ovaj error u terminalu
-```
-remote: Support for password authentication was removed on August 13, 2021.
-remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
-fatal: Authentication failed for 'https://github.com/LimeThing/gitplayground.git/'
-```
-sljedite upute na ovoj stranici: https://stackoverflow.com/questions/68775869/message-support-for-password-authentication-was-removed
-umjesto git password samo kopirajte izgenerirani token 
