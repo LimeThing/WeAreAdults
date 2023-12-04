@@ -4,7 +4,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import {
   FlexBox,
   HiddenOnDesktopDiv,
@@ -16,6 +16,7 @@ import {
 
 export default function Meni() {
   const [showMobileMeni, setShowMobileMeni] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -36,7 +37,7 @@ export default function Meni() {
           </HiddenOnDesktopDiv>
           <HiddenOnMobileDiv>
             <FlexBox>
-              <IconButton>
+              <IconButton onClick={() => alert("Odjava")}>
                 <FontAwesomeIcon
                   icon={faArrowRightFromBracket}
                   size="xl"
@@ -49,9 +50,9 @@ export default function Meni() {
           <TextBox>DraculaCharity</TextBox>
           <HiddenOnMobileDiv>
             <FlexBox>
-              <MeniButton>O nama</MeniButton>
-              <MeniButton>Lokacije</MeniButton>
-              <MeniButton>Registriraj se</MeniButton>
+              <MeniButton onClick={() => navigate("/info")}>O nama</MeniButton>
+              <MeniButton onClick={() => navigate("/lokacije")}>Lokacije</MeniButton>
+              <MeniButton onClick={() => navigate("/registracija")}>Registriraj se</MeniButton>
             </FlexBox>
           </HiddenOnMobileDiv>
         </FlexBox>
@@ -71,9 +72,9 @@ export default function Meni() {
               $width="fit-content"
               style={{ padding: "1rem 1rem 1rem 1rem", background: "#cc4444" }}
             >
-              <MeniButton>O nama</MeniButton>
-              <MeniButton>Lokacije</MeniButton>
-              <MeniButton>Registriraj se</MeniButton>
+              <MeniButton onClick={() => navigate("/info")}>O nama</MeniButton>
+              <MeniButton onClick={() => navigate("/lokacije")}>Lokacije</MeniButton>
+              <MeniButton onClick={() => navigate("/registracija")}>Registriraj se</MeniButton>
             </FlexBox>
           </div>
         </HiddenOnDesktopDiv>
