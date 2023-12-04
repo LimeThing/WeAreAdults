@@ -24,7 +24,7 @@ Za frontend primarno koristimo [React](https://react.dev/) i [ReactQuery](https:
 
 # Deployment
 Aplikacija je deployana korištenjem aplikacije vercel na [sljedećoj poveznici](https://we-are-adults.vercel.app/)
-Postojeće podstranice: info, lokacije, stvaranje-akcije, verifikacija, Registracija, Prijava
+Postojeće podstranice: info, lokacije, stvaranje-akcija, verifikacija, Registracija, Prijava
 
 # Instalcija
 Unutar mape projekta/Izvorni Kod/frontend, potrebno je izvrtiti ```npm install```
