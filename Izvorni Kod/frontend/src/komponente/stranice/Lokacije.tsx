@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomTextBox, FlexBox, OverFlowDiv, TextBox } from "../stilovi";
+import { CustomTextBox, FlexBox, OverFlowDiv, TextBoxLokacije } from "../stilovi";
 import { mockKBC, mockAkcija } from "./komunalije/mock_podatci";
 
 
@@ -9,8 +9,8 @@ export default function Lokacije() {
     mockKBC.map((kbc, index) => {
       return <>
       <div style={{width: "90%" }}>
-        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>{kbc.ime}</TextBox>
-        <TextBox style={{padding: "0.5rem 0 0 0"}}>{kbc.adresa}</TextBox>
+        <TextBoxLokacije>{kbc.ime}</TextBoxLokacije>
+        <TextBoxLokacije>{kbc.adresa}</TextBoxLokacije>
       </div>
       {index !== mockKBC.length-1 && <hr style={{border: "solid black", width: "100%"}}/>}
       </>
@@ -20,15 +20,16 @@ export default function Lokacije() {
     mockAkcija.map((akcija, index) => {
       return <>
       <div style={{width: "90%" }}>
-        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>
+        <TextBoxLokacije>
           {akcija.adresa}
-        </TextBox>
-        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>
+        </TextBoxLokacije>
+        <TextBoxLokacije>
           {"Početak: "+akcija.vrijemePoc.toDateString()}
-        </TextBox>
-        <TextBox style={{ width: "100%" , padding: "0 0 0.5rem 0"}}>
+        </TextBoxLokacije>
+        <TextBoxLokacije>
           {"Kraj: "+akcija.vrijemeKraj.toDateString()}
-        </TextBox>
+        </TextBoxLokacije>
+        {akcija.hitna === true && <TextBoxLokacije>{"HITNA AKCIJA! Tip krvi: "+akcija.krGrupa}</TextBoxLokacije>}
       </div>
       {index !== mockAkcija.length-1 && <hr style={{border: "solid black", width: "100%"}}/>}
       </>
@@ -52,9 +53,6 @@ export default function Lokacije() {
 
       </FlexBox>
         
-      <div>Lokacije</div>
-      <button>{mockKBC[0].adresa}</button>
-      <CustomTextBox>Text</CustomTextBox>
     </>
   );
 }

@@ -22,6 +22,14 @@ export const OverFlowDiv = styled.div<{ $direction?: string, $height?: string, $
   overflow-y: scroll;
 `;
 
+export const TextBoxLokacije = styled.div<{ $size?: string , $width?: string}>`
+  width: 100%;
+  padding: 0 0 0.5rem 0;
+  text-align: center;
+  color: white;
+  font-size: ${(props) => (props.$size ? props.$size + "rem" : "1.5rem")};
+`;
+
 export const HiddenOnMobileDiv = styled.div`
   display: inline;
   @media only screen and (max-width: 768px) {
