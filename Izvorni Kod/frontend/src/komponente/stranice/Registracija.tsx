@@ -54,7 +54,7 @@ export default function Registration() {
   };
 
   return (
-    <div>
+    <>
       {prviDio === true &&
     <OuterContainer>
     <Container>
@@ -91,9 +91,9 @@ export default function Registration() {
 }
 
 {drugiDio === true &&
-  <div className="outerContainer">
-    <div className="container">
-      <div className="form-container">
+  <OuterContainer>
+    <Container>
+      <FormContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
           <span>Unesite još par podataka i<br></br>završite izradu korisničkog računa</span>
           <br></br>
@@ -104,24 +104,24 @@ export default function Registration() {
           <button type="submit">Registriraj se</button>
           
         </form>
-      </div>
+      </ FormContainer>
 
-      <div className="toggle-container">
-        <div className="toggle">
-          <div className="toggle-panel toggle left">
+      <ToggleContainer>
+        <Toggle>
+          <TogglePanel>
             <h1>Dobrodošli natrag!</h1>
             <p>Prijavite se za korištenje svih mogućnosti</p>
             <button id="login" onClick={handleLoginButtonClick}>Prijavi se</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+          </ TogglePanel>
+        </ Toggle>
+      </ ToggleContainer>
+    </ Container>
+    </ OuterContainer>
 
 
 }
 
 
-    </div>
+    </>
   );
 };
