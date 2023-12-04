@@ -5,6 +5,7 @@ import Registracija from "./komponente/stranice/Registracija";
 import Login from "./komponente/stranice/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StvaranjeAkcija from "./komponente/stranice/StvaranjeAkcija";
+import Verifikacija from "./komponente/stranice/Verifikacija";
 
 import Lokacije from "./komponente/stranice/Lokacije";
 
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Meni />}>
+          <Route path="verifikacija" element ={<Verifikacija />} />
           <Route path="info" element={<Informacije />} />
           <Route path="stvaranje-akcija" element={<StvaranjeAkcija />} />
           <Route path="lokacije" element={<Lokacije />} />
