@@ -254,7 +254,7 @@ export const TogglePanel = styled.div<{ $right?: boolean }>`
   text-align: center;
   top: 0;
   
-  right: ${(props) => (props.$right ? 0 : "")};
+  right: ${(props) => (props.$right ? "0" : "")};
   transform: ${(props) => (props.$right ? "translateX(0)" : "")};
 `;
 
