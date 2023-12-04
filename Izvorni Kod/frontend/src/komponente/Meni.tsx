@@ -14,13 +14,16 @@ import {
   TextBox,
 } from "./stilovi";
 
+
+
 export default function Meni() {
   const [showMobileMeni, setShowMobileMeni] = useState(false);
   const navigate = useNavigate();
 
+
   return (
     <>
-      <div style={{ background: "#dd4444", padding: "0 1rem 0 1rem" }}>
+      <div style={{ /*background: "#dd4444"*/ background: "#a82f2d", padding: "0 1rem 0 1rem" }}>
         <FlexBox $justify="space-between" $height="3rem">
           <HiddenOnDesktopDiv>
             <IconButton
