@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { Container, FormContainer2, OuterContainer, Toggle2, ToggleContainer2, TogglePanel } from "../stilovi";
 
 interface FormData {
   email: string;
@@ -30,9 +31,9 @@ export default function Login() {
   };
 
   return (
-    <div className="outerContainer">
-    <div className="container">
-      <div className="form-container2 sign-in">
+    <OuterContainer>
+    <Container>
+      <FormContainer2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h1>Dobro došli!</h1>
           <br></br>
@@ -49,20 +50,20 @@ export default function Login() {
           <p> {errors.password?.message} </p>
           <button type="submit">Prijavi se</button>
         </form>
-      </div>
+      </ FormContainer2>
 
-      <div className="toggle-container2">
-        <div className="toggle2">
-          <div className="toggle-panel toggle-right">
+      <ToggleContainer2>
+        <Toggle2>
+          <TogglePanel $right>
             <h1>Prvi put?</h1>
             <p>Unesite svoje podatke i napravite korisnički račun</p>
             <button id="register" onClick={handleRegisterButtonClick}>
               Registriraj se
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+          </ TogglePanel>
+        </ Toggle2>
+      </ ToggleContainer2>
+    </ Container>
+    </ OuterContainer>
   );
 };

@@ -4,6 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { Container, FormContainer, OuterContainer, Toggle, ToggleContainer, TogglePanel } from "../stilovi";
 
 interface FormData {
   firstName: string;
@@ -55,9 +56,9 @@ export default function Registration() {
   return (
     <div>
       {prviDio === true &&
-    <div className="outerContainer">
-    <div className="container">
-      <div className="form-container">
+    <OuterContainer>
+    <Container>
+      <FormContainer>
         <form onSubmit={handleSubmit(onSubmit)}>
           <span>Unesite tražene podatke<br></br>i izradite korisnički račun</span>
           <br></br>
@@ -74,19 +75,19 @@ export default function Registration() {
           {/*na klik ovog gumba otvara se nova forma: dob, spol, krvna grupa, preferirani KBC*/}
           {/* <input type="submit"/> */}
         </form>
-      </div>
+      </ FormContainer>
 
-      <div className="toggle-container">
-        <div className="toggle">
-          <div className="toggle-panel toggle left">
+      <ToggleContainer>
+        <Toggle>
+          <TogglePanel>
             <h1>Dobrodošli natrag!</h1>
             <p>Prijavite se za korištenje svih mogućnosti</p>
             <button id="login" onClick={handleLoginButtonClick}>Prijavi se</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
+          </ TogglePanel>
+        </ Toggle>
+      </ ToggleContainer>
+    </ Container>
+    </OuterContainer>
 }
 
 {drugiDio === true &&

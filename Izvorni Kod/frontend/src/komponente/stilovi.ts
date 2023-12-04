@@ -15,14 +15,19 @@ export const FlexBox = styled.div<{
   flex-direction: ${(props) => (props.$direction ? props.$direction : "row")};
   gap: 1rem;
 `;
-export const OverFlowDiv = styled.div<{ $direction?: string, $height?: string, $width?: string, $align?: string, $justify?: string }>`
-
+export const OverFlowDiv = styled.div<{
+  $direction?: string;
+  $height?: string;
+  $width?: string;
+  $align?: string;
+  $justify?: string;
+}>`
   height: ${(props) => (props.$height ? props.$height : "fit-content")};
   overflow-x: hidden;
   overflow-y: scroll;
 `;
 
-export const TextBoxLokacije = styled.div<{ $size?: string , $width?: string}>`
+export const TextBoxLokacije = styled.div<{ $size?: string; $width?: string }>`
   width: 100%;
   padding: 0 0 0.5rem 0;
   text-align: center;
@@ -96,15 +101,164 @@ export const NovaAkcija = styled.div`
   }
 `;
 export const MeniMain = styled.div`
-    width: 100%;
-    background: #DD4444;
-    display: flex;
-    height: 3rem;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 1rem 0 1rem; 
-`
+  width: 100%;
+  background: #dd4444;
+  display: flex;
+  height: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem 0 1rem;
+`;
 
 export const CustomTextBox = styled.div`
-    background: #DDDD44;
-`
+  background: #dddd44;
+`;
+
+export const OuterContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+`;
+
+export const Container = styled.div`
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+
+  width: 800px;
+  max-width: 100%;
+  min-height: 520px;
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  a {
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+  }
+  button {
+    background-color: #ce4242;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid white;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  form {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /*padding: 0 80px;*/
+    padding: 0 100px;
+    height: 100%;
+  }
+
+  input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+  }
+`;
+
+export const FormContainer = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+`;
+
+export const FormContainer2 = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+`;
+
+export const ToggleContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 0 150px 100px 0;
+`;
+
+export const ToggleContainer2 = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 150px 0 0 100px;
+`;
+
+export const Toggle = styled.div`
+  background-color: #a82f2d;
+  height: 100%;
+  background: linear-gradient(to left, #b63e3e, #a82d2d);
+  color: #fff;
+  position: relative;
+  height: 100%;
+  width: 200%;
+`;
+
+export const Toggle2 = styled.div`
+  background-color: #a82f2d;
+  height: 100%;
+  background: linear-gradient(to left, #b63e3e, #a82d2d);
+  color: #fff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+`;
+
+export const TogglePanel = styled.div<{ $right?: boolean }>`
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 30px;
+  text-align: center;
+  top: 0;
+  
+  right: ${(props) => (props.$right ? 0 : "")};
+  transform: ${(props) => (props.$right ? "translateX(0)" : "")};
+`;
+
+export const Drakulica = styled.div`
+  height: 200px;
+  width: auto;
+`;
