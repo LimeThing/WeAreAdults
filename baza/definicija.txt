@@ -1,0 +1,93 @@
+CREATE TABLE Korisnik
+(
+  Ime VARCHAR(20) NOT NULL,
+  Prezime VARCHAR(20) NOT NULL,
+  OIB CHAR(11) NOT NULL,
+  KrGrupa VARCHAR(3) NOT NULL,
+  MBO CHAR(9) NOT NULL,
+  Spol CHAR(1) NOT NULL,
+  Dob INT NOT NULL,
+  MjStan VARCHAR(30) NOT NULL,
+  FavKBC VARCHAR(30) NOT NULL,
+  Verificiran INT NOT NULL,
+  PRIMARY KEY (OIB),
+  UNIQUE (MBO),
+   CONSTRAINT spolMZ CHECK (Spol = 'M' or Spol = 'Z'),
+   CONSTRAINT dob CHECK (Dob >= 18)	
+);
+
+CREATE TABLE Administrator
+(
+  Mail VARCHAR(50) NOT NULL,
+  Lozinka VARCHAR(20) NOT NULL,
+  PRIMARY KEY (Mail)
+);
+
+CREATE TABLE Akcija
+(
+  IdAkcija VARCHAR(10) NOT NULL,
+  Adresa VARCHAR(50) NOT NULL,
+  VrijemePoc DATE NOT NULL,
+  VrijemeKraj DATE NOT NULL,
+  KrGrupa VARCHAR(3),
+  Hitna INT NOT NULL,
+  ImeLokacije VARCHAR(30) NOT NULL,
+  Mail VARCHAR(50) NOT NULL,
+  FOREIGN KEY (Mail) REFERENCES Admin(Mail),
+  PRIMARY KEY (IdAkcija)
+);
+
+CREATE TABLE KBC
+(
+  Adresa VARCHAR(50) NOT NULL,
+  Ime VARCHAR(30) NOT NULL,
+  UNIQUE (Ime)
+);
+
+CREATE TABLE Rezervacija
+(
+  VrijemePoc TIME NOT NULL,
+  IdRezervacija VARCHAR(20) NOT NULL,
+  imeLokacije VARCHAR(30) NOT NULL,
+  OIB CHAR(11) NOT NULL,
+  PRIMARY KEY (IdRezervacija),
+  FOREIGN KEY (OIB) REFERENCES Korisnik(OIB)
+);
+
+CREATE TABLE Termini
+(
+  VrijemePoc TIME NOT NULL,
+  VrijemeKraj TIME NOT NULL,
+  Zauzeto INT NOT NULL,
+  imeLokacije VARCHAR(20) NOT NULL,
+  id VARCHAR(20) NOT NULL,
+  datum DATE DEFAULT (CURDATE() + INTERVAL 1 DAY),
+  PRIMARY KEY (id)
+);
+
+ALTER TABLE Termini
+    MODIFY COLUMN VrijemeKraj TIME DEFAULT (ADDTIME(VrijemePoc, '00:30:00'));
+
+CREATE TABLE LoginInfo
+(
+  Mail VARCHAR(50) NOT NULL,
+  Lozinka VARCHAR(20) NOT NULL,
+  OIB CHAR(11) NOT NULL,
+  PRIMARY KEY (Mail),
+  FOREIGN KEY (OIB) REFERENCES Korisnik(OIB)
+);
+
+--update datuma u terminima
+DELIMITER //
+CREATE EVENT UpdateTerminiDate
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP
+DO
+BEGIN
+  UPDATE Termini
+  SET datum = DATE_ADD(CURDATE(), INTERVAL 1 DAY);
+END;
+//
+DELIMITER ;
+ALTER EVENT UpdateTerminiDate ENABLE;
+SET GLOBAL event_scheduler = ON;

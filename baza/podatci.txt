@@ -1,0 +1,63 @@
+USE darivanjekrvi; 
+
+USE darivanjekrvi;
+INSERT INTO TERMINI(VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, id) VALUES 
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'KBC Zagreb', 'Zg9'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'KBC Zagreb', 'Zg10'),
+    (STR_TO_DATE('11:00:00', '%T'), STR_TO_DATE('12:00:00', '%T'), 0, 'KBC Zagreb', 'Zg11'),
+    (STR_TO_DATE('12:00:00', '%T'), STR_TO_DATE('13:00:00', '%T'), 0, 'KBC Zagreb', 'Zg12'),
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'KBC Osijek', 'Os9'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'KBC Osijek', 'Os10'),
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'KBC Osijek', 'Os11'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'KBC Osijek', 'Os12'), 
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'KBC Rijeka', 'Ri9'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'KBC Rijeka', 'Ri10'),
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'KBC Rijeka', 'Ri11'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'KBC rijeka', 'Ri12'), 
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'KBC Split', 'St9'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'KBC Split', 'St10'),
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'KBC Split', 'St11'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'KBC Split', 'St12'), 
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'OB Dubrovnik', 'Du9'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'OB Dubrovnik', 'Du10'),
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'OB Dubrovnik', 'Du11'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'OB Dubrovnik', 'Du12'),
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'OB Varaždin', 'Va9'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'OB Varaždin', 'Va10'),
+    (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), 0, 'OB Varaždin', 'Va11'),
+    (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), 0, 'OB Varaždin', 'Va12');
+    
+INSERT INTO KBC VALUES
+('Ulica Mije Kišpatića 12, 10000, Zagreb', 'KBC Zagreb'),
+('Ulica Josipa Huttlera 4, 3100, Osijekj', 'KBC Osijek'),
+('Krešimirova ul. 42, 51000, Rijeka', 'KBC Rijeka'),
+('Spinčićeva uk. 1, 21000, Split', 'KBC Split'),
+('Dr. Roka Mišetića 2, 20000, Dubrovnik', 'OB Dubrovnik'),
+('Ul. Ivana Meštrovića 1, 42000, Varaždin', 'OB Varaždin');
+	
+
+INSERT INTO Korisnik (ime, prezime, oib, krgrupa, mbo, spol, dob, mjstan, favkbc, verificiran) VALUES
+('Ivan', 'Novak', '11111111111', 'A+', '111111111', 'M', 45, 'Osijek', 'KBC Osijek', 0),
+('Marija', 'Horvat', '33333333333', '0-', '333333333', 'Z', 27, 'Osijek', 'KBC Osijek', 0),
+('Ana', 'Kovačević',  '22222222222', '0+', '222222222', 'Z', 35, 'Osijek', 'KBC Osijek', 0),
+('Štef', 'Zbrega', '44444444444', 'B-', '444444444', 'M', 48, 'Zagreb', 'KBC Zagreb', 0),
+('Marko', 'Babić', '55555555555', '0-', '555555555', 'M', 31, 'Osijek', 'KBC Osijek', 0);
+
+INSERT INTO Administrator VALUES
+('admin@ckhr.com', 'lozinka1'),
+('josjedan@ckhr.com', 'lozinka1');
+
+INSERT INTO akcija VALUES
+('akcija1', 'Zvonigradska ulica 9', str_to_date("2023,12,1", "%Y,%m,%d"), str_to_date("2023,12,10", "%Y,%m,%d"), 'AB+', 1, 'Dom zdravlja zapad', 'admin@ckhr.com' ),
+('akcija2', 'Grižanska ulica 4', str_to_date("2023,12,1", "%Y,%m,%d"), str_to_date("2023,12,10", "%Y,%m,%d"), '0+', 0, 'Dom zdravlja istok', 'admin@ckhr.com' );
+
+INSERT INTO rezervacija VALUES
+(STR_TO_DATE('09:00:00', '%T'), 'rez1', 'KBC Zagreb', '11111111111' ),
+(STR_TO_DATE('10:00:00', '%T'), 'rez2', 'KBC Osijek', '22222222222' );
+
+INSERT INTO logininfo VALUES
+('ivannovak@email.com', 'lozinka1', '11111111111'),
+('marijahorvat@email.com', 'loinka3', '33333333333'),
+('anakovacevic@email.com', 'lozinka2', '22222222222'),
+('stefzbrega@email.com', 'lozinka4', '44444444444'),
+('markobabic@email.com', 'lozinka5', '55555555555');
