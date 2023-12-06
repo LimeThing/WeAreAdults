@@ -4,19 +4,24 @@ Za postavljanje baze treba vam MySQL. Otvorite MySQL Workbench (lakše jer jer i
     - connection name: darivanjekrvi (tako sam ujedno nazvala i bazu, zapravo samo ime konekcije nije bitno ali olakšava ako se zovu isto)
     - hostname: localhost
     - port: 3306 (ostaviti default)
-    - password: može i ne treba, dogovorit ćemo se za deploy koja će biti lozinka
-- username ostaviti root, password zasad ne namještati jer se sve poremeti (nekima baš traži lozinku, u tom slučaju postavite)
+    - password: root (zasad je tako u kodu da bude čim više generički, dogovorit ćemo stvarni password)
+    - username ostaviti root
 - testirati konekciju da vidite radi li (nekad će trebati promijeniti 127.0.0.1 u localhost ili promijeniti port ili slično)
 - otvoriti konekciju i kao query prvo "CREATE DATABASE darivanjeKrvi;", zatim "USE darivanjeKrvi;" i ispod toga kopirati sadržaj baza-sql.txt
 (tamo se nalazi cijela definicija baze) 
 - kao idući query kopirati datoteku podatci-sql.txt
     - meni iz nekog razloga nije htjelo sve odjednom (vjerojatno zbog nekog limita na duljinu queryja) pa sam morala dio po dio
     - kod toga je samo važno da na početku svakog queryja piše "USE darivanjeKrvi;"
+    - može se i shema postaviti kao default: 
+        - u lijevom sidebaru pri sredini postoje dvije opcije: Administration (odabran) i Schemas
+        - odbarati Schemas > desni klik na ime baze > Set as default Schema
 - treba prvo otvoriti konekciju na bazu pa tek onda pokrenuti program (kad napišemo .py datoteku)
 
 Postavljanje za app:
 
-unutar aplikacije lokalno instalirati
+- unutar aplikacije lokalno instalirati
 pip install mysql-connector-python
+- pokrenuti datoteku connection.py
+- u njoj sam pokazala otprilike kako se koriste neke osnovne naredbe
 
 
