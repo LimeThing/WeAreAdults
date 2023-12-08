@@ -1,68 +1,68 @@
+CREATE DATABASE darivanjeKrvi;
 CREATE TABLE Korisnik
 (
-  Ime VARCHAR(20) NOT NULL,
-  Prezime VARCHAR(20) NOT NULL,
+  ime VARCHAR(100) NOT NULL,
+  prezime VARCHAR(100) NOT NULL,
   OIB CHAR(11) NOT NULL,
-  KrGrupa VARCHAR(3) NOT NULL,
+  krGrupa ENUM ('A+', 'A-', 'B+', 'B-', '0+', '0-', 'AB+', 'AB-') NOT NULL,
   MBO CHAR(9) NOT NULL,
-  Spol CHAR(1) NOT NULL,
-  Dob INT NOT NULL,
-  MjStan VARCHAR(30) NOT NULL,
-  FavKBC VARCHAR(30) NOT NULL,
-  Verificiran INT NOT NULL,
-  PRIMARY KEY (OIB),
-  UNIQUE (MBO),
-   CONSTRAINT spolMZ CHECK (Spol = 'M' or Spol = 'Z'),
+  spol ENUM ('MUŠKO', 'ŽENSKO', 'OSTALO') NOT NULL,
+  dob INT NOT NULL,
+  mjStan VARCHAR(100) NOT NULL,
+  favKBC VARCHAR(100) NOT NULL,
+  verificiran INT NOT NULL,
+  PRIMARY KEY (MBO),
+  UNIQUE (OIB),
    CONSTRAINT dob CHECK (Dob >= 18)	
 );
 
 CREATE TABLE Administrator
 (
-  Mail VARCHAR(50) NOT NULL,
-  Lozinka VARCHAR(20) NOT NULL,
+  mail VARCHAR(100) NOT NULL,
+  lozinka VARCHAR(100) NOT NULL,
   PRIMARY KEY (Mail)
 );
 
 CREATE TABLE Akcija
 (
-  IdAkcija VARCHAR(10) NOT NULL,
-  Adresa VARCHAR(50) NOT NULL,
-  VrijemePoc DATE NOT NULL,
-  VrijemeKraj DATE NOT NULL,
-  KrGrupa VARCHAR(3),
-  Hitna INT NOT NULL,
-  ImeLokacije VARCHAR(30) NOT NULL,
-  Mail VARCHAR(50) NOT NULL,
-  FOREIGN KEY (Mail) REFERENCES Admin(Mail),
+  idAkcija INT NOT NULL,
+  adresa VARCHAR(100) NOT NULL,
+  vrijemePoc DATE NOT NULL,
+  vrijemeKraj DATE NOT NULL,
+  krGrupa ENUM ('A+', 'A-', 'B+', 'B-', '0+', '0-', 'AB+', 'AB-'),
+  hitna BOOL NOT NULL,
+  imeLokacije VARCHAR(100) NOT NULL,
+  mail VARCHAR(100) NOT NULL,
+  FOREIGN KEY (Mail) REFERENCES Administrator(Mail),
   PRIMARY KEY (IdAkcija)
 );
 
 CREATE TABLE KBC
 (
-  Adresa VARCHAR(50) NOT NULL,
-  Ime VARCHAR(30) NOT NULL,
-  UNIQUE (Ime)
+  adresa VARCHAR(100) NOT NULL,
+  ime VARCHAR(100) NOT NULL,
+  PRIMARY KEY (Ime)
 );
 
 CREATE TABLE Rezervacija
 (
-  VrijemePoc TIME NOT NULL,
-  IdRezervacija VARCHAR(20) NOT NULL,
-  imeLokacije VARCHAR(30) NOT NULL,
-  OIB CHAR(11) NOT NULL,
+  datumVrijeme DATETIME NOT NULL,
+  idRezervacija INT NOT NULL,
+  imeLokacije VARCHAR(100) NOT NULL,
+  MBO CHAR(9) NOT NULL,  
   PRIMARY KEY (IdRezervacija),
-  FOREIGN KEY (OIB) REFERENCES Korisnik(OIB)
+  FOREIGN KEY (MBO) REFERENCES Korisnik(MBO)
 );
 
 CREATE TABLE Termini
 (
-  VrijemePoc TIME NOT NULL,
-  VrijemeKraj TIME NOT NULL,
-  Zauzeto INT NOT NULL,
-  imeLokacije VARCHAR(20) NOT NULL,
-  id VARCHAR(20) NOT NULL,
+  vrijemePoc TIMESTAMP NOT NULL,
+  vrijemeKraj TIMESTAMP NOT NULL,
+  zauzeto BOOL NOT NULL,
+  imeLokacije VARCHAR(100) NOT NULL,
+  idTermin INT NOT NULL,
   datum DATE DEFAULT (CURDATE() + INTERVAL 1 DAY),
-  PRIMARY KEY (id)
+  PRIMARY KEY (idTermin)
 );
 
 ALTER TABLE Termini
@@ -70,12 +70,22 @@ ALTER TABLE Termini
 
 CREATE TABLE LoginInfo
 (
-  Mail VARCHAR(50) NOT NULL,
-  Lozinka VARCHAR(20) NOT NULL,
-  OIB CHAR(11) NOT NULL,
+  mail VARCHAR(100) NOT NULL,
+  lozinka VARCHAR(100) NOT NULL,
+  MBO CHAR(9) NOT NULL,
   PRIMARY KEY (Mail),
-  FOREIGN KEY (OIB) REFERENCES Korisnik(OIB)
+  FOREIGN KEY (MBO) REFERENCES Korisnik(MBO)
 );
+
+CREATE VIEW Povijest AS
+SELECT *
+FROM Rezervacija JOIN Korisnik USING (mbo)
+WHERE DATE(datumVrijeme) < curdate();
+
+CREATE VIEW slobodniTermini AS 
+SELECT vrijemePoc, vrijemeKraj, datum, imeLokacije
+from Termini
+where zauzeto = False;
 
 --update datuma u terminima
 DELIMITER //
@@ -86,6 +96,8 @@ DO
 BEGIN
   UPDATE Termini
   SET datum = DATE_ADD(CURDATE(), INTERVAL 1 DAY);
+  UPDATE Termini
+  SET zauzeto = 0;
 END;
 //
 DELIMITER ;
