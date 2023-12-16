@@ -120,6 +120,7 @@ export const OuterContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   height: 100vh;
+  
 `;
 
 export const Container = styled.div`
@@ -128,6 +129,7 @@ export const Container = styled.div`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   position: relative;
   overflow: hidden;
+
 
   width: 800px;
   max-width: 100%;
@@ -285,4 +287,42 @@ export const VerifyButton = styled.button`
   &:hover {
     background-color: #45a049;
   }
+`;
+
+export const InfoStyle = styled.div`
+  margin: 15px;
+  h1 {
+    color: #a82f2d;
+  }
+
+  .hck {
+    float: right;
+  }
+
+  .nacela{
+    float: right;
+    height: 450px;
+    width: auto;
+  }
+
+  
+  .darivanjeKrvi {
+    float: right;
+    height 450px;
+    width: 450px;
+  }
+
+
+
+  .doniranaKrv {
+    height: 750px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
 `;

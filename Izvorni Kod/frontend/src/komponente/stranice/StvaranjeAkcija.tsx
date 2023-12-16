@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import { Outlet } from 'react-router-dom'
 import { NovaAkcija } from "../stilovi";
+import { Container, FormContainer, OuterContainer, Toggle, ToggleContainer, TogglePanel } from "../stilovi";
+
 
 export default function StvaranjeAkcija() {
     const [hitnaAkcija, setHitnaAkcija] = useState(false);
@@ -9,19 +11,16 @@ export default function StvaranjeAkcija() {
        setHitnaAkcija(e.target.checked);
     };
     return(
-        <><NovaAkcija>
-            <h1>Unesi novu akciju</h1>
+        <OuterContainer>
+        <Container>
+          <FormContainer>
             <form target="_self" action="/">
-                <label>Naziv akcije: <input type="text" name="naziv" id="naziv" required/></label>
+                <input type="text" name="naziv" id="naziv" placeholder="Naziv akcije..."required/>
+                <input type="text" name="adresa" id="adresa" placeholder="Adresa..." required/>
+                <input type="datetime-local" id="pocetak" name="pocetak" placeholder="Datum početka..." required/>
+                <input type="datetime-local" id="kraj" name="kraj" placeholder="Datum kraja..." required/>
                 <br/>
-                <label>Adresa: <input type="text" name="adresa" id="adresa" required/></label>
-                <br/>
-                <label>Početak: <input type="datetime-local" id="pocetak" name="pocetak" required/></label>
-                <br/>
-                <label>Kraj:  <input type="datetime-local" id="kraj" name="kraj" required/></label>
-                <br/>
-                <label><input type="checkbox" name="hitna" value="hitna" onChange={handleCheckboxChange}/>Hitna akcija</label>
-                <br/>
+                <input type="checkbox" name="hitna" value="hitna" onChange={handleCheckboxChange}/>Hitna akcija
                 {hitnaAkcija && (
                 <label>Krvna grupa: <select name="krvna-grupa" id="krvna-grupa">
                     <option value="A">A</option>
@@ -31,10 +30,23 @@ export default function StvaranjeAkcija() {
                 </select></label>
                 )}
             <br/>
-
-            <input type="submit" value="Submit"></input>
-            </form>
             <br/>
-            </NovaAkcija></>
+            
+
+            <button type="submit">Stvori akciju</button>
+            </form>
+            </ FormContainer>
+
+            <ToggleContainer>
+            <Toggle>
+              <TogglePanel>
+                <h1>Nova akcija!</h1>
+                <p>Unesite potrebne podatke za stvaranje<br></br> željene nove akcije doniranja krvi Crvenog križa</p>
+                
+              </ TogglePanel>
+            </ Toggle>
+          </ ToggleContainer>
+        </ Container>
+        </OuterContainer>
     )
 }
