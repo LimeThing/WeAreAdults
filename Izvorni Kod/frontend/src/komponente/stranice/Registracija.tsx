@@ -102,6 +102,9 @@ export default function Registration() {
           <input type="text" placeholder="KBC..." {...register("preferedKBC")} />
           <input type="text" placeholder="MBO..." {...register("MBO")} />
           <button type="submit">Registriraj se</button>
+
+          
+
           
         </form>
       </ FormContainer>
