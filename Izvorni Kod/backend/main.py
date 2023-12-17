@@ -1,8 +1,24 @@
-from typing import Union
-
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Depends, status
+from pydantic import BaseModel
+from typing import Annotated
+import models
+from database import engine, SessionLocal
+from sqlalchemy.orm import Session
 
 app = FastAPI()
+models.Base.metadata.create_all(bind=engine)
+
+
+class kbcBase(BaseModel):
+    ime:str #samo se ime šalje u request, adresa dolazi u odgovori 
+  
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+        
 
 
 @app.get("/")
