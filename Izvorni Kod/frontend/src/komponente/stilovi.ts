@@ -14,6 +14,11 @@ export const FlexBox = styled.div<{
   justify-content: ${(props) => (props.$justify ? props.$justify : "center")};
   flex-direction: ${(props) => (props.$direction ? props.$direction : "row")};
   gap: 1rem;
+  p {
+    color: #a82d2d;
+    font-weight: bold;
+    text-align: center;
+  }
 `;
 export const OverFlowDiv = styled.div<{
   $direction?: string;
@@ -25,6 +30,9 @@ export const OverFlowDiv = styled.div<{
   height: ${(props) => (props.$height ? props.$height : "fit-content")};
   overflow-x: hidden;
   overflow-y: scroll;
+  background: linear-gradient(to left, #b63e3e, #a82d2d);
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 `;
 
 export const TextBoxLokacije = styled.div<{ $size?: string; $width?: string }>`
@@ -32,7 +40,7 @@ export const TextBoxLokacije = styled.div<{ $size?: string; $width?: string }>`
   padding: 0 0 0.5rem 0;
   text-align: center;
   color: white;
-  font-size: ${(props) => (props.$size ? props.$size + "rem" : "1.5rem")};
+  font-size: ${(props) => (props.$size ? props.$size + "rem" : "1rem")};
 `;
 
 export const HiddenOnMobileDiv = styled.div`
