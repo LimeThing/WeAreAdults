@@ -5,7 +5,7 @@ import {
   faCircleExclamation
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import MyMap from "../Karta";
 
 export default function Lokacije() {
   const kbcs = 
@@ -40,6 +40,7 @@ export default function Lokacije() {
    
   return (
     <>
+      <MyMap></MyMap>
       <FlexBox $justify="space-around" $height="100vh">
       
          <div>

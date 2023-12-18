@@ -16,7 +16,11 @@
     "@types/node": "^16.18.60",
     "@types/react": "^18.2.34",
     "@types/react-dom": "^18.2.14",
+<<<<<<< HEAD
     "axios": "^1.6.2",
+=======
+    "pigeon-maps": "^0.21.3",
+>>>>>>> 8b1340a2 (Napravljena karta s označenim fiksnim lokacijama)
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
