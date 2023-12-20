@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomTextBox, FlexBox, OverFlowDiv, TextBoxLokacije } from "../stilovi";
+import { FlexBox, OverFlowDiv, TextBoxLokacije } from "../stilovi";
 import { mockKBC, mockAkcija } from "./komunalije/mock_podatci";
 
 
