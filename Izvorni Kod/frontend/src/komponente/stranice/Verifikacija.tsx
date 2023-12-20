@@ -1,10 +1,19 @@
+import axios from 'axios';
 import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import { api } from '../../api';
 import { ListItem, Name, VerifyButton } from '../stilovi';
+
 
 interface Person {
   id: number;
   firstName: string;
   lastName: string;
+}
+
+type KorisnikType = {
+  ime: string
+  prezime: string
 }
 
 export default function Verifikacija() {
@@ -18,8 +27,19 @@ export default function Verifikacija() {
     setPeople(updatedPeople);
   };
 
+
+
+  const fetchKorisnik = (): Promise<KorisnikType[]> =>
+  api.get('/korisnik/get_all').then((response: any) => response.data)
+
+  const {data} = useQuery({
+    queryKey: "getKorisnik",
+  queryFn: fetchKorisnik  })
+
+
   return (
     <div>
+      <p>{data ? data.toString() : " "}</p>
       <ul>
         {people.map(person => (
           <ListItem key={person.id}>
