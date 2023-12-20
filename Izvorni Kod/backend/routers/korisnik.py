@@ -31,14 +31,14 @@ async def korisnik_create(korisnik: KorisnikModel, db: db_dependency):
     db.add(db_korisnik)
     db.commit()
 
-@router.post("/get_one/", status_code=status.HTTP_200_OK)
+@router.get("/get_one/", status_code=status.HTTP_200_OK)
 async def korisnik_get_one(korisnik_mbo: str, db: db_dependency):
     korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == korisnik_mbo).first()
     if korisnik is None:
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
     return korisnik
 
-@router.post("/get_all/", status_code=status.HTTP_200_OK)
+@router.get("/get_all/", status_code=status.HTTP_200_OK)
 async def korisnik_get_one(db: db_dependency):
     korisnici = db.query(models.Korisnik).all()
     return korisnici
