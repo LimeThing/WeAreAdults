@@ -1,55 +1,49 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useQuery } from 'react-query';
-import { api } from '../../api';
-import { ListItem, Name, VerifyButton } from '../stilovi';
-
-
-interface Person {
-  id: number;
-  firstName: string;
-  lastName: string;
-}
+import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "../../api";
+import { ListItem, Name, VerifyButton } from "../stilovi";
 
 type KorisnikType = {
-  ime: string
-  prezime: string
-}
+  mbo: string;
+  oib: string;
+  ime: string;
+  prezime: string;
+  spol: "MUŠKO" | "ŽENSKO"
+  dob: number;
+  krgrupa: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-";
+  mjstan: string;
+  favkbc: string;
+};
 
 export default function Verifikacija() {
-    const [people, setPeople] = useState<Person[]>([
-        { id: 1, firstName: 'John', lastName: 'Doe' },
-        { id: 2, firstName: 'Jane', lastName: 'Smith' },
-      ]);
+  const [people, setPeople] = useState<KorisnikType[]>([]);
 
-  const handleVerify = (id: number) => {
-    const updatedPeople = people.filter(person => person.id !== id);
+  const handleVerify = (mbo: string) => {
+    const updatedPeople = people.filter((person) => person.mbo !== mbo);
     setPeople(updatedPeople);
   };
 
+  const fetchKorisnik = async () => {
+    const responce = api.get("/korisnik/get_all")
+    setPeople(responce);
+  }
 
 
-  const fetchKorisnik = (): Promise<KorisnikType[]> =>
-  api.get('/korisnik/get_all').then((response: any) => response.data)
-
-  const {data} = useQuery({
-    queryKey: "getKorisnik",
-  queryFn: fetchKorisnik  })
-
-
-  return (
-    <div>
-      <p>{data ? data.toString() : " "}</p>
-      <ul>
-        {people.map(person => (
-          <ListItem key={person.id}>
-            <Name>{`ID: ${person.id}`}</Name>
-            <Name>{`Name: ${person.firstName}`}</Name>
-            <Name>{`Last Name: ${person.lastName}`}</Name>
-            <VerifyButton onClick={() => handleVerify(person.id)}>Verify!</VerifyButton>
-          </ListItem>
-        ))}
-      </ul>
-    </div>
-  );
+ 
+    return (
+      <div>
+        <ul>
+          {people.map((person) => (
+            <ListItem key={person.mbo}>
+              <Name>{`MBO: ${person.mbo}`}</Name>
+              <Name>{`Ime: ${person.ime}`}</Name>
+              <Name>{`Prezime: ${person.prezime}`}</Name>
+              <VerifyButton onClick={() => handleVerify(person.mbo)}>
+                Verify!
+              </VerifyButton>
+            </ListItem>
+          ))}
+        </ul>
+      </div>
+    );
 }
