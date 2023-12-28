@@ -8,7 +8,8 @@ import StvaranjeAkcija from "./komponente/stranice/StvaranjeAkcija";
 import Verifikacija from "./komponente/stranice/Verifikacija";
 
 import Lokacije from "./komponente/stranice/Lokacije";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
