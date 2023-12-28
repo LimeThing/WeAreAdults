@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../../api";
 import { ListItem, Name, VerifyButton } from "../stilovi";
@@ -23,13 +23,20 @@ export default function Verifikacija() {
     setPeople(updatedPeople);
   };
 
-  const fetchKorisnik = async () => {
-    const responce = api.get("/korisnik/get_all")
-    setPeople(responce);
-  }
+  const fetchKorisnik = (): Promise<KorisnikType[]> =>
+    api.get("/korisnik/get_all").then((response: any) => response.data);
 
+  const { isLoading, data } = useQuery<KorisnikType[]>({
+    queryKey: ["getKorisnik"],
+    queryFn: fetchKorisnik,
+  })
 
- 
+  useEffect(() => {
+    setPeople(data ? data : [])
+  }, [data]);
+
+  if (isLoading) return <></>;
+  else
     return (
       <div>
         <ul>
