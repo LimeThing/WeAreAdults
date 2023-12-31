@@ -1,6 +1,8 @@
 type MockKBC_Type = {
     adresa: string
     ime: string
+    longitude: number
+    latitude: number
 }
 
 type MockAkcija_Type = {
@@ -53,22 +55,44 @@ export const mockAkcija : MockAkcija_Type[] = [{
 
 export const mockKBC : MockKBC_Type[] = [{
     adresa: "Ul. Josipa Huttlera 4, 31000, Osijek",
-    ime: "KBC Osijek"
+    ime: "KBC Osijek",
+    longitude: 45.5600001,
+    latitude: 18.67588
 },
 {
     adresa: "Krešimirova ul. 42, 51000, Rijeka",
-    ime: "KBC Rijeka"
+    ime: "KBC Rijeka",
+    longitude: 45.32691,
+    latitude: 14.441
 },
 {
     adresa: "Spinčićeva ul. 1, 21000, Split",
-    ime: "KBC Split"
+    ime: "KBC Split",
+    longitude: 43.50394,
+    latitude: 16.4578
 },
 {
     adresa: "Dr. Roka Mišetića 2, 20000, Dubrovnik",
-    ime: "OB Dubrovnik"
+    ime: "OB Dubrovnik",
+    longitude: 42.64983,
+    latitude: 18.07733
 },
 {
     adresa: "Ul. Ivana Meštrovića 1, 42000, Varaždin",
-    ime: "OB Varaždin"
+    ime: "OB Varaždin",
+    longitude: 46.30269,
+    latitude: 16.32512
+},
+{
+    adresa: "Ljudevita Posavskog 7, 23000, Zadar",
+    ime: "OB Zadar",
+    longitude: 44.10752,
+    latitude: 15.23459
+},
+{
+    adresa: "Petrova 3, 10000, Zagreb",
+    ime: "Hrvatski zavod za transfuzijsku medicinu Zagreb",
+    longitude: 45.81612,
+    latitude: 15.99121
 }]
 

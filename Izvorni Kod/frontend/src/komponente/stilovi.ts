@@ -14,11 +14,19 @@ export const FlexBox = styled.div<{
   justify-content: ${(props) => (props.$justify ? props.$justify : "center")};
   flex-direction: ${(props) => (props.$direction ? props.$direction : "row")};
   gap: 1rem;
-  p {
+  h2 {
     color: #a82d2d;
     font-weight: bold;
     text-align: center;
+    height: fit-content;
+    align-items: center;
+    font-size: 1rem;
+    padding: 0 0 1rem 0;
   }
+  p {
+    text-align: center;
+    padding: 0 1rem 0 1rem;
+  } 
 `;
 export const OverFlowDiv = styled.div<{
   $direction?: string;
@@ -28,19 +36,10 @@ export const OverFlowDiv = styled.div<{
   $justify?: string;
 }>`
   height: ${(props) => (props.$height ? props.$height : "fit-content")};
-  overflow-x: hidden;
-  overflow-y: scroll;
-  background: linear-gradient(to left, #b63e3e, #a82d2d);
+  width: ${(props) => (props.$width ? props.$width : "100%")};
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-`;
-
-export const TextBoxLokacije = styled.div<{ $size?: string; $width?: string }>`
-  width: 100%;
-  padding: 0 0 0.5rem 0;
-  text-align: center;
-  color: white;
-  font-size: ${(props) => (props.$size ? props.$size + "rem" : "1rem")};
+  /*background: linear-gradient(to left, #b63e3e, #a82d2d);*/
 `;
 
 export const HiddenOnMobileDiv = styled.div`
@@ -66,7 +65,7 @@ export const MeniButton = styled.button`
   border: none;
   border-radius: 2rem;
   font-size: 0.95rem;
-
+  cursor: pointer;
   &:hover {
     background: #bb3333;
   }
@@ -79,7 +78,7 @@ export const IconButton = styled.button`
   height: fit-content;
   border: none;
   border-radius: 0.2rem;
-
+  cursor: pointer;
   &:hover {
     background: #bb3333;
   }
@@ -339,6 +338,7 @@ export const Karta = styled.div`
   display: flex;
   justify-content: center;
   padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 `
 
 export const PopupContainer = styled.div`
@@ -413,3 +413,40 @@ export const PopupContainer = styled.div`
   justify-content: center;
 
 `;
+
+export const LokacijeDiv = styled.div`
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  gap: 1rem;
+  width: 100%;
+  button {
+    width: fit-content;
+    padding: 0 1rem 0 1rem;
+    background: #de5555;
+    height: 2rem;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+  &:hover {
+    background: #bb3333;
+  }
+  }
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+  }
+`
+
+export const LocationsWindow = styled.div`
+  background-color: white;
+  text-align: center;
+  width: 11.1rem;
+  padding: 0.5rem;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  p {
+    padding: 0 0 0.25rem 0;
+  }
+`
