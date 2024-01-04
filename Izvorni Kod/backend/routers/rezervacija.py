@@ -20,8 +20,8 @@ class RezervacijaModel(BaseModel):
 # Endpointi za rezervacije
 @router.post("/create/", status_code=status.HTTP_201_CREATED)
 async def rezervacija_create(rezervacija: RezervacijaModel, db: db_dependency):
-    vrijemePoc_as_datetime = datetime.fromisoformat(rezervacija.vrijemePoc)
-    db_rezervacija = models.Rezervacija(**rezervacija.dict(), vrijemePoc=vrijemePoc_as_datetime)
+    #vrijemePoc_as_datetime = datetime.fromisoformat(str(rezervacija.vrijemePoc))
+    db_rezervacija = models.Rezervacija(**rezervacija.dict())
     db.add(db_rezervacija)
     db.commit()
 
