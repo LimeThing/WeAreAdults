@@ -39,7 +39,7 @@ async def korisnik_get_one(korisnik_mbo: str, db: db_dependency):
     return korisnik
 
 @router.get("/get_all/", status_code=status.HTTP_200_OK)
-async def korisnik_get_one(db: db_dependency):
+async def korisnik_get_all(db: db_dependency):
     korisnici = db.query(models.Korisnik).all()
     return korisnici
 
@@ -50,3 +50,4 @@ async  def korisnik_delete(korisnik_mbo: str, db: db_dependency):
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
     db.delete(db_korisnik)
     db.commit()
+    
