@@ -22,8 +22,8 @@ class AkcijaModel(BaseModel):
 
 # Endpointi za akcije
 @router.post("/create/", status_code=status.HTTP_201_CREATED)
-async def akcija_create(korisnik: AkcijaModel, db: db_dependency):
-    db_akcija = models.Korisnik(**akcija.dict())
+async def akcija_create(akcija: AkcijaModel, db: db_dependency):
+    db_akcija = models.Akcija(**akcija.dict())
     db.add(db_akcija)
     db.commit()
 
@@ -65,7 +65,7 @@ async def akcija_delete(akcija_id: int, db: db_dependency):
     #pip install python-multipart
 
 @router.put("/akcije/{akcija_id}")
-async def update_rezervacija(akcija_id: int, rezervacija: AkcijaModel = Form(...)): 
+async def update_rezervacija(akcija_id: int, akcija: AkcijaModel = Form(...)): 
     db=db_dependency
     trenutna_rez = await db.akcija_get_one(akcija_id)
 
