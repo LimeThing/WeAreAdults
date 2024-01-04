@@ -80,4 +80,4 @@ class Akcija(Base):
     datumKraj = Column(DateTime, nullable=False)
     hitna = Column(Boolean, nullable=False)
     krgrupa = Column(Enum(KrvnaGrupa))
-    mail = Column(String(100), unique=True, nullable=False)
+    mail = Column(String(100), nullable=False)

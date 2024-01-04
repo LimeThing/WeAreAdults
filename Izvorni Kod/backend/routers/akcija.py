@@ -71,6 +71,7 @@ async def update_akcija(akcija_id: int, akcija: AkcijaModel = Form(...)):
 
     if trenutna_akcija is None:
         raise HTTPException(status_code=404, detail="Akcija ne postoji")
+    
 
     trenutna_akcija.imeLokacije = akcija.imeLokacije
     trenutna_akcija.vrijemePoc = akcija.vrijemePoc
