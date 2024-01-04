@@ -65,18 +65,17 @@ async def akcija_delete(akcija_id: int, db: db_dependency):
     #pip install python-multipart
 
 @router.put("/akcije/{akcija_id}")
-async def update_rezervacija(akcija_id: int, akcija: AkcijaModel = Form(...)): 
+async def update_akcija(akcija_id: int, akcija: AkcijaModel = Form(...)):
     db=db_dependency
-    trenutna_rez = await db.akcija_get_one(akcija_id)
+    trenutna_akcija = await db.akcija_get_one(akcija_id)
 
-    if trenutna_rez is None:
+    if trenutna_akcija is None:
         raise HTTPException(status_code=404, detail="Akcija ne postoji")
 
-    trenutna_rez.imeLokacije = rezervacija.imeLokacije
-    trenutna_rez.vrijemePoc = rezervacija.vrijemePoc
-    trenutna_rez.mbo = rezervacija.mbo
+    trenutna_akcija.imeLokacije = akcija.imeLokacije
+    trenutna_akcija.vrijemePoc = akcija.vrijemePoc
+    trenutna_akcija.mbo = akcija.mbo
 
-    await db.update_rezervacija(trenutna_rez)
+    await db.update_rezervacija(trenutna_akcija)
 
-    return trenutna_rez
-    
+    return trenutna_akcija
