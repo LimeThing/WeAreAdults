@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Depends, status, APIRouter, Form
+from fastapi import FastAPI, HTTPException, Depends, status, APIRouter
 from pydantic import BaseModel
 from datetime import datetime, time
 
@@ -52,19 +52,22 @@ async  def rezervacija_delete(id_rez: str, db: db_dependency):
     db.delete(db_rezervacija)
     db.commit()
     
-@router.put("/rezervacije/{rezervacija_id}")
-async def update_rezervacija(rezervacija_id: int, rezervacija: RezervacijaModel = Form(...)): 
-    db=db_dependency
-    existing_rezervacija = await db.get_rezervacija_one(rezervacija_id)
+@router.put("/edit/")
+async def update_rezervacija(id_rez:int, rezervacija: RezervacijaModel, db: db_dependency): 
+    existing_rezervacija = db.query(models.Rezervacija).filter(models.Rezervacija.idRezervacija == id_rez).first()
 
     if existing_rezervacija is None:
         raise HTTPException(status_code=404, detail="Rezervacija ne postoji")
+    
+    db.delete(existing_rezervacija)
 
-    existing_rezervacija.imeLokacije = rezervacija.imeLokacije
-    existing_rezervacija.vrijemePoc = rezervacija.vrijemePoc
-    existing_rezervacija.mbo = rezervacija.mbo
-
-    await db.update_rezervacija(existing_rezervacija)
-
-    return existing_rezervacija
+    updated_rezervacija = models.Rezervacija(
+        idRezervacija=id_rez,
+        imeLokacije=rezervacija.imeLokacije,
+        vrijemePoc=rezervacija.vrijemePoc,
+        mbo=rezervacija.mbo,
+    )
+    db.add(updated_rezervacija)
+    db.commit()
+    return updated_rezervacija
     

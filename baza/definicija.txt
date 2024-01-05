@@ -10,10 +10,10 @@ CREATE TABLE Korisnik
   dob INT NOT NULL,
   mjStan VARCHAR(100) NOT NULL,
   favKBC VARCHAR(100) NOT NULL,
-  verificiran INT NOT NULL,
+  verificiran BOOL DEFAULT False,
   PRIMARY KEY (MBO),
   UNIQUE (OIB),
-   CONSTRAINT dob CHECK (Dob >= 18)	
+   CONSTRAINT dob CHECK (dob >= 18)	
 );
 
 CREATE TABLE Administrator
@@ -27,8 +27,8 @@ CREATE TABLE Akcija
 (
   idAkcija INT NOT NULL,
   adresa VARCHAR(100) NOT NULL,
-  vrijemePoc DATE NOT NULL,
-  vrijemeKraj DATE NOT NULL,
+  datumPoc DATE NOT NULL,
+  datumKraj DATE NOT NULL,
   krGrupa ENUM ('A+', 'A-', 'B+', 'B-', '0+', '0-', 'AB+', 'AB-'),
   hitna BOOL NOT NULL,
   imeLokacije VARCHAR(100) NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE KBC
 
 CREATE TABLE Rezervacija
 (
-  datumVrijeme DATETIME NOT NULL,
+  vrijemePoc DATETIME NOT NULL,
   idRezervacija INT NOT NULL,
   imeLokacije VARCHAR(100) NOT NULL,
   MBO CHAR(9) NOT NULL,  
@@ -80,7 +80,7 @@ CREATE TABLE LoginInfo
 CREATE VIEW Povijest AS
 SELECT *
 FROM Rezervacija JOIN Korisnik USING (mbo)
-WHERE DATE(datumVrijeme) < curdate();
+WHERE DATE(vrijemePoc) < curdate();
 
 CREATE VIEW slobodniTermini AS 
 SELECT vrijemePoc, vrijemeKraj, datum, imeLokacije
