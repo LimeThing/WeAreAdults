@@ -49,7 +49,7 @@ INSERT INTO Administrator VALUES
 
 INSERT INTO akcija VALUES
 (0, 'Zvonigradska ulica 9', str_to_date("2023,12,1", "%Y,%m,%d"), str_to_date("2023,12,10", "%Y,%m,%d"), 'AB+', True, 'Dom zdravlja zapad', 'admin@ckhr.com' ),
-(1, 'Grižanska ulica 4', str_to_date("2023,12,1", "%Y,%m,%d"), str_to_date("2023,12,10", "%Y,%m,%d"), null ,False, 'Dom zdravlja istok', 'admin@ckhr.com' ),
+(1, 'Grižanska ulica 4', str_to_date("2023,12,1", "%Y,%m,%d"), str_to_date("2023,12,10", "%Y,%m,%d"), null ,False, 'Dom zdravlja istok', 'admin@ckhr.com' );
 
 INSERT INTO rezervacija VALUES
 ('2010-04-30 07:27:39', 0, 'KBC Rijeka', '000000000'),
