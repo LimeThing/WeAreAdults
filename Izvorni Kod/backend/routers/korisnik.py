@@ -51,3 +51,31 @@ async  def korisnik_delete(korisnik_mbo: str, db: db_dependency):
     db.delete(db_korisnik)
     db.commit()
     
+@router.put("/edit/")
+async def update_korisnik(mbo:str, korisnik: KorisnikModel, db: db_dependency): 
+    existing_korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
+    
+    if existing_korisnik is None:
+        raise HTTPException(status_code=404, detail="Korisnik ne postoji")
+    
+    verified = existing_korisnik.verificiran 
+    #da osiguramo da se korisnik ne verificira sam
+    db.delete(existing_korisnik)
+
+    updated_korisnik = models.Korisnik(
+        mbo=mbo,
+        oib=korisnik.oib,
+        ime=korisnik.ime,
+        prezime=korisnik.prezime,
+        spol=korisnik.spol,
+        dob=korisnik.dob,
+        krgrupa=korisnik.krgrupa,
+        mjstan=korisnik.mjstan,
+        favkbc=korisnik.favkbc,
+        verificiran=verified    
+    )
+    
+    db.add(updated_korisnik)
+    db.commit()
+    return updated_korisnik
+    
