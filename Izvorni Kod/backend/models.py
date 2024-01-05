@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime
+from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime, Date
 from database import Base
 import enum
 
@@ -6,11 +6,11 @@ import enum
 
 # potrebni enumi
 class Spol(enum.Enum):
-    M = "MUŠKO"
-    F = "ŽENSKO"
+    MUŠKO = "MUŠKO"
+    ŽENSKO = "ŽENSKO"
 
 class KrvnaGrupa(enum.Enum):
-    Apoz = "A+"
+    Apoz = "Apoz"
     Aneg = "A-"
     Bpoz = "B+"
     Bneg = "B-"
@@ -76,8 +76,8 @@ class Akcija(Base):
     idAkcija = Column(Integer, primary_key=True, index=True)
     imeLokacije = Column(String(100), nullable=False, index=True)
     adresa = Column(String(100), nullable=False, index=True)
-    datumPoc = Column(DateTime, nullable=False)
-    datumKraj = Column(DateTime, nullable=False)
+    datumPoc = Column(Date, nullable=False)
+    datumKraj = Column(Date, nullable=False)
     hitna = Column(Boolean, nullable=False)
-    krgrupa = Column(Enum(KrvnaGrupa))
+    #krgrupa = Column(Enum(KrvnaGrupa), nullable=True)
     mail = Column(String(100), nullable=False)
