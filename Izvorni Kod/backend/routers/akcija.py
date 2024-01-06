@@ -18,7 +18,7 @@ class AkcijaModel(BaseModel):
     datumPoc: date
     datumKraj: date
     hitna: bool
-    #krgrupa: Optional[models.KrvnaGrupa]
+    krgrupa: models.KrvnaGrupa
     mail: str
 
 # Endpointi za akcije
@@ -84,7 +84,9 @@ async def update_akcija(id_rez:int, akcija: AkcijaModel, db: db_dependency):
         datumKraj=akcija.datumKraj,
         hitna=akcija.hitna,
         mail=akcija.mail,
+        krgrupa=akcija.krgrupa
     )
+    
     db.add(updated_akcija)
     db.commit() 
     #u tijelu odgovora se neće vidjeti nita, ali su promjene puno brže vidljive u bazi nego kod flush()
