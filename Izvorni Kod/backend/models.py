@@ -11,13 +11,13 @@ class Spol(enum.Enum):
 
 class KrvnaGrupa(enum.Enum):
     Apoz = "Apoz"
-    Aneg = "A-"
-    Bpoz = "B+"
-    Bneg = "B-"
-    ABpoz = "AB+"
-    ABneg = "AB-"
-    Npoz = "0+"
-    Nneg = "0-"
+    Aneg = "Aneg"
+    Bpoz = "Bpoz"
+    Bneg = "Bnrg"
+    ABpoz = "ABpoz"
+    ABneg = "ABneg"
+    Npoz = "Npoz"
+    Nneg = "Nneg"
 
 class Korisnik(Base):
     __tablename__ = 'korisnik'
@@ -79,5 +79,5 @@ class Akcija(Base):
     datumPoc = Column(Date, nullable=False)
     datumKraj = Column(Date, nullable=False)
     hitna = Column(Boolean, nullable=False)
-    #krgrupa = Column(Enum(KrvnaGrupa), nullable=True)
+    krgrupa = Column(Enum(KrvnaGrupa), nullable=True)
     mail = Column(String(100), nullable=False)
