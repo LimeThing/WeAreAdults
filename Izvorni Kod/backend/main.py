@@ -9,6 +9,8 @@ from routers import korisnik
 from routers import rezervacija
 from routers import akcija
 from routers import termin
+from routers import loginInfo
+from routers import kbc
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
@@ -32,6 +34,8 @@ app.include_router(korisnik.router)
 app.include_router(rezervacija.router)
 app.include_router(akcija.router)
 app.include_router(termin.router)
+app.include_router(kbc.router)
+app.include_router(loginInfo.router)
 
 # mozete provjerit dal vam rade rute na http://127.0.0.1:8000/docs#/
 # (treba pricekat oko minutu ili restartirati server da se vide promjene)
