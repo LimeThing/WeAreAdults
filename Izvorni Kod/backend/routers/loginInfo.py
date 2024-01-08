@@ -26,8 +26,9 @@ async def loginInfo_create(loginInfo: LoginInfoModel, db: db_dependency):
     db.commit()
 
 
-@router.get("/get_one/", status_code=status.HTTP_200_OK)
-async def loginInfo_get_one(mail: str, db: db_dependency):
+
+@router.get("/get_one/{mail}", status_code=status.HTTP_200_OK)
+async def loginInfo_get_one(mail, db: db_dependency):
     loginInfo = db.query(models.LoginInfo).filter(models.LoginInfo.mail == mail).first()
     if loginInfo is None:
         raise HTTPException(status_code=404, detail='LoginInfo by requested mail not found')
