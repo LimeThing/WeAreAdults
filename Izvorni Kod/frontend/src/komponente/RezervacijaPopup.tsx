@@ -1,7 +1,15 @@
-import React from 'react'
+import React from "react";
 
-export default function RezervacijaPopup() {
+type RezervacijaPopupProps = {
+  closeFun: React.Dispatch<React.SetStateAction<boolean>>,
+  close: boolean
+};
+
+export default function RezervacijaPopup({ closeFun, close }: RezervacijaPopupProps) {
   return (
-    <div>Rezervacija termina</div>
-  )
+    <>
+      <div>Rezervacija termina</div>
+      <button onClick={() => closeFun(!close)}>Zatvori</button>
+    </>
+  );
 }
