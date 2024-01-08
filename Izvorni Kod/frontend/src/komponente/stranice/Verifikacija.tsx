@@ -2,31 +2,22 @@ import React, { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "../../api";
 import { ListItem, Name, VerifyButton } from "../stilovi";
+import { KorisnikModel } from "../modeli";
 
-type KorisnikType = {
-  mbo: string;
-  oib: string;
-  ime: string;
-  prezime: string;
-  spol: "MUŠKO" | "ŽENSKO"
-  dob: number;
-  krgrupa: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-";
-  mjstan: string;
-  favkbc: string;
-};
+
 
 export default function Verifikacija() {
-  const [people, setPeople] = useState<KorisnikType[]>([]);
+  const [people, setPeople] = useState<KorisnikModel[]>([]);
 
   const handleVerify = (mbo: string) => {
     const updatedPeople = people.filter((person) => person.mbo !== mbo);
     setPeople(updatedPeople);
   };
 
-  const fetchKorisnik = (): Promise<KorisnikType[]> =>
+  const fetchKorisnik = (): Promise<KorisnikModel[]> =>
     api.get("/korisnik/get_all").then((response: any) => response.data);
 
-  const { isLoading, data } = useQuery<KorisnikType[]>({
+  const { isLoading, data } = useQuery<KorisnikModel[]>({
     queryKey: ["getKorisnik"],
     queryFn: fetchKorisnik,
   })

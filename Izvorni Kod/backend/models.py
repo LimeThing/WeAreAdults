@@ -7,19 +7,19 @@ import enum
 
 # potrebni enumi
 class Spol(enum.Enum):
-    MUŠKO = "MUŠKO"
-    ŽENSKO = "ŽENSKO"
+    MUŠKO = "Muško"
+    ŽENSKO = "Žensko"
 
 
 class KrvnaGrupa(enum.Enum):
-    Apoz = "Apoz"
-    Aneg = "Aneg"
-    Bpoz = "Bpoz"
-    Bneg = "Bneg"
-    ABpoz = "ABpoz"
-    ABneg = "ABneg"
-    Npoz = "Npoz"
-    Nneg = "Nneg"
+    Apoz = "A+"
+    Aneg = "A-"
+    Bpoz = "B+"
+    Bneg = "B-"
+    ABpoz = "AB+"
+    ABneg = "AB-"
+    Npoz = "0+"
+    Nneg = "0-"
 
 
 class Korisnik(Base):
