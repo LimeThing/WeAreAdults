@@ -26,7 +26,6 @@ async def loginInfo_create(loginInfo: LoginInfoModel, db: db_dependency):
     db.commit()
 
 
-
 @router.get("/get_one/", status_code=status.HTTP_200_OK)
 async def loginInfo_get_one(mail: str, db: db_dependency):
     loginInfo = db.query(models.LoginInfo).filter(models.LoginInfo.mail == mail).first()
