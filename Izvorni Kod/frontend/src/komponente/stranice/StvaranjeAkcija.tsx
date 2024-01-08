@@ -1,6 +1,4 @@
 import React, {useState} from "react";
-import { Outlet } from 'react-router-dom'
-import { NovaAkcija } from "../stilovi";
 import { Container, FormContainer, OuterContainer, Toggle, ToggleContainer, TogglePanel } from "../stilovi";
 
 
