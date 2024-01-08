@@ -11,7 +11,7 @@ export function MyMap() {
 
   return (
     <>
-      {showPopup && <RezervacijaPopup />}
+      {showPopup && <RezervacijaPopup closeFun={setShowPopup} close={showPopup} />}
       <Karta>
         <Map
           height={600}
