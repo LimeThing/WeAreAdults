@@ -5,64 +5,47 @@ import models
 from dependencies import db_dependency
 import enum
 
-# postavke routera, 'korisnik' je naziv tablice u bazi
+# postavke routera, 'loginInfo' je naziv tablice u bazi
 router = APIRouter(
-    prefix="/korisnik"
+    prefix="/loginInfo"
 )
 
 
-# klasa korisnika kakvog ga koristimo u python kodu
-class KorisnikModel(BaseModel):
+# klasa loginInfo
+class LoginInfoModel(BaseModel):
+    mail: str
+    lozinka: str
     mbo: str
-    oib: str
-    ime: str
-    prezime: str
-    spol: models.Spol
-    dob: int
-    krgrupa: models.KrvnaGrupa
-    mjstan: str
-    favkbc: str
-    verificiran: bool
 
 
-# Endpointi za korisnika
+# Endpointi za loginInfo
 @router.post("/create/", status_code=status.HTTP_201_CREATED)
-async def korisnik_create(korisnik: KorisnikModel, db: db_dependency):
-    korisnik.verificiran = False
-    db_korisnik = models.Korisnik(**korisnik.dict())
-    db.add(db_korisnik)
+async def loginInfo_create(loginInfo: LoginInfoModel, db: db_dependency):
+    loginInfo.verificiran = False
+    db_loginInfo = models.LoginInfo(**loginInfo.dict())
+    db.add(db_loginInfo)
     db.commit()
 
-
-@router.patch("/verify/", status_code=status.HTTP_200_OK)
-async def korisnik_verify(db: db_dependency, mbo: str):
-    korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
-    if korisnik is None:
-        raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
-    db.delete(korisnik)
-    korisnik.verificiran = True
-    db.add(korisnik)
-    db.commit()
 
 
 @router.get("/get_one/", status_code=status.HTTP_200_OK)
-async def korisnik_get_one(mbo: str, db: db_dependency):
-    korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
-    if korisnik is None:
-        raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
-    return korisnik
+async def loginInfo_get_one(mail: str, db: db_dependency):
+    loginInfo = db.query(models.LoginInfo).filter(models.LoginInfo.mail == mail).first()
+    if loginInfo is None:
+        raise HTTPException(status_code=404, detail='LoginInfo by requested mail not found')
+    return loginInfo
 
 
 @router.get("/get_all/", status_code=status.HTTP_200_OK)
-async def korisnik_get_one(db: db_dependency):
-    korisnici = db.query(models.Korisnik).all()
-    return korisnici
+async def loginInfo_get_one(db: db_dependency):
+    loginInfos = db.query(models.LoginInfo).all()
+    return loginInfos
 
 
 @router.delete("/delete/", status_code=status.HTTP_200_OK)
-async def korisnik_delete(mbo: str, db: db_dependency):
-    db_korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
-    if db_korisnik is None:
-        raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
-    db.delete(db_korisnik)
+async def loginInfo_delete(mail: str, db: db_dependency):
+    db_loginInfo = db.query(models.LoginInfo).filter(models.LoginInfo.mail == mail).first()
+    if db_loginInfo is None:
+        raise HTTPException(status_code=404, detail='LoginInfo by requested mail not found')
+    db.delete(db_loginInfo)
     db.commit()
