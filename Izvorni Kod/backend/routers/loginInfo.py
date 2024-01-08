@@ -21,7 +21,6 @@ class LoginInfoModel(BaseModel):
 # Endpointi za loginInfo
 @router.post("/create/", status_code=status.HTTP_201_CREATED)
 async def loginInfo_create(loginInfo: LoginInfoModel, db: db_dependency):
-    loginInfo.verificiran = False
     db_loginInfo = models.LoginInfo(**loginInfo.dict())
     db.add(db_loginInfo)
     db.commit()
