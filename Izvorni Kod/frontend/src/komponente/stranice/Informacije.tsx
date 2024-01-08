@@ -1,9 +1,5 @@
 import React from 'react';
 import { InfoStyle } from "../stilovi";
-import ckNacela from "./ckNacela.jpeg";
-import hck from "./hck.jpeg";
-import darivanjeKrvi from "./darivanjeKrvi.jpg"
-import doniranaKrv from "./doniranaKrv.jpeg"
 
 
 export default function Informacije() {
@@ -12,7 +8,7 @@ export default function Informacije() {
       <br/>
       <h1>Hrvatski Crveni križ</h1>
       <br/>
-      <img src={hck} alt="slikaHck" className='hck'></img>
+      <img src="hck.jpeg" alt="slikaHck" className='hck'></img>
       <h2>Tko smo?</h2>
       <br/>
      <p>Hrvatski Crveni križ nacionalno je društvo Crvenog križa koje nepristrano i bez diskriminacije djeluje na teritoriju Republike Hrvatske, 
@@ -28,7 +24,7 @@ export default function Informacije() {
 
       <br/> 
       <br/>
-      <img src={ckNacela} alt="slikaNacela" className="nacela"></img>
+      <img src="ckNacela.jpeg" alt="slikaNacela" className="nacela"></img>
       <h3>Temeljna načela</h3>
       <br/>
       <p>Kao dio Međunarodnog pokreta Crvenog križa i Crvenog polumjeseca, Hrvatski Crveni križ u svojemu radu vodi se temeljnim načelima Pokreta:</p>
@@ -78,7 +74,7 @@ export default function Informacije() {
       <br/>
 
       <h1>Dobrovoljno darivanje krvi</h1>
-      <img src={darivanjeKrvi} alt="slikaDarivanjeKrvi" className='darivanjeKrvi'></img>
+      <img src="darivanjeKrvi.jpg" alt="slikaDarivanjeKrvi" className='darivanjeKrvi'></img>
       <br/>
       <p>Hrvatski Crveni križ – utemeljitelj dobrovoljnog davanja krvi u Republici Hrvatskoj, promiče dobrovoljno davanje krvi, organizira i provodi akcije davanja 
         krvi, okuplja davatelje, dodjeljuje priznanja sukladno Pravilniku o priznanjima Hrvatskog Crvenog križa u svrhu društvenog vrednovanja davatelja krvi, vodi 
@@ -116,7 +112,7 @@ export default function Informacije() {
             <br/>
             <br/>
 
-            <img src={doniranaKrv} alt="slikaDoniranaKrv" className='doniranaKrv'></img>
+            <img src="doniranaKrv.jpeg" alt="slikaDoniranaKrv" className='doniranaKrv'></img>
 
             <br/>
             <br/>
