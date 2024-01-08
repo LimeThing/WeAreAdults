@@ -13,7 +13,7 @@ class KrvnaGrupa(enum.Enum):
     Apoz = "Apoz"
     Aneg = "Aneg"
     Bpoz = "Bpoz"
-    Bneg = "Bnrg"
+    Bneg = "Bneg"
     ABpoz = "ABpoz"
     ABneg = "ABneg"
     Npoz = "Npoz"
