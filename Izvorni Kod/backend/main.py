@@ -8,6 +8,7 @@ from database import engine
 from routers import korisnik
 from routers import rezervacija
 from routers import akcija
+from routers import termin
 
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
@@ -30,6 +31,7 @@ app.add_middleware(
 app.include_router(korisnik.router)
 app.include_router(rezervacija.router)
 app.include_router(akcija.router)
+app.include_router(termin.router)
 
 
 # mozete provjerit dal vam rade rute na http://127.0.0.1:8000/docs#/
