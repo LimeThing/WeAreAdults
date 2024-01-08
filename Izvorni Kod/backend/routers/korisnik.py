@@ -66,16 +66,17 @@ async def korisnik_delete(mbo: str, db: db_dependency):
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
     db.delete(db_korisnik)
     db.commit()
-    
+
+
 @router.put("/edit/")
-async def update_korisnik(mbo:str, korisnik: KorisnikModel, db: db_dependency): 
+async def update_korisnik(mbo: str, korisnik: KorisnikModel, db: db_dependency):
     existing_korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
-    
+
     if existing_korisnik is None:
         raise HTTPException(status_code=404, detail="Korisnik ne postoji")
-    
-    verified = existing_korisnik.verificiran 
-    #da osiguramo da se korisnik ne verificira sam
+
+    verified = existing_korisnik.verificiran
+    # da osiguramo da se korisnik ne verificira sam
     db.delete(existing_korisnik)
 
     updated_korisnik = models.Korisnik(
@@ -88,10 +89,9 @@ async def update_korisnik(mbo:str, korisnik: KorisnikModel, db: db_dependency):
         krgrupa=korisnik.krgrupa,
         mjstan=korisnik.mjstan,
         favkbc=korisnik.favkbc,
-        verificiran=verified    
+        verificiran=verified
     )
-    
+
     db.add(updated_korisnik)
     db.commit()
     return updated_korisnik
-    
