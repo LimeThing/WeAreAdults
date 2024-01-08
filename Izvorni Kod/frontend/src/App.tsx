@@ -15,21 +15,23 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Meni />}>
-            <Route path="verifikacija" element={<Verifikacija />} />
-            <Route path="info" element={<Informacije />} />
-            <Route path="stvaranje-akcija" element={<StvaranjeAkcija />} />
-            <Route path="lokacije" element={<Lokacije />} />
-            <Route path="/registracija" element={<Registracija />} />
-            <Route path="/login" element={<Login />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+    <>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Meni />}>
+              <Route path="verifikacija" element={<Verifikacija />} />
+              <Route path="info" element={<Informacije />} />
+              <Route path="stvaranje-akcija" element={<StvaranjeAkcija />} />
+              <Route path="lokacije" element={<Lokacije />} />
+              <Route path="registracija" element={<Registracija />} />
+              <Route path="login" element={<Login />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </>
   );
 }
 
