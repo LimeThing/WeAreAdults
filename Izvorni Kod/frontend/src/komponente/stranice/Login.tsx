@@ -51,7 +51,10 @@ export default function Login() {
   };
 
   useEffect(() => {
-    setToken(data ? data.mbo : "")
+    if (data?.mail.endsWith("@hck.hr")) {
+      setToken("admin");
+    }
+    else setToken(data ? data.mbo : "")
     console.log("set to " + data?.mbo)
     queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"]})
     if (data !== undefined) {
