@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "../../api";
 import { ListItem, Name, VerifyButton } from "../stilovi";
 import { KorisnikModel } from "../modeli";
@@ -8,19 +8,26 @@ import { KorisnikModel } from "../modeli";
 
 export default function Verifikacija() {
   const [people, setPeople] = useState<KorisnikModel[]>([]);
-
-  const handleVerify = (mbo: string) => {
-    const updatedPeople = people.filter((person) => person.mbo !== mbo);
-    setPeople(updatedPeople);
-  };
+  const queryClient = useQueryClient();
 
   const fetchKorisnik = (): Promise<KorisnikModel[]> =>
-    api.get("/korisnik/get_all").then((response: any) => response.data);
+    api.get("/korisnik/get_all_unverified").then((response: any) => response.data);
 
   const { isLoading, data } = useQuery<KorisnikModel[]>({
     queryKey: ["getKorisnik"],
     queryFn: fetchKorisnik,
   })
+
+  const {mutate: verifyKorisnik} = useMutation({
+    mutationFn: (mbo: string) => {
+      return api.patch('/korisnik/verify/' + mbo)
+    }
+  })
+
+  const handleVerify = (mbo: string) => {
+    verifyKorisnik(mbo);
+    queryClient.invalidateQueries({queryKey: ["getKorisnik"]});
+  };
 
   useEffect(() => {
     setPeople(data ? data : [])
