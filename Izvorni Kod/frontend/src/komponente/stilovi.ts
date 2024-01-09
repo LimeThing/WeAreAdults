@@ -340,3 +340,76 @@ export const Karta = styled.div`
   justify-content: center;
   padding: 20px;
 `
+
+export const PopupContainer = styled.div`
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  position: fixed;
+  overflow: hidden;
+
+
+  width: 350px;
+  max-width: 100%;
+  min-height: 100px;
+  margin: 20px;
+  
+
+  p {
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+  }
+
+  span {
+    font-size: 12px;
+  }
+
+  a {
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+  }
+  button {
+    background-color: #ce4242;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid white;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+
+  form {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /*padding: 0 80px;*/
+    padding: 0 100px;
+    height: 100%;
+  }
+
+  input {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+  }
+  
+  display: flexbox;
+  align-items: center;
+  justify-content: center;
+
+`;
