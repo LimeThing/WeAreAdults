@@ -25,6 +25,7 @@ export default function Meni() {
   const { pathname } = useLocation();
   const queryClient = useQueryClient();
   const [prijavljen, setPrijavljen] = useState(false);
+  const [admin, setAdmin] = useState(false);
 
   const { data } = useGetKorisnikIme(token || "");
 
@@ -35,6 +36,10 @@ export default function Meni() {
   useEffect(() => {
     setIme(data ? data : "");
     if (data !== undefined) setPrijavljen(true);
+    setAdmin(false);
+    if (token === "admin") {setAdmin(true)
+    setIme("Admin")
+    setPrijavljen(true)}
   }, [data, token]);
 
   return (
@@ -60,7 +65,7 @@ export default function Meni() {
             </IconButton>
           </HiddenOnDesktopDiv>
           <HiddenOnMobileDiv>
-            <FlexBox>
+            {prijavljen && <FlexBox>
               <IconButton
                 onClick={() => {
                   setToken("");
@@ -74,7 +79,7 @@ export default function Meni() {
                 />
               </IconButton>
               <TextBox $size="1.2">{ime}</TextBox>
-            </FlexBox>
+            </FlexBox>}
           </HiddenOnMobileDiv>
           <TextBox>DraculaCharity</TextBox>
           <HiddenOnMobileDiv>
@@ -87,6 +92,13 @@ export default function Meni() {
                 <MeniButton onClick={() => navigate("/registracija")}>
                   Registriraj se
                 </MeniButton>
+              )}
+              {admin && (
+                <><MeniButton onClick={() => navigate("/verifikacija")}>
+                  Verificiraj korisnike
+                </MeniButton><MeniButton onClick={() => navigate("/stvaranje-akcija")}>
+                    Stvori novu akciju
+                  </MeniButton></>
               )}
             </FlexBox>
           </HiddenOnMobileDiv>
@@ -115,6 +127,13 @@ export default function Meni() {
                 <MeniButton onClick={() => navigate("/registracija")}>
                   Registriraj se
                 </MeniButton>
+              )}
+              {admin && (
+                <><MeniButton onClick={() => navigate("/verifikacija")}>
+                  Verificiraj korisnike
+                </MeniButton><MeniButton onClick={() => navigate("/stvaranje-akcija")}>
+                    Stvori novu akciju
+                  </MeniButton></>
               )}
             </FlexBox>
           </div>

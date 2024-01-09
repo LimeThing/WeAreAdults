@@ -64,7 +64,7 @@ class Termin(Base):
 
     idTermin = Column(Integer, primary_key=True, index=True)
     imeLokacije = Column(String(100), nullable=False, index=True)
-    datum = Column(DateTime, nullable=False)
+    datum = Column(DateTime, nullable=True)
     vrijemePoc = Column(DateTime, nullable=False)
     vrijemeKraj = Column(DateTime, nullable=False)
     zauzeto = Column(Boolean, nullable=False)
