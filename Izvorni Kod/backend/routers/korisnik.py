@@ -90,12 +90,14 @@ async def update_korisnik(mbo: str, korisnik: KorisnikModel, db: db_dependency):
         raise HTTPException(status_code=404, detail="Korisnik ne postoji")
 
     verified = existing_korisnik.verificiran
-    # da osiguramo da se korisnik ne verificira sam
+    mbo = existing_korisnik.mbo
+    oib = existing_korisnik.oib
+    # da osiguramo da se korisnik ne verificira sam i da ne mijenja mbo i oib
     db.delete(existing_korisnik)
 
     updated_korisnik = models.Korisnik(
         mbo=mbo,
-        oib=korisnik.oib,
+        oib=oib,
         ime=korisnik.ime,
         prezime=korisnik.prezime,
         spol=korisnik.spol,
