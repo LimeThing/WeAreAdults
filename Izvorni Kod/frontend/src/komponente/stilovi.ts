@@ -337,7 +337,6 @@ export const InfoStyle = styled.div`
 export const Karta = styled.div`
   display: flex;
   justify-content: center;
-  padding: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 `
 
