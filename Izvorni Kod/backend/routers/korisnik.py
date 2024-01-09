@@ -34,8 +34,8 @@ async def korisnik_create(korisnik: KorisnikModel, db: db_dependency):
     db.commit()
 
 
-@router.patch("/verify/", status_code=status.HTTP_200_OK)
-async def korisnik_verify(db: db_dependency, mbo: str):
+@router.patch("/verify/{mbo}", status_code=status.HTTP_200_OK)
+async def korisnik_verify(db: db_dependency, mbo):
     korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
     if korisnik is None:
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
@@ -52,17 +52,24 @@ async def korisnik_get_one(mbo: str, db: db_dependency):
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
     return korisnik
 
+
 @router.get("/get_names_one/{mbo}", status_code=status.HTTP_200_OK)
 async def korisnik_get_one(mbo, db: db_dependency):
     korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
     if korisnik is None:
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
-    return (korisnik.ime + " " + korisnik.prezime)
+    return korisnik.ime + " " + korisnik.prezime
 
 
 @router.get("/get_all/", status_code=status.HTTP_200_OK)
 async def korisnik_get_all(db: db_dependency):
     korisnici = db.query(models.Korisnik).all()
+    return korisnici
+
+
+@router.get("/get_all_unverified/", status_code=status.HTTP_200_OK)
+async def korisnik_get_all(db: db_dependency):
+    korisnici = db.query(models.Korisnik).filter(False == models.Korisnik.verificiran).all()
     return korisnici
 
 
