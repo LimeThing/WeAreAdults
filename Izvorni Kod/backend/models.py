@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime, Date
+from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime, Date, Float
 from database import Base
 import enum
 
@@ -90,3 +90,6 @@ class Akcija(Base):
     hitna = Column(Boolean, nullable=False)
     krgrupa = Column(Enum(KrvnaGrupa), nullable=True)
     mail = Column(String(100), nullable=False)
+    geo_sirina = Column(Float, nullable=False, default=0.000000)
+    geo_duzina = Column(Float, nullable=False, default=0.000000)
+

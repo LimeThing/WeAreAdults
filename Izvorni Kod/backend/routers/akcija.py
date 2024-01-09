@@ -21,13 +21,14 @@ class AkcijaModel(BaseModel):
     hitna: bool
     krgrupa: models.KrvnaGrupa
     mail: str
+    geo_duzina: float 
+    geo_sirina: float
 
 
 # Endpointi za akcije
 @router.post("/create/", status_code=status.HTTP_201_CREATED)
 async def akcija_create(akcija: AkcijaModel, db: db_dependency):
     db_akcija = models.Akcija(**akcija.dict())
-    # db_akcija.krgrupa = akcija.krgrupa
     db.add(db_akcija)
     db.commit()
 
