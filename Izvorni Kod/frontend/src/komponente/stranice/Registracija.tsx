@@ -73,7 +73,7 @@ export default function Registration() {
     console.log(data);
     let korisnik: KorisnikModel = {
       mbo: data.MBO,
-      oib: "12345687910",
+      oib: "12345867910",
       ime: data.firstName,
       prezime: data.lastName,
       spol: "Muško",
