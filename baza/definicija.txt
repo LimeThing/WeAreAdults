@@ -1,4 +1,5 @@
 CREATE DATABASE darivanjeKrvi;
+USE darivanjekrvi;
 CREATE TABLE Korisnik
 (
   ime VARCHAR(100) NOT NULL,
@@ -33,6 +34,8 @@ CREATE TABLE Akcija
   hitna BOOL NOT NULL,
   imeLokacije VARCHAR(100) NOT NULL,
   mail VARCHAR(100) NOT NULL,
+  geo_sirina DOUBLE NOT NULL,
+  geo_duzina DOUBLE NOT NULL,
   FOREIGN KEY (Mail) REFERENCES Administrator(Mail),
   PRIMARY KEY (IdAkcija)
 );
@@ -61,7 +64,6 @@ CREATE TABLE Termini
   zauzeto BOOL NOT NULL,
   imeLokacije VARCHAR(100) NOT NULL,
   idTermin INT NOT NULL,
-  datum DATE DEFAULT (CURDATE() + INTERVAL 1 DAY),
   PRIMARY KEY (idTermin)
 );
 
@@ -83,7 +85,7 @@ FROM Rezervacija JOIN Korisnik USING (mbo)
 WHERE DATE(vrijemePoc) < curdate();
 
 CREATE VIEW slobodniTermini AS 
-SELECT vrijemePoc, vrijemeKraj, datum, imeLokacije
+SELECT vrijemePoc, vrijemeKraj, imeLokacije
 from Termini
 where zauzeto = False;
 
