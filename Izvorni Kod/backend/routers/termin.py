@@ -31,8 +31,8 @@ async def termin_create(termin: TerminModel, db: db_dependency):
     db.commit()
 
 
-@router.get("/get_one/", status_code=status.HTTP_200_OK)
-async def termin_get_one(id: int, db: db_dependency):
+@router.get("/get_one/{id}", status_code=status.HTTP_200_OK)
+async def termin_get_one(id, db: db_dependency):
     termin = db.query(models.Termin).filter(models.Termin.idTermin == id).first()
     if termin is None:
         raise HTTPException(status_code=404, detail='Termin by requested id not found')

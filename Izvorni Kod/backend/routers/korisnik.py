@@ -45,8 +45,8 @@ async def korisnik_verify(db: db_dependency, mbo):
     db.commit()
 
 
-@router.get("/get_one/", status_code=status.HTTP_200_OK)
-async def korisnik_get_one(mbo: str, db: db_dependency):
+@router.get("/get_one/{mbo}", status_code=status.HTTP_200_OK)
+async def korisnik_get_one(mbo, db: db_dependency):
     korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
     if korisnik is None:
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')
