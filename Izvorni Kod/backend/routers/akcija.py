@@ -63,8 +63,8 @@ async def akcija_get_aktivne(db: db_dependency):
     return akcije
 
 
-@router.delete("/delete/", status_code=status.HTTP_200_OK)
-async def akcija_delete(akcija_id: int, db: db_dependency):
+@router.delete("/delete/{akcija_id}", status_code=status.HTTP_200_OK)
+async def akcija_delete(akcija_id, db: db_dependency):
     db_akcija = db.query(models.Akcija).filter(models.Akcija.idAkcija == akcija_id).first()
     if db_akcija is None:
         raise HTTPException(status_code=404, detail='Akcija ne postoji')
