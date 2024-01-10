@@ -37,8 +37,8 @@ async def kbc_get_one(db: db_dependency):
     return kbci
 
 
-@router.delete("/delete/", status_code=status.HTTP_200_OK)
-async def kbc_delete(naziv: int, db: db_dependency):
+@router.delete("/delete/{naziv}", status_code=status.HTTP_200_OK)
+async def kbc_delete(naziv, db: db_dependency):
     db_kbc = db.query(models.KBC).filter(models.KBC.naziv == naziv).first()
     if db_kbc is None:
         raise HTTPException(status_code=404, detail='Kbc by requested naziv not found')

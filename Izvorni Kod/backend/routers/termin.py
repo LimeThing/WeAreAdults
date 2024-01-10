@@ -45,8 +45,8 @@ async def termin_get_one(db: db_dependency):
     return termini
 
 
-@router.delete("/delete/", status_code=status.HTTP_200_OK)
-async def termin_delete(id: int, db: db_dependency):
+@router.delete("/delete/{id}", status_code=status.HTTP_200_OK)
+async def termin_delete(id, db: db_dependency):
     db_termin = db.query(models.Termin).filter(models.Termin.idTermin == id).first()
     if db_termin is None:
         raise HTTPException(status_code=404, detail='Termin by requested id not found')

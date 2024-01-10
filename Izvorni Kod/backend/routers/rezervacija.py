@@ -44,8 +44,8 @@ async def rezervacija_get_all(db: db_dependency):
     rezervacije = db.query(models.Rezervacija).all()
     return rezervacije
 
-@router.delete("/delete/", status_code=status.HTTP_200_OK)
-async  def rezervacija_delete(id_rez: str, db: db_dependency):
+@router.delete("/delete/{id_rez}", status_code=status.HTTP_200_OK)
+async  def rezervacija_delete(id_rez, db: db_dependency):
     db_rezervacija = db.query(models.Rezervacija).filter(models.Rezervacija.idRezervacija == id_rez).first()
     if db_rezervacija is None:
         raise HTTPException(status_code=404, detail='Rezervacija ne postoji')
