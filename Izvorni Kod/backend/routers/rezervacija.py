@@ -25,15 +25,15 @@ async def rezervacija_create(rezervacija: RezervacijaModel, db: db_dependency):
     db.add(db_rezervacija)
     db.commit()
 
-@router.get("/get_one/", status_code=status.HTTP_200_OK)
-async def rezervacija_get_one(id_rez: str, db: db_dependency):
+@router.get("/get_one/{id_rez}", status_code=status.HTTP_200_OK)
+async def rezervacija_get_one(id_rez, db: db_dependency):
     rezervacija = db.query(models.Rezervacija).filter(models.Rezervacija.idRezervacija == id_rez).first()
     if rezervacija is None:
         raise HTTPException(status_code=404, detail='Rezervacija ne postoji')
     return rezervacija
 
-@router.get("/get_my/", status_code=status.HTTP_200_OK)
-async def rezervacija_get_my(mbo: str, db: db_dependency):
+@router.get("/get_my/{mbo}", status_code=status.HTTP_200_OK)
+async def rezervacija_get_my(mbo, db: db_dependency):
     rezervacije = db.query(models.Rezervacija).filter(models.Rezervacija.mbo == mbo).all()
     if rezervacije is None:
         raise HTTPException(status_code=404, detail='Još nemate rezervacija')

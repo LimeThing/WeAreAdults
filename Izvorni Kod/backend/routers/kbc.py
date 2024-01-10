@@ -23,8 +23,8 @@ async def kbc_create(kbc: KbcModel, db: db_dependency):
     db.commit()
 
 
-@router.get("/get_one/", status_code=status.HTTP_200_OK)
-async def kbc_get_one(naziv: int, db: db_dependency):
+@router.get("/get_one/{naziv}", status_code=status.HTTP_200_OK)
+async def kbc_get_one(naziv, db: db_dependency):
     kbc = db.query(models.KBC).filter(models.KBC.naziv == naziv).first()
     if kbc is None:
         raise HTTPException(status_code=404, detail='Kbc by requested naziv not found')
