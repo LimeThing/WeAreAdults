@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "../../api";
-import { ListItem, Name, VerifyButton } from "../stilovi";
+import { ListItem, Name, OverFlowDiv, PersonalInformation, VerifyButton } from "../stilovi";
 import { KorisnikModel } from "../modeli";
 
 
@@ -37,18 +37,33 @@ export default function Verifikacija() {
   else
     return (
       <div>
+        <br></br>
+        <OverFlowDiv $width="50rem">
         <ul>
           {people.map((person) => (
             <ListItem key={person.mbo}>
-              <Name>{`MBO: ${person.mbo}`}</Name>
-              <Name>{`Ime: ${person.ime}`}</Name>
-              <Name>{`Prezime: ${person.prezime}`}</Name>
+              <PersonalInformation>
+                <Name>{`MBO: ${person.mbo}`}</Name>
+                <Name>{`OIB: ${person.oib}`}</Name>
+                <Name>{`Ime: ${person.ime}`}</Name>
+                <Name>{`Prezime: ${person.prezime}`}</Name>
+                <Name>{`Spol: ${person.spol}`}</Name>
+              </PersonalInformation>
+              <PersonalInformation>
+                <Name>{`Dob: ${person.dob}`}</Name>
+                <Name>{`Krvna grupa: ${person.krgrupa}`}</Name>
+                <Name>{`Mjesto stanovanja: ${person.mjstan}`}</Name>
+                <Name>{`KBC: ${person.favkbc}`}</Name>
+              </PersonalInformation>
               <VerifyButton onClick={() => handleVerify(person.mbo)}>
-                Verify!
+                Verificiraj
               </VerifyButton>
+              <hr style={{ width: "100%"}}></hr>
             </ListItem>
+           
           ))}
         </ul>
+         </OverFlowDiv>
       </div>
     );
 }

@@ -37,6 +37,7 @@ export const OverFlowDiv = styled.div<{
 }>`
   height: ${(props) => (props.$height ? props.$height : "fit-content")};
   width: ${(props) => (props.$width ? props.$width : "100%")};
+  margin: auto;
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   /*background: linear-gradient(to left, #b63e3e, #a82d2d);*/
@@ -273,28 +274,38 @@ export const Drakulica = styled.div`
 `;
 
 export const ListItem = styled.li`
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 `;
 
 export const Name = styled.div`
-  margin-bottom: 8px;
+  padding: 0.25rem 0 0.25rem 0;
 `;
 
 export const VerifyButton = styled.button`
-  background-color: #4caf50;
-  color: white;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #45a049;
-  }
+background-color: #ce4242;
+color: #fff;
+font-size: 12px;
+padding: 10px 20px;
+border: 1px solid white;
+border-radius: 20px;
+font-weight: 600;
+letter-spacing: 0.5px;
+text-transform: uppercase;
+margin-top: 10px;
+cursor: pointer;
+&:hover {
+  background: #bb3333;
+}
 `;
+
+export const PersonalInformation = styled.div`
+  text-align: left;
+  padding: 10px;
+`
 
 export const InfoStyle = styled.div`
   margin: 15px;
