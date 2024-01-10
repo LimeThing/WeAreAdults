@@ -73,8 +73,8 @@ async def korisnik_get_all(db: db_dependency):
     return korisnici
 
 
-@router.delete("/delete/", status_code=status.HTTP_200_OK)
-async def korisnik_delete(mbo: str, db: db_dependency):
+@router.delete("/delete/{mbo}", status_code=status.HTTP_200_OK)
+async def korisnik_delete(mbo, db: db_dependency):
     db_korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
     if db_korisnik is None:
         raise HTTPException(status_code=404, detail='Korisnik by requested MBO not found')

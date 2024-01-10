@@ -285,12 +285,12 @@ export const Name = styled.div`
   padding: 0.25rem 0 0.25rem 0;
 `;
 
-export const VerifyButton = styled.button`
-background-color: #ce4242;
-color: #fff;
+export const VerifyButton = styled.button<{ $delete?: boolean }>`
+background-color:  ${(props) => (props.$delete ? "#fff" : "#ce4242")};
+color: ${(props) => (props.$delete ? "#ce4242" : "#fff")};
 font-size: 12px;
 padding: 10px 20px;
-border: 1px solid white;
+border: 1px solid ${(props) => (props.$delete ? "#ce4242" : "#fff")};
 border-radius: 20px;
 font-weight: 600;
 letter-spacing: 0.5px;
@@ -298,7 +298,7 @@ text-transform: uppercase;
 margin-top: 10px;
 cursor: pointer;
 &:hover {
-  background: #bb3333;
+  background: ${(props) => (props.$delete ? "#eee" : "#bb3333")};
 }
 `;
 

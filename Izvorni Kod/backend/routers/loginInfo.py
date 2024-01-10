@@ -41,8 +41,8 @@ async def loginInfo_get_one(db: db_dependency):
     return loginInfos
 
 
-@router.delete("/delete/", status_code=status.HTTP_200_OK)
-async def loginInfo_delete(mail: str, db: db_dependency):
+@router.delete("/delete/{mail}", status_code=status.HTTP_200_OK)
+async def loginInfo_delete(mail, db: db_dependency):
     db_loginInfo = db.query(models.LoginInfo).filter(models.LoginInfo.mail == mail).first()
     if db_loginInfo is None:
         raise HTTPException(status_code=404, detail='LoginInfo by requested mail not found')
