@@ -33,8 +33,8 @@ async def akcija_create(akcija: AkcijaModel, db: db_dependency):
     db.commit()
 
 
-@router.get("/get_one/", status_code=status.HTTP_200_OK)
-async def akcija_get_one(akcija_id: int, db: db_dependency):
+@router.get("/get_one/{akcija_id}", status_code=status.HTTP_200_OK)
+async def akcija_get_one(akcija_id, db: db_dependency):
     akcija = db.query(models.Akcija).filter(models.Akcija.idAkcija == akcija_id).first()
     if akcija is None:
         raise HTTPException(status_code=404, detail='Akcija ne postoji')
