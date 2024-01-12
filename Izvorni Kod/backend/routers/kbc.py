@@ -5,14 +5,14 @@ import models
 from dependencies import db_dependency
 
 
-# postavke routera, 'kbc' je naziv tablice u bazi
+# postavke routera, 'kbc' je ime tablice u bazi
 router = APIRouter(
     prefix="/kbc"
 )
 
 
 class KbcModel(BaseModel):
-    naziv: str
+    ime: str
     adresa: str
 
 
@@ -23,11 +23,11 @@ async def kbc_create(kbc: KbcModel, db: db_dependency):
     db.commit()
 
 
-@router.get("/get_one/{naziv}", status_code=status.HTTP_200_OK)
-async def kbc_get_one(naziv, db: db_dependency):
-    kbc = db.query(models.KBC).filter(models.KBC.naziv == naziv).first()
+@router.get("/get_one/{ime}", status_code=status.HTTP_200_OK)
+async def kbc_get_one(ime, db: db_dependency):
+    kbc = db.query(models.KBC).filter(models.KBC.ime == ime).first()
     if kbc is None:
-        raise HTTPException(status_code=404, detail='Kbc by requested naziv not found')
+        raise HTTPException(status_code=404, detail='Kbc by requested ime not found')
     return kbc
 
 
@@ -37,10 +37,10 @@ async def kbc_get_one(db: db_dependency):
     return kbci
 
 
-@router.delete("/delete/{naziv}", status_code=status.HTTP_200_OK)
-async def kbc_delete(naziv, db: db_dependency):
-    db_kbc = db.query(models.KBC).filter(models.KBC.naziv == naziv).first()
+@router.delete("/delete/{ime}", status_code=status.HTTP_200_OK)
+async def kbc_delete(ime, db: db_dependency):
+    db_kbc = db.query(models.KBC).filter(models.KBC.ime == ime).first()
     if db_kbc is None:
-        raise HTTPException(status_code=404, detail='Kbc by requested naziv not found')
+        raise HTTPException(status_code=404, detail='Kbc by requested ime not found')
     db.delete(db_kbc)
     db.commit()
