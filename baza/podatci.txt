@@ -28,12 +28,13 @@ INSERT INTO Termini (VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, idTermin) VA
 
     
 INSERT INTO KBC VALUES
-('Ulica Mije Kišpatića 12, 10000, Zagreb', 'KBC Zagreb'),
-('Ulica Josipa Huttlera 4, 3100, Osijek', 'KBC Osijek'),
-('Krešimirova ul. 42, 51000, Rijeka', 'KBC Rijeka'),
-('Spinčićeva uk. 1, 21000, Split', 'KBC Split'),
-('Dr. Roka Mišetića 2, 20000, Dubrovnik', 'OB Dubrovnik'),
-('Ul. Ivana Meštrovića 1, 42000, Varaždin', 'OB Varaždin');
+('Petrova 3, 10000, Zagreb', 'Hrvatski zavod za transfuzijsku medicinu Zagreb', 44.10752, 15.23459),
+('Ul. Josipa Huttlera 4, 3100, Osijek', 'KBC Osijek', 45.5600001, 18.67588),
+('Krešimirova ul. 42, 51000, Rijeka', 'KBC Rijeka', 45.32691, 14.441),
+('Spinčićeva ul. 1, 21000, Split', 'KBC Split', 43.50394, 16.4578),
+('Dr. Roka Mišetića 2, 20000, Dubrovnik', 'OB Dubrovnik', 42.64983, 18.07733),
+('Ul. Ivana Meštrovića 1, 42000, Varaždin', 'OB Varaždin', 46.30269, 16.32512),
+('Ljudevita Posavskog 7, 23000, Zadar', 'OB Zadar', 44.10752, 15.23459);
 	
 
 INSERT INTO Korisnik (ime, prezime, oib, krgrupa, mbo, spol, dob, mjstan, favkbc, verificiran) VALUES
@@ -48,8 +49,11 @@ INSERT INTO Administrator VALUES
 ('josjedan@ckhr.com', 'lozinka1');
 
 INSERT INTO akcija VALUES
-(0, 'Zvonigradska ulica 9', str_to_date("2023,12,1", "%Y,%m,%d"), str_to_date("2023,12,10", "%Y,%m,%d"), 'ABpoz', True, 'Dom zdravlja zapad', 'admin@ckhr.com', 45.800, 15.967 ),
-(1, 'Grižanska ulica 4', str_to_date("2023,12,1", "%Y,%m,%d"), str_to_date("2023,12,10", "%Y,%m,%d"), null ,False, 'Dom zdravlja istok', 'admin@ckhr.com', 45.800, 15.967  );
+(0, 'Ul. Ivana Belostenca 2, 42000, Varaždin', str_to_date("2023,12,21", "%Y,%m,%d"), str_to_date("2024,1,21", "%Y,%m,%d"), 'ABneg', True, 'Dom zdravlja Varaždin', 'admin@ckhr.com', 46.30271, 16.32514),
+(1, 'Bogatinska ul. 13-1, 10000, Zagreb', str_to_date("2023,12,26", "%Y,%m,%d"), str_to_date("2023,12,28", "%Y,%m,%d"), null ,False, 'Dom zdravlja istok', 'admin@ckhr.com', 44.10754, 15.23456 ),
+(2, 'Ul. Mikše Pelegrinovića 25, 10000, Zagreb', str_to_date("2023,12,30", "%Y,%m,%d"), str_to_date("2024,2,5", "%Y,%m,%d"), null ,False, 'Dom zdravlja zapad', 'admin@ckhr.com', 44.10756, 15.23458),
+(3, 'Krbavska ul. 26, 31000, Osijek', str_to_date("2023,12,7", "%Y,%m,%d"), str_to_date("2024,2,17", "%Y,%m,%d"), 'Bpoz' ,True, 'Dom zdravlja Osijek', 'admin@ckhr.com', 45.5600002, 18.67586),
+(4, 'Ul. Narodnog preporoda 25, 51500, Krk"', str_to_date("2024,1,26", "%Y,%m,%d"), str_to_date("2024,3,29", "%Y,%m,%d"), null, False, 'Dom zdravlja Krk', 'admin@ckhr.com', 44.10742, 15.23359);
 
 INSERT INTO rezervacija VALUES
 ('2010-04-30 07:27:39', 0, 'KBC Rijeka', '000000000'),
