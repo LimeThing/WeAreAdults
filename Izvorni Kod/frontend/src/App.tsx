@@ -11,6 +11,7 @@ import Lokacije from "./komponente/stranice/Lokacije";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Pocetna from "./komponente/stranice/Pocetna";
+import PromijenaAkcija from "./komponente/stranice/PromijenaAkcija";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="lokacije" element={<Lokacije />} />
               <Route path="registracija" element={<Registracija />} />
               <Route path="login" element={<Login />} />
+              <Route path="promijena-akcija" element={<PromijenaAkcija />} />
             </Route>
           </Routes>
         </BrowserRouter>
