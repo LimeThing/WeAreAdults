@@ -98,7 +98,12 @@ export default function Meni() {
                   Verificiraj korisnike
                 </MeniButton><MeniButton onClick={() => navigate("/stvaranje-akcija")}>
                     Stvori novu akciju
-                  </MeniButton></>
+                  </MeniButton>
+                  <MeniButton onClick={() => navigate("/promijena-akcija")}>
+                    Promijeni akciju
+                  </MeniButton>
+                  </>
+                  
               )}
             </FlexBox>
           </HiddenOnMobileDiv>
