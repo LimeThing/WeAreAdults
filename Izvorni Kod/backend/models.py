@@ -41,7 +41,7 @@ class Korisnik(Base):
 class KBC(Base):
     __tablename__ = 'kbc'
 
-    naziv = Column(String(100), primary_key=True, index=True)
+    ime = Column(String(100), primary_key=True, index=True)
     adresa = Column(String(100), nullable=False)
     geo_sirina = Column(Double, nullable=False, default=0.000000)
     geo_duzina = Column(Double, nullable=False, default=0.000000)
