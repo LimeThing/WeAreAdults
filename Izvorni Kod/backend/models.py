@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime, Date, Float
+from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime, Date, Double
 from database import Base
 import enum
 
@@ -9,6 +9,7 @@ import enum
 class Spol(enum.Enum):
     MUŠKO = "Muško"
     ŽENSKO = "Žensko"
+    OSTALO = "Ostalo"
 
 
 class KrvnaGrupa(enum.Enum):
@@ -25,8 +26,8 @@ class KrvnaGrupa(enum.Enum):
 class Korisnik(Base):
     __tablename__ = 'korisnik'
 
-    mbo = Column(String(100), primary_key=True, index=True)
-    oib = Column(String(100), unique=True, nullable=False)
+    mbo = Column(String(9), primary_key=True, index=True)
+    oib = Column(String(11), unique=True, nullable=False)
     ime = Column(String(100), nullable=False)
     prezime = Column(String(100), nullable=False)
     spol = Column(Enum(Spol), nullable=False)
@@ -42,6 +43,8 @@ class KBC(Base):
 
     naziv = Column(String(100), primary_key=True, index=True)
     adresa = Column(String(100), nullable=False)
+    geo_sirina = Column(Double, nullable=False, default=0.000000)
+    geo_duzina = Column(Double, nullable=False, default=0.000000)
 
 
 class LoginInfo(Base):
@@ -49,7 +52,7 @@ class LoginInfo(Base):
 
     mail = Column(String(100), primary_key=True, index=True)
     lozinka = Column(String(100), nullable=False)
-    mbo = Column(String(50), unique=True, nullable=False)
+    mbo = Column(String(9), unique=True, nullable=False)
 
 
 class Administrator(Base):
@@ -64,7 +67,6 @@ class Termin(Base):
 
     idTermin = Column(Integer, primary_key=True, index=True)
     imeLokacije = Column(String(100), nullable=False, index=True)
-    datum = Column(DateTime, nullable=True)
     vrijemePoc = Column(DateTime, nullable=False)
     vrijemeKraj = Column(DateTime, nullable=False)
     zauzeto = Column(Boolean, nullable=False)
@@ -90,6 +92,5 @@ class Akcija(Base):
     hitna = Column(Boolean, nullable=False)
     krgrupa = Column(Enum(KrvnaGrupa), nullable=True)
     mail = Column(String(100), nullable=False)
-    geo_sirina = Column(Float, nullable=False, default=0.000000)
-    geo_duzina = Column(Float, nullable=False, default=0.000000)
-
+    geo_sirina = Column(Double, nullable=False, default=0.000000)
+    geo_duzina = Column(Double, nullable=False, default=0.000000)
