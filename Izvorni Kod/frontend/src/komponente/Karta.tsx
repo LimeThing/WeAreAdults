@@ -2,56 +2,83 @@ import React, { useState } from "react";
 import { Map, Marker, Overlay } from "pigeon-maps";
 import { Karta, LocationsWindow } from "./stilovi";
 import RezervacijaPopup from "./RezervacijaPopup";
-import { mockKBC } from "./stranice/komunalije/mock_podatci";
+import { AkcijaModel, KBCModel } from "./modeli";
 
-export function MyMap() {
+interface MyMapProps {
+  aktivneAkcije: AkcijaModel[];
+  KBC: KBCModel[];
+}
+
+export function MyMap({ aktivneAkcije, KBC}: MyMapProps) {
   const initialCenter: [number, number] = [44.46212, 16.50319];
   const [center, setCenter] = useState<[number, number]>(initialCenter);
   const [showPopup, setShowPopup] = useState(false);
   const [zoom, setZoom] = useState(7.3);
   const [selectedLocation, setSelectedLocation] = useState<any>(null);
   
+  const handleMarkerClick = (location: any, index: number, type: string) => {
+    setSelectedLocation({ ...location, index, type });
+  };
 
   return (
     <Karta>
-    <Map 
-      height={700} 
-      width={700}
-      zoom={zoom} 
-      center={center}
-      onBoundsChanged={({ center, zoom }) => { 
-        setCenter(center as [number, number]) 
-        setZoom(zoom) 
-      }} 
-      onClick={() => setSelectedLocation(null)}
-    >
-    
-    {mockKBC.map((kbc, index) => (
-          <Marker 
-            key={index} 
-            anchor={[kbc.longitude, kbc.latitude]} 
-            color='#b63e3e' 
-            onClick={() => setSelectedLocation({ ...kbc, index })}
+      <Map
+        height={700}
+        width={700}
+        zoom={zoom}
+        center={center}
+        onBoundsChanged={({ center, zoom }) => {
+          setCenter(center as [number, number]);
+          setZoom(zoom);
+        }}
+        onClick={() => setSelectedLocation(null)}
+      >
+        {KBC.map((kbc, index) => (
+          <Marker
+            key={`kbc-${index}`}
+            anchor={[kbc.geo_sirina, kbc.geo_duzina]}
+            color='#b63e3e'
+            onClick={() => handleMarkerClick(kbc, index, 'kbc')}
           />
         ))}
 
-        {mockKBC.map((kbc, index) => (
-          <Overlay anchor={[kbc.longitude, kbc.latitude - 0.7]} >
-          <LocationsWindow 
-            key={index}
-            style={{
-              display: selectedLocation && selectedLocation.index === index ? 'block' : 'none',
-            }}
-          >
-            <p>{kbc.ime}</p>
-            <button>Rezerviraj termin</button>
-          </LocationsWindow>
+        {KBC.map((kbc, index) => (
+          <Overlay anchor={[kbc.geo_sirina, kbc.geo_duzina]} key={`kbc-overlay-${index}`}>
+            <LocationsWindow
+              style={{
+                display: selectedLocation && selectedLocation.type === 'kbc' && selectedLocation.index === index ? 'block' : 'none',
+              }}
+            >
+              <p>{kbc.ime}</p>
+              <button>Rezerviraj termin</button>
+            </LocationsWindow>
           </Overlay>
         ))}
-       
-    </Map>
+
+        {aktivneAkcije.map((akcija, index) => (
+          <Marker
+            key={`akcija-${index}`}
+            anchor={[akcija.geo_sirina, akcija.geo_duzina]}
+            color='#b63e3e'
+            onClick={() => handleMarkerClick(akcija, index, 'akcija')}
+          />
+        ))}
+        {aktivneAkcije.map((akcija, index) => (
+          <Overlay anchor={[akcija.geo_sirina, akcija.geo_duzina]} key={`akcija-overlay-${index}`}>
+            <LocationsWindow
+              style={{
+                display: selectedLocation && selectedLocation.type === 'akcija' && selectedLocation.index === index ? 'block' : 'none',
+              }}
+            >
+              <p>{akcija.imeLokacije}</p>
+              <button>Rezerviraj termin</button>
+            </LocationsWindow>
+          </Overlay>
+        ))}
+      </Map>
     </Karta>
   );
 }
+
 
 export default MyMap;

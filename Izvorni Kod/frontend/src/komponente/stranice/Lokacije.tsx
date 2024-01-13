@@ -1,87 +1,125 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { LokacijeDiv, FlexBox, OverFlowDiv } from "../stilovi";
-import { mockKBC, mockAkcija } from "./komunalije/mock_podatci";
 import {
   faCircleExclamation
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import MyMap from "../Karta";
-
-const brojHitnihAkcija = mockAkcija.filter((akcija) => akcija.hitna).length;
+import { AkcijaModel, KBCModel } from "../modeli";
+import { api } from "../../api";
+import { useQuery } from "@tanstack/react-query";
+import { act } from "@testing-library/react";
 
 export default function Lokacije() {
+
+  const [aktivneAkcije, setAktivneAkcije] = useState<AkcijaModel[]>([])
+  const [KBC, setKBC] = useState<KBCModel[]>([])
+
+  const fetchAkcije = (): Promise<AkcijaModel[]> =>
+    api
+      .get("/akcija/get_aktivne")
+      .then((response: any) => response.data);
+
+  const fetchKbc = (): Promise<KBCModel[]> =>
+    api
+    .get("/kbc/get_all")
+    .then((response: any) => response.data);
+
+  const { isLoading: isLoadingAktivne, data: dataAktivne } = useQuery<AkcijaModel[]>({
+    queryKey: ["getAkcija"],
+    queryFn: fetchAkcije,
+  });
+
+  const { isLoading: isLoadingKbc, data: dataKbc } = useQuery<KBCModel[]>({
+    queryKey: ["getKbc"],
+    queryFn: fetchKbc,
+  });
+
+  useEffect(() => {
+    setAktivneAkcije(dataAktivne ? dataAktivne : []);
+    setKBC(dataKbc ? dataKbc : []);
+  }, [dataAktivne, dataKbc]);
+
   const kbcs = 
-    mockKBC.map((kbc, index) => {
+    KBC.map((kbc, index) => {
       return <>
       <div style={{width: "100%" }}>
         <p style={{ fontWeight: "bold" }}>{kbc.ime}</p>
         <p>{kbc.adresa}</p>
       </div>
-      {index !== mockKBC.length-1 && <hr style={{width: "100%"}}/>}
+      {index !== KBC.length-1 && <hr style={{width: "100%"}}/>}
       </>
-    } )
+    });
   
-    const akcije = mockAkcija
-    .filter((akcija) => !akcija.hitna)
-    .map((akcija, index) => (
-      <div style={{ width: "100%" }} key={index}>
-        <p>{akcija.adresa}</p>
-        <p>{"Početak: " + akcija.vrijemePoc.toDateString()}</p>
-        <p style={{padding: "0 0 1rem 0"}}>{"Kraj: " + akcija.vrijemeKraj.toDateString()}</p>
-        {akcija.hitna && (
-          <p className="hitna">
-            <FontAwesomeIcon icon={faCircleExclamation} size="xl" color="red"/> {"HITNA AKCIJA! Krvna grupa: " + akcija.krGrupa}
-          </p>
-        )}
-        {index !== mockAkcija.length - brojHitnihAkcija - 1 && <hr style={{ width: "100%" }} />}
-      </div>
-    ));
-  
-
-    const hitneAkcije = mockAkcija.map((akcija, index) => (
-      akcija.hitna && (
+    const hitneAkcije = aktivneAkcije.filter((akcija) => akcija.hitna).map((akcija, index) => (
         <div style={{ width: "100%" }} key={index}>
-        {akcija.hitna && (
-            <p style={{ fontWeight: "bold", color: "#a82d2d" }}>
-              <FontAwesomeIcon icon={faCircleExclamation} size="xl" /> {"HITNA AKCIJA! Krvna grupa: " + akcija.krGrupa}
-            </p>
-          )}
+          <p style={{ fontWeight: "bold", color: "#a82d2d" }}>
+            <FontAwesomeIcon icon={faCircleExclamation} size="xl" /> {"HITNA AKCIJA! Krvna grupa: " + akcija.krgrupa}
+          </p>
+          <p style={{ fontWeight: "bold"}}>
+            {akcija.imeLokacije}
+          </p>
           <p>
             {akcija.adresa}
           </p>
           <p>
-            {"Početak: " + akcija.vrijemePoc.toDateString()}
+            {"Početak: " + akcija.datumPoc}
           </p>
           <p style={{padding: "0 0 1rem 0"}}>
-            {"Kraj: " + akcija.vrijemeKraj.toDateString()}
+            {"Kraj: " + akcija.datumKraj}
           </p>
-          {index !== mockAkcija.length - 1 && <hr style={{ width: "100%" }} />}
+          {index !== aktivneAkcije.length - 1 && <hr style={{ width: "100%" }} />}
         </div>
       )
+    );
+
+    const akcije = aktivneAkcije
+    .filter((actions) => !actions.hitna)
+    .map((actions, index) => (
+      <div style={{ width: "100%" }} key={index}>
+        <p style={{ fontWeight: "bold" }}>{actions.imeLokacije}</p>
+        <p>{actions.adresa}</p>
+        <p>{"Početak: " + actions.datumPoc}</p>
+        <p style={{padding: "0 0 1rem 0"}}>{"Kraj: " + actions.datumKraj}</p>
+        {actions.hitna && (
+          <p className="hitna">
+            <FontAwesomeIcon icon={faCircleExclamation} size="xl" color="red"/> {"HITNA AKCIJA! Krvna grupa: " + actions.krgrupa}
+          </p>
+        )}
+        {index !== aktivneAkcije.length - hitneAkcije.length - 1 && <hr style={{ width: "100%" }} />}
+      </div>
     ));
-    
-   
+          
+    if (isLoadingAktivne || isLoadingKbc) return <></>;
+    else
   return (
     <LokacijeDiv>
-      <MyMap></MyMap>
-      <FlexBox $justify="start" $height="fit-content" $align="flex-start" $width="100%">
+      <MyMap aktivneAkcije={aktivneAkcije} KBC={KBC}></MyMap>
+      <FlexBox $justify="space-around" $height="fit-content" $alignItems="flex-start" $width="fit-content">
         <div>
           <h2>Lokacije na kojima uvijek možete donirati krv:</h2>
-          <OverFlowDiv $height="fit-content" $width="100%">
+          <OverFlowDiv $height="fit-content" $width="fit-content">
             <FlexBox $direction="column"  style={{padding: "1rem 0rem 1rem 0rem"}}>
               {kbcs}
             </FlexBox>
           </OverFlowDiv>
         </div>
+        { aktivneAkcije.length > 0 && ( 
         <div>
           <h2>Trenutno aktivne akcije:</h2>
-          <OverFlowDiv $height="fit-content" $width="100%">
+          <OverFlowDiv $height="fit-content" $width="fit-content">
             <FlexBox $direction="column" style={{padding: "1rem 0rem 0rem 0rem"}}>
               {hitneAkcije}
               {akcije}
             </FlexBox>
           </OverFlowDiv>
         </div>
+          )}
+        { aktivneAkcije.length === 0 && (
+          <div>
+            <h2>Nema trenutno aktivnih akcija!</h2>
+          </div>
+        )}
       </FlexBox>
     </LokacijeDiv>
   );
