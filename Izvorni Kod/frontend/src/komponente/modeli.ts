@@ -1,6 +1,8 @@
 export type AkcijaModel = {
     idAkcija: number,
     imeLokacije: string,
+    geo_sirina: number,
+    geo_duzina: number,
     adresa: string,
     datumPoc: Date,
     datumKraj: Date,
@@ -10,8 +12,10 @@ export type AkcijaModel = {
 }
 
 export type KBCModel = {
-    naziv: string,
-    adresa: string
+    ime: string,
+    adresa: string,
+    geo_sirina: number,
+    geo_duzina: number
 }
 
 export type KorisnikModel = {
