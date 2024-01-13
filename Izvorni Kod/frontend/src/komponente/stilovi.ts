@@ -4,13 +4,13 @@ export const FlexBox = styled.div<{
   $direction?: string;
   $height?: string;
   $width?: string;
-  $align?: string;
+  $alignItems?: string;
   $justify?: string;
 }>`
   width: ${(props) => (props.$width ? props.$width : "100%")};
   display: flex;
   height: ${(props) => (props.$height ? props.$height : "fit-content")};
-  align-items: ${(props) => (props.$align ? props.$align : "center")};
+  align-items: ${(props) => (props.$alignItems ? props.$alignItems : "center")};
   justify-content: ${(props) => (props.$justify ? props.$justify : "center")};
   flex-direction: ${(props) => (props.$direction ? props.$direction : "row")};
   gap: 1rem;
@@ -40,7 +40,6 @@ export const OverFlowDiv = styled.div<{
   margin: auto;
   border-radius: 30px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-  /*background: linear-gradient(to left, #b63e3e, #a82d2d);*/
 `;
 
 export const HiddenOnMobileDiv = styled.div`
@@ -349,6 +348,9 @@ export const Karta = styled.div`
   display: flex;
   justify-content: center;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+  width: fit-content;
+  height: fit-content;
+
 `
 
 export const PopupContainer = styled.div`
@@ -426,6 +428,7 @@ export const PopupContainer = styled.div`
 
 export const LokacijeDiv = styled.div`
   display: flex;
+  align-content: center;
   justify-content: space-around;
   padding: 1rem;
   gap: 1rem;
