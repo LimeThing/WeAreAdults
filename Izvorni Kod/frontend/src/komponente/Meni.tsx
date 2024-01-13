@@ -21,25 +21,30 @@ export default function Meni() {
   const [showMobileMeni, setShowMobileMeni] = useState(false);
   const navigate = useNavigate();
   const { token, setToken } = useCookies();
+  const [mbo, setMbo] = useState(token);
   const [ime, setIme] = useState("");
   const { pathname } = useLocation();
   const queryClient = useQueryClient();
   const [prijavljen, setPrijavljen] = useState(false);
   const [admin, setAdmin] = useState(false);
 
-  const { data } = useGetKorisnikIme(token || "");
+  const { data } = useGetKorisnikIme(mbo || "");
 
   useEffect(() => {
     queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
   }, [pathname, queryClient]);
 
   useEffect(() => {
+    setMbo(token);
     setIme(data ? data : "");
-    if (data !== undefined) setPrijavljen(true);
+    setPrijavljen(false);
+    if (data !== undefined && data === "") setPrijavljen(true);
     setAdmin(false);
-    if (token === "admin") {setAdmin(true)
-    setIme("Admin")
-    setPrijavljen(true)}
+    if (token === "admin") {
+      setAdmin(true);
+      setIme("Admin");
+      setPrijavljen(true);
+    }
   }, [data, token]);
 
   return (
@@ -65,21 +70,23 @@ export default function Meni() {
             </IconButton>
           </HiddenOnDesktopDiv>
           <HiddenOnMobileDiv>
-            {prijavljen && <FlexBox>
-              <IconButton
-                onClick={() => {
-                  setToken("");
-                  navigate("/");
-                }}
-              >
-                <FontAwesomeIcon
-                  icon={faArrowRightFromBracket}
-                  size="xl"
-                  style={{ color: "#ffffff" }}
-                />
-              </IconButton>
-              <TextBox $size="1.2">{ime}</TextBox>
-            </FlexBox>}
+            {prijavljen && (
+              <FlexBox>
+                <IconButton
+                  onClick={() => {
+                    setToken("");
+                    navigate("/");
+                  }}
+                >
+                  <FontAwesomeIcon
+                    icon={faArrowRightFromBracket}
+                    size="xl"
+                    style={{ color: "#ffffff" }}
+                  />
+                </IconButton>
+                <TextBox $size="1.2">{ime}</TextBox>
+              </FlexBox>
+            )}
           </HiddenOnMobileDiv>
           <TextBox>DraculaCharity</TextBox>
           <HiddenOnMobileDiv>
@@ -94,9 +101,11 @@ export default function Meni() {
                 </MeniButton>
               )}
               {admin && (
-                <><MeniButton onClick={() => navigate("/verifikacija")}>
-                  Verificiraj korisnike
-                </MeniButton><MeniButton onClick={() => navigate("/stvaranje-akcija")}>
+                <>
+                  <MeniButton onClick={() => navigate("/verifikacija")}>
+                    Verificiraj korisnike
+                  </MeniButton>
+                  <MeniButton onClick={() => navigate("/stvaranje-akcija")}>
                     Stvori novu akciju
                   </MeniButton>
                   <MeniButton onClick={() => navigate("/promijena-akcija")}>
@@ -134,11 +143,14 @@ export default function Meni() {
                 </MeniButton>
               )}
               {admin && (
-                <><MeniButton onClick={() => navigate("/verifikacija")}>
-                  Verificiraj korisnike
-                </MeniButton><MeniButton onClick={() => navigate("/stvaranje-akcija")}>
+                <>
+                  <MeniButton onClick={() => navigate("/verifikacija")}>
+                    Verificiraj korisnike
+                  </MeniButton>
+                  <MeniButton onClick={() => navigate("/stvaranje-akcija")}>
                     Stvori novu akciju
-                  </MeniButton></>
+                  </MeniButton>
+                </>
               )}
             </FlexBox>
           </div>
