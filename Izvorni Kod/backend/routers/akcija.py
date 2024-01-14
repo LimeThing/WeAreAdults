@@ -75,14 +75,15 @@ async def akcija_delete(akcija_id, db: db_dependency):
     # pip install python-multipart
 
 
-@router.put("/edit/")
-async def update_akcija(id_rez: int, akcija: AkcijaModel, db: db_dependency):
+@router.put("/edit/{id_rez}")
+async def update_akcija(id_rez, akcija: AkcijaModel, db: db_dependency):
     existing_akcija = db.query(models.Akcija).filter(models.Akcija.idAkcija == id_rez).first()
 
     if existing_akcija is None:
         raise HTTPException(status_code=404, detail="Akcija ne postoji")
 
     db.delete(existing_akcija)
+    db.commit()
 
     updated_akcija = models.Akcija(
         idAkcija=id_rez,
