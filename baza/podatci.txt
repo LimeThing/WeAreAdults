@@ -1,5 +1,5 @@
 USE darivanjekrvi; 
-INSERT INTO Termini (VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, idTermin) VALUES 
+INSERT INTO darivanjeKrvi.termin (VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, idTermin) VALUES 
     (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), False, 'KBC Zagreb', 10),
     (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), False, 'KBC Zagreb', 11),
     (STR_TO_DATE('11:00:00', '%T'), STR_TO_DATE('12:00:00', '%T'), False, 'KBC Zagreb', 12),
@@ -27,7 +27,7 @@ INSERT INTO Termini (VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, idTermin) VA
 
 
     
-INSERT INTO KBC VALUES
+INSERT INTO darivanjeKrvi.kbc (ime, adresa, geo_sirina, geo_duzina) VALUES
 ('Petrova 3, 10000, Zagreb', 'Hrvatski zavod za transfuzijsku medicinu Zagreb', 45.81612, 15.99121),
 ('Ul. Josipa Huttlera 4, 3100, Osijek', 'KBC Osijek', 45.5600001, 18.67588),
 ('Krešimirova ul. 42, 51000, Rijeka', 'KBC Rijeka', 45.32691, 14.441),
@@ -37,30 +37,30 @@ INSERT INTO KBC VALUES
 ('Ljudevita Posavskog 7, 23000, Zadar', 'OB Zadar', 44.10752, 15.23459);
 	
 
-INSERT INTO Korisnik (ime, prezime, oib, krgrupa, mbo, spol, dob, mjstan, favkbc, verificiran) VALUES
+INSERT INTO darivanjeKrvi.korisnik (ime, prezime, oib, krgrupa, mbo, spol, dob, mjstan, favkbc, verificiran) VALUES
 ('Štef', 'Zbrega', '00000000000', 'Nneg', '000000000', 'MUŠKO', 48, 'Zagreb', 'KBC Zagreb', False),
 ('Ivan', 'Novak', '11111111111', 'Apoz', '111111111', 'MUŠKO', 45, 'Osijek', 'KBC Osijek', False),
 ('Marija', 'Horvat', '33333333333', 'ABneg', '333333333', 'ŽENSKO', 27, 'Osijek', 'KBC Osijek', False),
 ('Ana', 'Kovačević',  '22222222222', 'Npoz', '222222222', 'ŽENSKO', 35, 'Osijek', 'KBC Osijek', False),
 ('Marko', 'Babić', '55555555555', 'Bneg', '555555555', 'MUŠKO', 31, 'Osijek', 'KBC Osijek', False);
 
-INSERT INTO Administrator VALUES
+INSERT INTO darivanjeKrvi.administrator VALUES
 ('admin@ckhr.com', 'lozinka1'),
 ('josjedan@ckhr.com', 'lozinka1');
 
-INSERT INTO akcija VALUES
+INSERT INTO darivanjeKrvi.akcija (idAkcija, imeLokacije, datumPoc, datumKraj, krgrupa, hitna, adresa, mail, geo_sirina, geo_duzina) VALUES
 (0, 'Ul. Ivana Belostenca 2, 42000, Varaždin', str_to_date("2023,12,21", "%Y,%m,%d"), str_to_date("2024,1,21", "%Y,%m,%d"), 'ABneg', True, 'Dom zdravlja Varaždin', 'admin@ckhr.com', 46.30271, 16.32514),
 (1, 'Bogatinska ul. 13-1, 10000, Zagreb', str_to_date("2023,12,26", "%Y,%m,%d"), str_to_date("2023,12,28", "%Y,%m,%d"), null ,False, 'Dom zdravlja istok', 'admin@ckhr.com', 44.10754, 15.23456 ),
 (2, 'Ul. Mikše Pelegrinovića 25, 10000, Zagreb', str_to_date("2023,12,30", "%Y,%m,%d"), str_to_date("2024,2,5", "%Y,%m,%d"), null ,False, 'Dom zdravlja zapad', 'admin@ckhr.com', 44.10756, 15.23458),
 (3, 'Krbavska ul. 26, 31000, Osijek', str_to_date("2023,12,7", "%Y,%m,%d"), str_to_date("2024,2,17", "%Y,%m,%d"), 'Bpoz' ,True, 'Dom zdravlja Osijek', 'admin@ckhr.com', 45.5600002, 18.67586),
 (4, 'Ul. Narodnog preporoda 25, 51500, Krk"', str_to_date("2024,1,26", "%Y,%m,%d"), str_to_date("2024,3,29", "%Y,%m,%d"), null, False, 'Dom zdravlja Krk', 'admin@ckhr.com', 44.10742, 15.23359);
 
-INSERT INTO rezervacija VALUES
+INSERT INTO darivanjeKrvi.rezervacija (vrijemePoc, idRezervacija, imeLokacije, mbo) VALUES
 ('2010-04-30 07:27:39', 0, 'KBC Rijeka', '000000000'),
 ('2010-04-30 07:27:39', 1, 'KBC Zagreb', '111111111'),
 ('2010-04-30 08:27:39', 2, 'KBC Osijek', '222222222');
 
-INSERT INTO logininfo VALUES
+INSERT INTO darivanjeKrvi.loginInfo VALUES
 ('ivannovak@email.com', 'lozinka1', '111111111'),
 ('marijahorvat@email.com', 'lozinka3', '333333333'),
 ('anakovacevic@email.com', 'lozinka2', '222222222'),
