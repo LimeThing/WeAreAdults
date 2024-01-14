@@ -4,11 +4,13 @@ export type AkcijaModel = {
     geo_sirina: number,
     geo_duzina: number,
     adresa: string,
-    datumPoc: Date,
-    datumKraj: Date,
+    datumPoc: string,
+    datumKraj: string,
     hitna: boolean,
     krgrupa: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-",
-    mail: string
+    mail: string,
+    geo_sirina: number,
+    geo_duzina: number
 }
 
 export type AkcijaSlanjeModel = {
