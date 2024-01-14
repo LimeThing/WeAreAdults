@@ -11,6 +11,19 @@ export type AkcijaModel = {
     mail: string
 }
 
+export type AkcijaSlanjeModel = {
+    idAkcija: number,
+    imeLokacije: string,
+    geo_sirina: number,
+    geo_duzina: number,
+    adresa: string,
+    datumPoc: string,
+    datumKraj: string,
+    hitna: boolean,
+    krgrupa: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-",
+    mail: string
+}
+
 export type KBCModel = {
     ime: string,
     adresa: string,
