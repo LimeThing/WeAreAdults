@@ -1,8 +1,6 @@
 export type AkcijaModel = {
     idAkcija: number,
     imeLokacije: string,
-    geo_sirina: number,
-    geo_duzina: number,
     adresa: string,
     datumPoc: string,
     datumKraj: string,
