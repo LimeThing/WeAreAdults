@@ -49,11 +49,11 @@ INSERT INTO darivanjeKrvi.administrator VALUES
 ('josjedan@ckhr.com', 'lozinka1');
 
 INSERT INTO darivanjeKrvi.akcija (idAkcija, imeLokacije, datumPoc, datumKraj, krgrupa, hitna, adresa, mail, geo_sirina, geo_duzina) VALUES
-(0, 'Ul. Ivana Belostenca 2, 42000, Varaždin', str_to_date("2023,12,21", "%Y,%m,%d"), str_to_date("2024,1,21", "%Y,%m,%d"), 'ABneg', True, 'Dom zdravlja Varaždin', 'admin@ckhr.com', 46.30271, 16.32514),
-(1, 'Bogatinska ul. 13-1, 10000, Zagreb', str_to_date("2023,12,26", "%Y,%m,%d"), str_to_date("2023,12,28", "%Y,%m,%d"), null ,False, 'Dom zdravlja istok', 'admin@ckhr.com', 44.10754, 15.23456 ),
-(2, 'Ul. Mikše Pelegrinovića 25, 10000, Zagreb', str_to_date("2023,12,30", "%Y,%m,%d"), str_to_date("2024,2,5", "%Y,%m,%d"), null ,False, 'Dom zdravlja zapad', 'admin@ckhr.com', 44.10756, 15.23458),
-(3, 'Krbavska ul. 26, 31000, Osijek', str_to_date("2023,12,7", "%Y,%m,%d"), str_to_date("2024,2,17", "%Y,%m,%d"), 'Bpoz' ,True, 'Dom zdravlja Osijek', 'admin@ckhr.com', 45.5600002, 18.67586),
-(4, 'Ul. Narodnog preporoda 25, 51500, Krk"', str_to_date("2024,1,26", "%Y,%m,%d"), str_to_date("2024,3,29", "%Y,%m,%d"), null, False, 'Dom zdravlja Krk', 'admin@ckhr.com', 44.10742, 15.23359);
+(0, 'Ul. Ivana Belostenca 2, 42000, Varaždin', str_to_date("2023,12,21", "%Y,%m,%d"), str_to_date("2024,1,21", "%Y,%m,%d"), 'ABneg', True, 'Dom zdravlja Varaždin', 'admin@ckhr.com', 46.00271, 16.12514),
+(1, 'Bogatinska ul. 13-1, 10000, Zagreb', str_to_date("2023,12,26", "%Y,%m,%d"), str_to_date("2023,12,28", "%Y,%m,%d"), null ,False, 'Dom zdravlja istok', 'admin@ckhr.com', 44.00754, 15.93456 ),
+(2, 'Ul. Mikše Pelegrinovića 25, 10000, Zagreb', str_to_date("2023,12,30", "%Y,%m,%d"), str_to_date("2024,2,5", "%Y,%m,%d"), null ,False, 'Dom zdravlja zapad', 'admin@ckhr.com', 44.30756, 15.63458),
+(3, 'Krbavska ul. 26, 31000, Osijek', str_to_date("2023,12,7", "%Y,%m,%d"), str_to_date("2024,2,17", "%Y,%m,%d"), 'Bpoz' ,True, 'Dom zdravlja Osijek', 'admin@ckhr.com', 45.0600002, 18.08586),
+(4, 'Ul. Narodnog preporoda 25, 51500, Krk"', str_to_date("2024,1,26", "%Y,%m,%d"), str_to_date("2024,3,29", "%Y,%m,%d"), null, False, 'Dom zdravlja Krk', 'admin@ckhr.com', 44.60742, 15.03359);
 
 INSERT INTO darivanjeKrvi.rezervacija (vrijemePoc, idRezervacija, imeLokacije, mbo) VALUES
 ('2010-04-30 07:27:39', 0, 'KBC Rijeka', '000000000'),
