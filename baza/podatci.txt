@@ -28,7 +28,7 @@ INSERT INTO Termini (VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, idTermin) VA
 
     
 INSERT INTO KBC VALUES
-('Petrova 3, 10000, Zagreb', 'Hrvatski zavod za transfuzijsku medicinu Zagreb', 44.10752, 15.23459),
+('Petrova 3, 10000, Zagreb', 'Hrvatski zavod za transfuzijsku medicinu Zagreb', 45.81612, 15.99121),
 ('Ul. Josipa Huttlera 4, 3100, Osijek', 'KBC Osijek', 45.5600001, 18.67588),
 ('Krešimirova ul. 42, 51000, Rijeka', 'KBC Rijeka', 45.32691, 14.441),
 ('Spinčićeva ul. 1, 21000, Split', 'KBC Split', 43.50394, 16.4578),
