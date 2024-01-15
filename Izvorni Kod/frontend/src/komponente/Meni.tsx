@@ -23,29 +23,35 @@ export default function Meni() {
   const { token, setToken } = useCookies();
   const [mbo, setMbo] = useState(token);
   const [ime, setIme] = useState("");
-  const { pathname } = useLocation();
   const queryClient = useQueryClient();
   const [prijavljen, setPrijavljen] = useState(false);
   const [admin, setAdmin] = useState(false);
 
   const { data } = useGetKorisnikIme(mbo || "");
 
+  
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
-  }, [pathname, queryClient]);
-
-  useEffect(() => {
-    setMbo(token);
+    setMbo(sessionStorage.getItem('mbo'));
     setIme(data ? data : "");
     setPrijavljen(false);
-    if (data !== undefined && data !== "") setPrijavljen(true);
     setAdmin(false);
-    if (token === "admin") {
+
+    if (data !== undefined && data !== "") setPrijavljen(true);
+
+    if (mbo === "admin") {
       setAdmin(true);
       setIme("Admin");
       setPrijavljen(true);
     }
-  }, [data, token]);
+  }, [data, mbo, queryClient]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMbo(sessionStorage.getItem('mbo'));
+      console.log(`token is ${token} and mbo is ${mbo}`)
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -97,7 +103,7 @@ export default function Meni() {
               </MeniButton>
               {!prijavljen && (
                 <MeniButton onClick={() => navigate("/registracija")}>
-                  Registriraj se
+                  Registracija/Prijava
                 </MeniButton>
               )}
               {admin && (
@@ -139,7 +145,7 @@ export default function Meni() {
               </MeniButton>
               {!prijavljen && (
                 <MeniButton onClick={() => navigate("/registracija")}>
-                  Registriraj se
+                  Registracija/Prijava
                 </MeniButton>
               )}
               {admin && (
@@ -149,6 +155,9 @@ export default function Meni() {
                   </MeniButton>
                   <MeniButton onClick={() => navigate("/stvaranje-akcija")}>
                     Stvori novu akciju
+                  </MeniButton>
+                  <MeniButton onClick={() => navigate("/promijena-akcija")}>
+                    Promijeni akciju
                   </MeniButton>
                 </>
               )}
