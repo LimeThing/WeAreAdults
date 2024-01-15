@@ -463,3 +463,9 @@ export const LocationsWindow = styled.div`
     padding: 0 0 0.25rem 0;
   }
 `
+
+export const NoAccess = styled.h2`
+  text-align: center;
+  color: #dd4444;
+  padding: 1rem;
+`

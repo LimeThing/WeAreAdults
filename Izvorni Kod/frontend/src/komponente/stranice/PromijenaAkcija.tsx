@@ -4,14 +4,17 @@ import { api } from "../../api";
 import {
   ListItem,
   Name,
+  NoAccess,
   OverFlowDiv,
   PersonalInformation,
   VerifyButton,
 } from "../stilovi";
 import { AkcijaModel } from "../modeli";
 import PromjenaAkcijePopup from "../PromjenaAkcijePopup";
+import useToken from "./udice/useCookies";
 
 export default function Akcije() {
+  const token = useToken();
   const [akcije, setAkcije] = useState<AkcijaModel[]>([]);
   const [showPopup, setShowPopup] = useState(false);
   const [aktualnaAkcija, setAktualnaAkcija] = useState(-1);
@@ -29,7 +32,7 @@ export default function Akcije() {
   }, [data]);
 
   if (isLoading) return <></>;
-  else
+  else if (token.token === 'admin')
     return (
       <>
         <br />
@@ -83,4 +86,9 @@ export default function Akcije() {
         </OverFlowDiv>
       </>
     );
+    else return (
+    <>
+    <NoAccess>Nemate pristup ovoj web lokaciji!</NoAccess>
+    </>
+    )
 }

@@ -5,15 +5,18 @@ import {
   FlexBox,
   ListItem,
   Name,
+  NoAccess,
   OverFlowDiv,
   PersonalInformation,
   VerifyButton,
 } from "../stilovi";
 import { KorisnikModel } from "../modeli";
+import useToken from "./udice/useCookies";
 
 export default function Verifikacija() {
   const [people, setPeople] = useState<KorisnikModel[]>([]);
   const queryClient = useQueryClient();
+  const token = useToken();
 
   const fetchKorisnik = (): Promise<KorisnikModel[]> =>
     api
@@ -52,7 +55,7 @@ export default function Verifikacija() {
   }, [data]);
 
   if (isLoading) return <></>;
-  else
+  else if (token.token === "admin")
     return (
       <div>
         <br></br>
@@ -93,4 +96,9 @@ export default function Verifikacija() {
         </OverFlowDiv>
       </div>
     );
+    else return (
+    <>
+    <NoAccess>Nemate pristup ovoj web lokaciji!</NoAccess>
+    </>
+    )
 }
