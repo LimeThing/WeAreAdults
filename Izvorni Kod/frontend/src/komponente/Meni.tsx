@@ -38,7 +38,7 @@ export default function Meni() {
     setMbo(token);
     setIme(data ? data : "");
     setPrijavljen(false);
-    if (data !== undefined && data === "") setPrijavljen(true);
+    if (data !== undefined && data !== "") setPrijavljen(true);
     setAdmin(false);
     if (token === "admin") {
       setAdmin(true);
