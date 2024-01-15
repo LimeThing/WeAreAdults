@@ -19,7 +19,7 @@ class AkcijaModel(BaseModel):
     datumPoc: date
     datumKraj: date
     hitna: bool
-    krgrupa: models.KrvnaGrupa
+    krgrupa: models.KrvnaGrupa | None = None
     mail: str
     geo_duzina: float 
     geo_sirina: float
