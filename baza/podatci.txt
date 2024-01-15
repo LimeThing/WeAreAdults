@@ -1,5 +1,5 @@
 USE darivanjekrvi; 
-INSERT INTO darivanjeKrvi.termin (VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, idTermin) VALUES 
+INSERT INTO darivanjeKrvi.termini (VrijemePoc, VrijemeKraj, Zauzeto, imeLokacije, idTermin) VALUES 
     (STR_TO_DATE('09:00:00', '%T'), STR_TO_DATE('10:00:00', '%T'), False, 'KBC Zagreb', 10),
     (STR_TO_DATE('10:00:00', '%T'), STR_TO_DATE('11:00:00', '%T'), False, 'KBC Zagreb', 11),
     (STR_TO_DATE('11:00:00', '%T'), STR_TO_DATE('12:00:00', '%T'), False, 'KBC Zagreb', 12),
