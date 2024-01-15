@@ -11,7 +11,7 @@ import {
   VerifyButton,
 } from "./stilovi";
 import * as yup from "yup";
-import { AkcijaModel } from "./modeli";
+import { AkcijaModel, AkcijaSlanjeModel } from "./modeli";
 import formatDate from "./stranice/udice/useFormatDate";
 
 type PromjenaAkcijePopupProps = {
@@ -40,27 +40,30 @@ export default function PromjenaAkcijePopup({
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    let updatedAkcija: AkcijaModel = {
-        idAkcija: akcija.idAkcija,
-        imeLokacije: data.Lokacija ?? akcija.imeLokacije,
-        adresa: data.Adresa ?? akcija.adresa,
-        datumPoc: formatDate(new Date(data.Početak ?? akcija.datumPoc)),
-        datumKraj: formatDate(new Date(data.Kraj ?? akcija.datumKraj)),
-        hitna: hitnaAkcija,
-        krgrupa: krvnaGrupa,
-        mail: akcija.mail,
-        geo_sirina: akcija.geo_sirina,
-        geo_duzina: akcija.geo_duzina
-    }
+    let updatedAkcija: AkcijaSlanjeModel = {
+      idAkcija: akcija.idAkcija,
+      imeLokacije:
+        data.Lokacija === ""
+          ? akcija.imeLokacije
+          : data.Lokacija ?? akcija.imeLokacije,
+      adresa: data.Adresa === "" ? akcija.adresa : data.Adresa ?? akcija.adresa,
+      datumPoc: formatDate(new Date(!data.Početak ? akcija.datumPoc : data.Početak ?? akcija.datumPoc)),
+      datumKraj: formatDate(new Date(!data.Kraj ? akcija.datumKraj : data.Kraj ?? akcija.datumKraj)),
+      hitna: hitnaAkcija,
+      krgrupa: krvnaGrupa,
+      mail: akcija.mail,
+      geo_sirina: akcija.geo_sirina,
+      geo_duzina: akcija.geo_duzina,
+    };
     mijenjajAkciju(updatedAkcija);
     queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
+    closeFun(!close);
+    setAkcije(-1);
   };
 
   const schema = yup.object().shape({
     Lokacija: yup.string(),
     Adresa: yup.string(),
-    Početak: yup.date(),
-    Kraj: yup.date(),
   });
 
   const {
@@ -72,7 +75,7 @@ export default function PromjenaAkcijePopup({
   });
 
   const { mutate: mijenjajAkciju } = useMutation({
-    mutationFn: (akcija: AkcijaModel) => {
+    mutationFn: (akcija: AkcijaSlanjeModel) => {
       return api.put("/akcija/edit/" + akcija.idAkcija, akcija);
     },
   });
@@ -107,7 +110,7 @@ export default function PromjenaAkcijePopup({
         </PersonalInformation>
         <PersonalInformation>
           <Name>
-            <input type="date"  {...register("Početak")} />
+            <input type="date" {...register("Početak")} />
           </Name>
           <Name>
             <input type="date" {...register("Kraj")} />
@@ -124,14 +127,30 @@ export default function PromjenaAkcijePopup({
               <label>
                 Krvna grupa:{" "}
                 <select name="krvna-grupa" id="krvna-grupa">
-                  <option value="A+" onSelect={() => setKrvnaGrupa("A+")}>A+</option>
-                  <option value="B+" onSelect={() => setKrvnaGrupa("B+")}>B+</option>
-                  <option value="AB+" onSelect={() => setKrvnaGrupa("AB+")}>AB+</option>
-                  <option value="0+" onSelect={() => setKrvnaGrupa("0+")}>0+</option>
-                  <option value="A-" onSelect={() => setKrvnaGrupa("A-")}>A-</option>
-                  <option value="B-" onSelect={() => setKrvnaGrupa("B-")}>B-</option>
-                  <option value="AB-" onSelect={() => setKrvnaGrupa("AB-")}>AB-</option>
-                  <option value="0-" onSelect={() => setKrvnaGrupa("0-")}>0-</option>
+                  <option value="A+" onSelect={() => setKrvnaGrupa("A+")}>
+                    A+
+                  </option>
+                  <option value="B+" onSelect={() => setKrvnaGrupa("B+")}>
+                    B+
+                  </option>
+                  <option value="AB+" onSelect={() => setKrvnaGrupa("AB+")}>
+                    AB+
+                  </option>
+                  <option value="0+" onSelect={() => setKrvnaGrupa("0+")}>
+                    0+
+                  </option>
+                  <option value="A-" onSelect={() => setKrvnaGrupa("A-")}>
+                    A-
+                  </option>
+                  <option value="B-" onSelect={() => setKrvnaGrupa("B-")}>
+                    B-
+                  </option>
+                  <option value="AB-" onSelect={() => setKrvnaGrupa("AB-")}>
+                    AB-
+                  </option>
+                  <option value="0-" onSelect={() => setKrvnaGrupa("0-")}>
+                    0-
+                  </option>
                 </select>
               </label>
             )}
@@ -151,14 +170,14 @@ export default function PromjenaAkcijePopup({
             </VerifyButton>
           </FlexBox>
         </PersonalInformation>
+        <p>
+          {errors.Lokacija?.message}
+          {errors.Adresa?.message}
+          {errors.Početak?.message}
+          {errors.Kraj?.message}
+        </p>
         <hr style={{ width: "100%" }}></hr>
       </ListItem>
-      <p>
-        {errors.Lokacija?.message}
-        {errors.Adresa?.message}
-        {errors.Početak?.message}
-        {errors.Kraj?.message}
-      </p>
     </form>
   );
 }

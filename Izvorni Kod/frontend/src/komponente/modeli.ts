@@ -2,10 +2,10 @@ export type AkcijaModel = {
     idAkcija: number,
     imeLokacije: string,
     adresa: string,
-    datumPoc: string,
-    datumKraj: string,
+    datumPoc: Date,
+    datumKraj: Date,
     hitna: boolean,
-    krgrupa: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-",
+    krgrupa?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-",
     mail: string,
     geo_sirina: number,
     geo_duzina: number
@@ -20,7 +20,7 @@ export type AkcijaSlanjeModel = {
     datumPoc: string,
     datumKraj: string,
     hitna: boolean,
-    krgrupa: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-",
+    krgrupa?: "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-",
     mail: string
 }
 
