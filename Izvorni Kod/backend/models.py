@@ -63,7 +63,7 @@ class Administrator(Base):
 
 
 class Termin(Base):
-    __tablename__ = 'termin'
+    __tablename__ = 'termini'
 
     idTermin = Column(Integer, primary_key=True, index=True)
     imeLokacije = Column(String(100), nullable=False, index=True)
