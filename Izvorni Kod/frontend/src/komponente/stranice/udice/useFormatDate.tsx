@@ -1,11 +1,19 @@
 export default function formatDate(date: Date) {
-    if (date.getMonth() <= 9) {
-        if (date.getDay() <= 9) {
-            return `${date.getFullYear()}-0${date.getMonth()}-0${date.getDay()}`
+    console.log(date);
+    if ((date.getMonth() + 1) <= 9) {
+        if (date.getDate() <= 9) {
+            return `${date.getFullYear()}-0${date.getMonth() + 1}-0${date.getDate()}`
         }
         else {
-            return `${date.getFullYear()}-0${date.getMonth()}-${date.getDay()}`
+            return `${date.getFullYear()}-0${date.getMonth() + 1}-${date.getDate()}`
         }
     }
-    return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
+    else {
+        if (date.getDate() <= 9) {
+            return `${date.getFullYear()}-${date.getMonth() + 1}-0${date.getDate()}`
+        }
+        else {
+            return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
+        }
+    } 
 }
