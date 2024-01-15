@@ -48,6 +48,7 @@ export default function Login() {
   const onSubmit = (data: FormData) => {
     console.log(data);
     setEmail(data.email);
+    queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
   };
 
   useEffect(() => {

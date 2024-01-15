@@ -10,6 +10,6 @@ export const useGetKorisnikIme = (mbo:string) => {
     return useQuery<string>({
         queryKey: ["getKorisnikIme", mbo],
         queryFn: () => getKorisnikIme(mbo),
-        enabled: (mbo !== ""),
+        enabled: (mbo !== "admin"),
         })
 }
