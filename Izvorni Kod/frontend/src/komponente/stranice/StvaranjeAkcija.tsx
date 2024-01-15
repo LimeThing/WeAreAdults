@@ -1,13 +1,16 @@
 import React, {useState} from "react";
-import { Container, FormContainer, OuterContainer, Toggle, ToggleContainer, TogglePanel } from "../stilovi";
+import { Container, FormContainer, NoAccess, OuterContainer, Toggle, ToggleContainer, TogglePanel } from "../stilovi";
+import useToken from "./udice/useCookies";
 
 
 export default function StvaranjeAkcija() {
+    const token = useToken();
     const [hitnaAkcija, setHitnaAkcija] = useState(false);
     
     const handleCheckboxChange = (e: { target: { checked: boolean | ((prevState: boolean) => boolean); }; }) => {
        setHitnaAkcija(e.target.checked);
     };
+    if (token.token === 'admin')
     return(
         <OuterContainer>
         <Container>
@@ -46,5 +49,10 @@ export default function StvaranjeAkcija() {
           </ ToggleContainer>
         </ Container>
         </OuterContainer>
+    )
+    else return (
+    <>
+    <NoAccess>Nemate pristup ovoj web lokaciji!</NoAccess>
+    </>
     )
 }
