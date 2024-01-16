@@ -12,7 +12,7 @@ import {
   ToggleContainer,
   TogglePanel,
 } from "../stilovi";
-import { KorisnikModel } from "../modeli";
+import { KorisnikModel, LoginInfoModel } from "../modeli";
 import { useMutation } from "@tanstack/react-query";
 import { api } from "../../api";
 
@@ -69,6 +69,12 @@ export default function Registration() {
     }
   })
 
+  const { mutate: postLoginInfo } = useMutation({
+    mutationFn: (loginInfo: LoginInfoModel) => {
+      return api.patch("/loginInfo/create/", loginInfo);
+    },
+  });
+
   const onSubmit = (data: FormData) => {
     console.log(data);
     let korisnik: KorisnikModel = {
@@ -84,6 +90,12 @@ export default function Registration() {
       verificiran: false
     }
     postKorisnik(korisnik);
+    let login: LoginInfoModel = {
+      mail: data.email,
+      lozinka: data.password,
+      mbo: data.MBO
+    }
+    postLoginInfo(login);
     alert("Hvala na registraciji! Procekajte da Vas admin verificira.")
   };
 
