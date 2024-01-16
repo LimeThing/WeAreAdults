@@ -469,3 +469,11 @@ export const NoAccess = styled.h2`
   color: #dd4444;
   padding: 1rem;
 `
+
+export const ErrorDiv = styled.div`
+  background: #dd4444;
+  color: white;
+  align: center;
+  border-radius: 0.25rem;
+  padding: 0.5rem
+`;
