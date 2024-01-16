@@ -359,6 +359,7 @@ export const PopupContainer = styled.div`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
   position: fixed;
   overflow: hidden;
+  z-index: 10;
 
 
   width: 350px;

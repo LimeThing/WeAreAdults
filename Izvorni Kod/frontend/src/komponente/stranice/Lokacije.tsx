@@ -8,7 +8,6 @@ import MyMap from "../Karta";
 import { AkcijaModel, KBCModel } from "../modeli";
 import { api } from "../../api";
 import { useQuery } from "@tanstack/react-query";
-import { act } from "@testing-library/react";
 
 export default function Lokacije() {
 
