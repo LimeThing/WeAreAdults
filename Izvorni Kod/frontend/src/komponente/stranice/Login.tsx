@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import {
   Container,
+  ErrorDiv,
   FormContainer2,
   OuterContainer,
   Toggle2,
@@ -28,6 +29,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
+  const [invalidPassword, setInvalidPassword] = useState(false);
 
   const handleRegisterButtonClick = () => {
     navigate("/Registracija");
@@ -41,27 +43,33 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-  const { data } = useGetLoginInfo(email);
-  const queryClient = useQueryClient()
+  const { data: loginInfo } = useGetLoginInfo(email);
+  const queryClient = useQueryClient();
   const { setToken } = useCookies();
 
   const onSubmit = (data: FormData) => {
     console.log(data);
     setEmail(data.email);
-    queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
+    if (loginInfo?.lozinka === data.password) {
+      setInvalidPassword(false);
+      queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
+    } else {
+      setInvalidPassword(true);
+    }
   };
 
   useEffect(() => {
-    if (data?.mail.endsWith("@hck.hr")) {
-      setToken("admin");
+    if (!invalidPassword) {
+      if (loginInfo?.mail.endsWith("@hck.hr")) {
+        setToken("admin");
+      } else setToken(loginInfo ? loginInfo.mbo : "");
+      console.log("set to " + loginInfo?.mbo);
+      queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
+      if (loginInfo !== undefined) {
+        navigate("/lokacije");
+      }
     }
-    else setToken(data ? data.mbo : "")
-    console.log("set to " + data?.mbo)
-    queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"]})
-    if (data !== undefined) {
-      navigate("/lokacije");
-    }
-  }, [data, navigate, queryClient, setToken]);
+  }, [invalidPassword, loginInfo, navigate, queryClient, setToken]);
 
   return (
     <OuterContainer>
@@ -81,6 +89,7 @@ export default function Login() {
               {...register("password")}
             />
             <p> {errors.password?.message} </p>
+            {invalidPassword && <ErrorDiv>Invalid password</ErrorDiv>}
             <button type="submit">Prijavi se</button>
           </form>
         </FormContainer2>
