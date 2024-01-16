@@ -39,6 +39,7 @@ export default function StvaranjeAkcija() {
 
       const response = await fetch(apiUrl);
       const podaci = await response.json();
+      console.log(podaci);
       if (podaci && podaci.length > 0) {
         setDuzina(podaci[0].lon);
         setSirina(podaci[0].lat);
@@ -58,7 +59,7 @@ export default function StvaranjeAkcija() {
       datumKraj: formatDate(data.datumKraj),
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
-      mail: "admin@hck.hr",
+      mail: "admin@hck.com",
       geo_sirina: sirina,
       geo_duzina: duzina,
     };
