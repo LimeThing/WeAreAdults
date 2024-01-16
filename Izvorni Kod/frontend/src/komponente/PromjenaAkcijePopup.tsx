@@ -39,8 +39,34 @@ export default function PromjenaAkcijePopup({
 }: PromjenaAkcijePopupProps) {
   const queryClient = useQueryClient();
 
-  const onSubmit = (data: FormData) => {
+  const [sirina, setSirina] = useState(akcija.geo_sirina);
+  const [duzina, setDuzina] = useState(akcija.geo_duzina);
+
+  const fetchGeocode = async (adresa: string) => {
+    try {
+      const apiKey = '65a1ea265ab61960287828igq31138d'; // Zamijenite sa stvarnim API ključem
+      const address = encodeURIComponent(adresa);
+      const apiUrl = `https://geocode.maps.co/search?q=${address}&api_key=${apiKey}`;
+
+      const response = await fetch(apiUrl);
+      const podaci = await response.json();
+      console.log(podaci)
+      if (podaci && podaci.length > 0) {
+        setDuzina(podaci[0].lon);
+        setSirina(podaci[0].lat);
+      }
+    } catch (error) {
+      console.error('Došlo je do pogreške prilikom dohvaćanja podataka', error);
+    }
+  }; 
+
+  const onSubmit = async (data: FormData) => {
     console.log(data);
+    if (data.Lokacija) {
+      console.log(data.Lokacija)
+    await fetchGeocode(data.Lokacija)
+    }
+
     let updatedAkcija: AkcijaSlanjeModel = {
       idAkcija: akcija.idAkcija,
       imeLokacije:
@@ -53,8 +79,8 @@ export default function PromjenaAkcijePopup({
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
       mail: akcija.mail,
-      geo_sirina: akcija.geo_sirina,
-      geo_duzina: akcija.geo_duzina,
+      geo_sirina: sirina,
+      geo_duzina: duzina,
     };
     mijenjajAkciju(updatedAkcija);
     queryClient.invalidateQueries({ queryKey: ["getAkcija"] });

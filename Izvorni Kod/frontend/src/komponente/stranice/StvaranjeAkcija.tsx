@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   FormContainer,
@@ -27,9 +27,29 @@ interface FormData {
 
 export default function StvaranjeAkcija() {
   const token = useToken();
+  const [sirina, setSirina] = useState(0);
+  const [duzina, setDuzina] = useState(0);
+ 
 
-  const onSubmit = (data: FormData) => {
+  const fetchGeocode = async (adresa: string) => {
+    try {
+      const apiKey = '65a1ea265ab61960287828igq31138d'; // Zamijenite sa stvarnim API ključem
+      const address = encodeURIComponent(adresa);
+      const apiUrl = `https://geocode.maps.co/search?q=${address}&api_key=${apiKey}`;
+
+      const response = await fetch(apiUrl);
+      const podaci = await response.json();
+      if (podaci && podaci.length > 0) {
+        setDuzina(podaci[0].lon);
+        setSirina(podaci[0].lat);
+      }
+    } catch (error) {
+      console.error('Došlo je do pogreške prilikom dohvaćanja podataka', error);
+    }
+  }; 
+  const onSubmit = async (data: FormData) => {
     // TODO query za api i uvstit sirinu i duljinu ispod
+    await fetchGeocode(data.adresa)
     let akcija: AkcijaSlanjeModel = {
       idAkcija: 0,
       imeLokacije: data.imeLokacije,
@@ -39,8 +59,8 @@ export default function StvaranjeAkcija() {
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
       mail: "admin@hck.hr",
-      geo_sirina: 0,
-      geo_duzina: 0,
+      geo_sirina: sirina,
+      geo_duzina: duzina,
     };
     postAkcija(akcija);
   };
