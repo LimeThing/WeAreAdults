@@ -25,7 +25,6 @@ interface FormData {
   datumKraj: Date;
 }
 
-
 export default function StvaranjeAkcija() {
   const token = useToken();
 

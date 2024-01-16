@@ -111,13 +111,14 @@ export default function Informacije() {
             dobrovoljnim davateljima krvi na iskazanoj humanosti i plemenitosti te na svakoj darovanoj dozi krvi, jer <b>samo 1 doza može spasiti čak 3 ljudska života</b>.</p>
             <br/>
             <br/>
-
+            <h2>Krv treba čekati bolesnika, a ne obrnuto!</h2>
+            <br/>
+            <br/>
             <img src="doniranaKrv.jpeg" alt="slikaDoniranaKrv" className='doniranaKrv'></img>
 
-            <br/>
-            <br/>
+            
 
-            <h2>Krv treba čekati bolesnika, a ne obrnuto!</h2>
+            
     
  
 
