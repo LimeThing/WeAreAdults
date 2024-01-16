@@ -426,6 +426,68 @@ export const PopupContainer = styled.div`
 
 `;
 
+export const ModalContent = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.6;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+
+  h2 {
+    color: rgb(171, 51, 51);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 0.75rem 1rem;
+    background-color: rgb(171, 51, 51);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: rgb(203, 76, 76);
+  }
+
+  button:last-child {
+    background-color: rgb(171, 51, 51);
+    margin-top: 10px;
+  }
+
+  button:last-child:hover {
+    background-color: rgb(203, 76, 76);
+  }
+`;
+
+export const Input = styled.input`
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+`;
+
 export const LokacijeDiv = styled.div`
   display: flex;
   align-content: center;

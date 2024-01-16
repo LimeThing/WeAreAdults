@@ -5,7 +5,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import {
   FlexBox,
   HiddenOnDesktopDiv,
@@ -51,7 +51,7 @@ export default function Meni() {
       console.log(`token is ${token} and mbo is ${mbo}`)
     }, 500);
     return () => clearInterval(interval);
-  }, []);
+  });
 
   return (
     <>
@@ -90,11 +90,11 @@ export default function Meni() {
                     style={{ color: "#ffffff" }}
                   />
                 </IconButton>
-                <TextBox $size="1.2">{ime}</TextBox>
+                <TextBox $size="1.2" style={{cursor: "pointer"}}>{ime}</TextBox>
               </FlexBox>
             )}
           </HiddenOnMobileDiv>
-          <TextBox>DraculaCharity</TextBox>
+          <TextBox onClick={() => navigate("/")} style={{cursor: "pointer"}}>DraculaCharity</TextBox>
           <HiddenOnMobileDiv>
             <FlexBox>
               <MeniButton onClick={() => navigate("/info")}>O nama</MeniButton>
