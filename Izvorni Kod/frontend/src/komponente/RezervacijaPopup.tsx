@@ -15,7 +15,7 @@ export default function RezervacijaPopup({ closeFun, close, imeLokacije }: Rezer
 
   const fetchTermini = (): Promise<TerminModel[]> =>
     api
-      .get("/termini/get_all")
+      .get("/termin/get_by_location/" + imeLokacije)
       .then((response: any) => response.data);
 
 
