@@ -62,9 +62,9 @@ export default function PromjenaAkcijePopup({
 
   const onSubmit = async (data: FormData) => {
     console.log(data);
-    if (data.Lokacija) {
-      console.log(data.Lokacija)
-    await fetchGeocode(data.Lokacija)
+    if (data.Adresa) {
+      console.log(data.Adresa)
+    await fetchGeocode(data.Adresa)
     }
 
     let updatedAkcija: AkcijaSlanjeModel = {
