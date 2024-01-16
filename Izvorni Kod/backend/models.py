@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime, Date, Double
+from sqlalchemy import Boolean, Column, Integer, String, Enum, DateTime, Date, Float
 from database import Base
 import enum
 
@@ -43,8 +43,8 @@ class KBC(Base):
 
     ime = Column(String(100), primary_key=True, index=True)
     adresa = Column(String(100), nullable=False)
-    geo_sirina = Column(Double, nullable=False, default=0.000000)
-    geo_duzina = Column(Double, nullable=False, default=0.000000)
+    geo_sirina = Column(Float, nullable=False, default=0.000000)
+    geo_duzina = Column(Float, nullable=False, default=0.000000)
 
 
 class LoginInfo(Base):
@@ -92,5 +92,5 @@ class Akcija(Base):
     hitna = Column(Boolean, nullable=False)
     krgrupa = Column(Enum(KrvnaGrupa), nullable=True)
     mail = Column(String(100), nullable=False)
-    geo_sirina = Column(Double, nullable=False, default=0.000000)
-    geo_duzina = Column(Double, nullable=False, default=0.000000)
+    geo_sirina = Column(Float, nullable=False, default=0.000000)
+    geo_duzina = Column(Float, nullable=False, default=0.000000)
