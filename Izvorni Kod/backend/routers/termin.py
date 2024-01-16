@@ -38,6 +38,13 @@ async def termin_get_one(id, db: db_dependency):
         raise HTTPException(status_code=404, detail='Termin by requested id not found')
     return termin
 
+@router.get("/get_one/{imeLokacije}", status_code=status.HTTP_200_OK)
+async def termin_get_one(imeLokacije, db: db_dependency):
+    termin = db.query(models.Termin).filter(models.Termin.imeLokacije == imeLokacije).all()
+    if termin is None:
+        raise HTTPException(status_code=404, detail='Termin by requested ime lokacije not found')
+    return termin
+
 
 @router.get("/get_all/", status_code=status.HTTP_200_OK)
 async def termin_get_one(db: db_dependency):
