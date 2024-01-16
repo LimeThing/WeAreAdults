@@ -102,7 +102,7 @@ export default function Meni() {
                 Lokacije
               </MeniButton>
               {!prijavljen && (
-                <MeniButton onClick={() => navigate("/registracija")}>
+                <MeniButton onClick={() => navigate("/login")}>
                   Registracija/Prijava
                 </MeniButton>
               )}
@@ -144,7 +144,7 @@ export default function Meni() {
                 Lokacije
               </MeniButton>
               {!prijavljen && (
-                <MeniButton onClick={() => navigate("/registracija")}>
+                <MeniButton onClick={() => navigate("/login")}>
                   Registracija/Prijava
                 </MeniButton>
               )}
