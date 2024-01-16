@@ -96,24 +96,24 @@ export default function PromjenaAkcijePopup({
           <Name>
             <input
               type="text"
-              placeholder={akcija.imeLokacije}
+              defaultValue={akcija.imeLokacije}
               {...register("Lokacija")}
             />
           </Name>
           <Name>
             <input
               type="text"
-              placeholder={akcija.adresa}
+              defaultValue={akcija.adresa}
               {...register("Adresa")}
             />
           </Name>
         </PersonalInformation>
         <PersonalInformation>
           <Name>
-            <input type="date" {...register("Početak")} />
+            <input type="date" defaultValue={formatDate(akcija.datumPoc)} {...register("Početak")} />
           </Name>
           <Name>
-            <input type="date" {...register("Kraj")} />
+            <input type="date" defaultValue={formatDate(akcija.datumKraj)} {...register("Kraj")} />
           </Name>
           <Name>
             <input
