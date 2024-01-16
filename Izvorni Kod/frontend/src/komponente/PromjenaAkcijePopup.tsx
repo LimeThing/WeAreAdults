@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { api } from "../api";
 import {
   FlexBox,
+  Input,
   ListItem,
   Name,
   PersonalInformation,
@@ -94,14 +95,14 @@ export default function PromjenaAkcijePopup({
       <ListItem key={idAkcije}>
         <PersonalInformation>
           <Name>
-            <input
+            <Input
               type="text"
               defaultValue={akcija.imeLokacije}
               {...register("Lokacija")}
             />
           </Name>
           <Name>
-            <input
+            <Input
               type="text"
               defaultValue={akcija.adresa}
               {...register("Adresa")}
@@ -110,13 +111,13 @@ export default function PromjenaAkcijePopup({
         </PersonalInformation>
         <PersonalInformation>
           <Name>
-            <input type="date" defaultValue={formatDate(akcija.datumPoc)} {...register("Početak")} />
+            <Input type="date" defaultValue={formatDate(akcija.datumPoc)} {...register("Početak")} />
           </Name>
           <Name>
-            <input type="date" defaultValue={formatDate(akcija.datumKraj)} {...register("Kraj")} />
+            <Input type="date" defaultValue={formatDate(akcija.datumKraj)} {...register("Kraj")} />
           </Name>
           <Name>
-            <input
+            <Input
               type="checkbox"
               checked={hitnaAkcija}
               onChange={handleCheckboxChange}
