@@ -78,7 +78,7 @@ class Rezervacija(Base):
     idRezervacija = Column(Integer, primary_key=True, index=True)
     vrijemePoc = Column(DateTime, nullable=False)
     imeLokacije = Column(String(100), nullable=False)
-    mbo = Column(String(9), unique=True, nullable=False, index=True)
+    mbo = Column(String(9), nullable=False, index=True)
 
 
 class Akcija(Base):
