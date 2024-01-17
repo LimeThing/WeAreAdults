@@ -48,7 +48,6 @@ export default function Meni() {
   useEffect(() => {
     const interval = setInterval(() => {
       setMbo(sessionStorage.getItem('mbo'));
-      console.log(`token is ${token} and mbo is ${mbo}`)
     }, 500);
     return () => clearInterval(interval);
   });

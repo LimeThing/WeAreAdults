@@ -62,10 +62,10 @@ export default function PromjenaAkcijePopup({
 
   const onSubmit = async (data: FormData) => {
     console.log(data);
-    if (data.Adresa) {
-      console.log(data.Adresa)
-    await fetchGeocode(data.Adresa)
-    }
+    if (data.Adresa) 
+    await fetchGeocode(data.Adresa).then(() => {
+
+    console.log(sirina + " " + duzina);
 
     let updatedAkcija: AkcijaSlanjeModel = {
       idAkcija: akcija.idAkcija,
@@ -85,7 +85,7 @@ export default function PromjenaAkcijePopup({
     mijenjajAkciju(updatedAkcija);
     queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
     closeFun(!close);
-    setAkcije(-1);
+    setAkcije(-1);})
   };
 
   const schema = yup.object().shape({
