@@ -58,6 +58,14 @@ export type KorisnikModel = {
 
 }
 
+export type RezervacijaSlanjeModel = {
+    idRezervacija: number,
+    vrijemePoc: string,
+    imeLokacije: string,
+    mbo: string,
+
+}
+
     export type TerminModel = {
     idTermin: number,
     imeLokacije: string,
