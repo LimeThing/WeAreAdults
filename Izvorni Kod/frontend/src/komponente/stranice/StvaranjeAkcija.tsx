@@ -64,7 +64,9 @@ export default function StvaranjeAkcija() {
       geo_sirina: sirina,
       geo_duzina: duzina,
     };
-    postAkcija(akcija);})
+    postAkcija(akcija);
+    generateTermin(data.imeLokacije);
+  })
   };
 
   const schema = yup.object().shape({
@@ -85,6 +87,12 @@ export default function StvaranjeAkcija() {
   const { mutate: postAkcija } = useMutation({
     mutationFn: (akcija: AkcijaSlanjeModel) => {
       return api.post("/akcija/create", akcija);
+    },
+  });
+
+  const { mutate: generateTermin } = useMutation({
+    mutationFn: (imeLokacije: string) => {
+      return api.post("/termin/create_from_akcija/" + imeLokacije);
     },
   });
 
