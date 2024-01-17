@@ -57,6 +57,8 @@ export default function PromjenaAkcijePopup({
       console.log('Geocoding Data:', podaci);
   
       if (podaci && podaci.length > 0) {
+        await new Promise(resolve => setTimeout(resolve, 1100));
+
         setDuzina(podaci[0].lon);
         setSirina(podaci[0].lat);
       }
