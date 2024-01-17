@@ -50,7 +50,7 @@ export default function StvaranjeAkcija() {
   }; 
   const onSubmit = async (data: FormData) => {
     // TODO query za api i uvstit sirinu i duljinu ispod
-    await fetchGeocode(data.adresa)
+    await fetchGeocode(data.adresa).then(() => {
     let akcija: AkcijaSlanjeModel = {
       idAkcija: 0,
       imeLokacije: data.imeLokacije,
@@ -63,7 +63,7 @@ export default function StvaranjeAkcija() {
       geo_sirina: sirina,
       geo_duzina: duzina,
     };
-    postAkcija(akcija);
+    postAkcija(akcija);})
   };
 
   const schema = yup.object().shape({
