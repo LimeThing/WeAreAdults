@@ -1,4 +1,4 @@
-from datetime import date, time
+from datetime import date, time, datetime, timedelta
 
 from fastapi import FastAPI, HTTPException, Depends, status, APIRouter
 from pydantic import BaseModel
@@ -17,7 +17,6 @@ router = APIRouter(
 class TerminModel(BaseModel):
     idTermin: int
     imeLokacije: str
-    datum: date
     vrijemePoc: time
     vrijemeKraj: time
     zauzeto: bool
@@ -29,6 +28,24 @@ async def termin_create(termin: TerminModel, db: db_dependency):
     db_termin = models.Termin(**termin.dict())
     db.add(db_termin)
     db.commit()
+
+@router.post("/create_from_akcija/{imeLokacije}", status_code=status.HTTP_201_CREATED)
+async def termin_create(imeLokacije, db: db_dependency):
+    current_time = datetime.combine(datetime.today(), time(8, 0))
+
+    while current_time.time() <= time(16, 0):
+        noviTermin = models.Termin(
+            idTermin=0,
+            imeLokacije=imeLokacije,
+            vrijemePoc= current_time.time(),
+            vrijemeKraj= current_time + timedelta(minutes=30),
+            zauzeto= False,
+        )
+        current_time += timedelta(minutes=30)
+        db.add(noviTermin)
+        db.commit()
+
+
 
 
 @router.get("/get_one/{id}", status_code=status.HTTP_200_OK)
