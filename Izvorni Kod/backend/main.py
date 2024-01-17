@@ -1,6 +1,8 @@
 # uvicorn main:app --reload    komanda za pokrenut server
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlalchemy import text
+
 import models
 from database import engine
 
@@ -15,10 +17,13 @@ from routers import kbc
 app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
+
 origins = [
     "http://localhost",
     "http://localhost:8000",
     "http://localhost:3000",
+    "http://sql11.freesqldatabase.com",
+    "http://sql11.freesqldatabase.com:3306"
 ]
 
 app.add_middleware(

@@ -52,7 +52,7 @@ class LoginInfo(Base):
 
     mail = Column(String(100), primary_key=True, index=True)
     lozinka = Column(String(100), nullable=False)
-    mbo = Column(String(9), unique=True, nullable=False)
+    mbo = Column(String(9), unique=True, nullable=True)
 
 
 class Administrator(Base):
