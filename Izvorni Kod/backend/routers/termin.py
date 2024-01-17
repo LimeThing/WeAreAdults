@@ -37,7 +37,7 @@ async def termin_create(imeLokacije, db: db_dependency):
         noviTermin = models.Termin(
             idTermin=0,
             imeLokacije=imeLokacije,
-            vrijemePoc= current_time.time(),
+            vrijemePoc= current_time,
             vrijemeKraj= current_time + timedelta(minutes=30),
             zauzeto= False,
         )
