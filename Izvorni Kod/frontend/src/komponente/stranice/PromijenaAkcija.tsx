@@ -50,8 +50,11 @@ export default function Akcije() {
                     <PersonalInformation>
                       <Name>{`Početak: ${akcija.datumPoc}`}</Name>
                       <Name>{`Kraj: ${akcija.datumKraj}`}</Name>
-                      <Name>{`Hitno: ${akcija.hitna}`}</Name>
+                      {akcija.hitna &&
+                      <>
+                      <Name>{`Hitna akcija`}</Name>
                       <Name>{`Krvna grupa: ${akcija.krgrupa}`}</Name>
+                      </>}
                     </PersonalInformation>
                     <PersonalInformation>
                       <VerifyButton

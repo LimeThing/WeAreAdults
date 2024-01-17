@@ -41,6 +41,7 @@ export default function PromjenaAkcijePopup({
 
   const sirinaRef = useRef(akcija.geo_sirina);
   const duzinaRef = useRef(akcija.geo_duzina);
+  const [arhiviraj, setArhiviraj] = useState(false);
 
   const fetchGeocode = async (adresa: string) => {
     try {
@@ -73,8 +74,13 @@ export default function PromjenaAkcijePopup({
     if (data.Adresa) 
     await fetchGeocode(data.Adresa).then(() => {
     console.log(sirinaRef.current + " " + duzinaRef.current);
-
-    let updatedAkcija: AkcijaSlanjeModel = {
+      console.log(arhiviraj);
+      let kraj = new Date(!data.Kraj ? akcija.datumKraj : data.Kraj ?? akcija.datumKraj)
+      if (arhiviraj) {
+        kraj = new Date();
+        kraj.setDate(kraj.getDate() - 1);
+      }
+      let updatedAkcija: AkcijaSlanjeModel = {
       idAkcija: akcija.idAkcija,
       imeLokacije:
         data.Lokacija === ""
@@ -82,7 +88,7 @@ export default function PromjenaAkcijePopup({
           : data.Lokacija ?? akcija.imeLokacije,
       adresa: data.Adresa === "" ? akcija.adresa : data.Adresa ?? akcija.adresa,
       datumPoc: formatDate(new Date(!data.Početak ? akcija.datumPoc : data.Početak ?? akcija.datumPoc)),
-      datumKraj: formatDate(new Date(!data.Kraj ? akcija.datumKraj : data.Kraj ?? akcija.datumKraj)),
+      datumKraj: formatDate(kraj),
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
       mail: akcija.mail,
@@ -154,7 +160,7 @@ export default function PromjenaAkcijePopup({
               type="checkbox"
               checked={hitnaAkcija}
               onChange={handleCheckboxChange}
-            />
+            /> hitna akcija
           </Name>
           <Name>
             {hitnaAkcija && (
@@ -191,13 +197,15 @@ export default function PromjenaAkcijePopup({
           </Name>
         </PersonalInformation>
         <PersonalInformation>
-          <FlexBox $direction="column">
-            <VerifyButton type="submit">Spremi</VerifyButton>
+          <FlexBox $direction="column" style={{gap:"0"}}>
+            <VerifyButton type="submit" onClick={() => setArhiviraj(false)}>Spremi</VerifyButton>
+            <VerifyButton type="submit" onClick={() => setArhiviraj(true)}>Arhiviraj</VerifyButton>
             <VerifyButton
               $delete
               onClick={() => {
                 closeFun(!close);
                 setAkcije(-1);
+                setArhiviraj(false);
               }}
             >
               Zatvori
