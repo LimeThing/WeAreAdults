@@ -42,7 +42,7 @@ INSERT INTO darivanjeKrvi.korisnik (ime, prezime, oib, krgrupa, mbo, spol, dob, 
 ('Ivan', 'Novak', '11111111111', 'Apoz', '111111111', 'MUŠKO', 45, 'Osijek', 'KBC Osijek', False),
 ('Marija', 'Horvat', '33333333333', 'ABneg', '333333333', 'ŽENSKO', 27, 'Osijek', 'KBC Osijek', False),
 ('Ana', 'Kovačević',  '22222222222', 'Npoz', '222222222', 'ŽENSKO', 35, 'Osijek', 'KBC Osijek', False),
-('Marko', 'Babić', '55555555555', 'Bneg', '555555555', 'MUŠKO', 31, 'Osijek', 'KBC Osijek', False)
+('Marko', 'Babić', '55555555555', 'Bneg', '555555555', 'MUŠKO', 31, 'Osijek', 'KBC Osijek', False);
 
 INSERT INTO darivanjeKrvi.administrator VALUES
 ('prvi@hck.hr', 'lozinka1'),
