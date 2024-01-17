@@ -92,7 +92,6 @@ export default function Registration() {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
     let korisnik: KorisnikModel = {
       mbo: data.MBO,
       oib: data.oib,
