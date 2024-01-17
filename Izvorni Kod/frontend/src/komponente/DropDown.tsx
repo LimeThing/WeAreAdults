@@ -28,7 +28,7 @@ const DropDown: React.FC<DropDownProps> = ({
         {elementi.map(
           (elem: string, index: number): JSX.Element => {
             return (
-              <p
+              <p style={{color: "black"}}
                 key={index}
                 onClick={(): void => {
                   onClickHandler(elem);

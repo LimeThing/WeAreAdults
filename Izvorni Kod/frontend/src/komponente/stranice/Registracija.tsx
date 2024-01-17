@@ -24,8 +24,9 @@ interface FormData {
   gender: string;
   age: number;
   bloodType: string;
-  preferedKBC: string;
+  adresa: string;
   MBO: string;
+  oib: string;
 }
 
 export default function Registration() {
@@ -37,8 +38,9 @@ export default function Registration() {
     gender: yup.string().required(),
     age: yup.number().integer().min(18).max(65).required(),
     bloodType: yup.string().required(),
-    preferedKBC: yup.string().required(),
+    adresa: yup.string().required(),
     MBO: yup.string().length(9).required(),
+    oib: yup.string().length(11).required(),
   });
 
   const navigate = useNavigate();
@@ -49,6 +51,20 @@ export default function Registration() {
 
   const [prviDio, setPrviDio] = useState(true);
   const [drugiDio, setDrugiDio] = useState(false);
+
+  const [krvnaGrupa, setKrvnaGrupa] = useState<
+    "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-"
+  >("AB+");
+  const [spol, setSpol] = useState<"Muško" | "Žensko">("Muško");
+  const [favkbc, setFavkbc] = useState<
+    "Hrvatski zavod za transfuzijsku medicinu Zagreb"
+    | "KBC Osijek"
+    | "KBC Rijeka"
+    | "KBC Split"
+    | "OB Dubrovnik"
+    | "OB Varaždin"
+    | "OB Zadar"
+  >("Hrvatski zavod za transfuzijsku medicinu Zagreb");
 
   const handleDaljeButtonClick = () => {
     setPrviDio(false);
@@ -63,11 +79,11 @@ export default function Registration() {
     resolver: yupResolver(schema),
   });
 
-  const {mutate: postKorisnik} = useMutation({
+  const { mutate: postKorisnik } = useMutation({
     mutationFn: (korisnik: KorisnikModel) => {
-      return api.post('/korisnik/create', korisnik)
-    }
-  })
+      return api.post("/korisnik/create", korisnik);
+    },
+  });
 
   const { mutate: postLoginInfo } = useMutation({
     mutationFn: (loginInfo: LoginInfoModel) => {
@@ -79,24 +95,24 @@ export default function Registration() {
     console.log(data);
     let korisnik: KorisnikModel = {
       mbo: data.MBO,
-      oib: data.MBO + "90",
+      oib: data.oib,
       ime: data.firstName,
       prezime: data.lastName,
-      spol: "Muško",
+      spol: spol,
       dob: data.age,
-      krgrupa: "A+",
-      mjstan: "Krugice",
-      favkbc: data.preferedKBC,
-      verificiran: false
-    }
+      krgrupa: krvnaGrupa,
+      mjstan: data.adresa,
+      favkbc: favkbc,
+      verificiran: false,
+    };
     postKorisnik(korisnik);
     let login: LoginInfoModel = {
       mail: data.email,
       lozinka: data.password,
-      mbo: data.MBO
-    }
+      mbo: data.MBO,
+    };
     postLoginInfo(login);
-    alert("Hvala na registraciji! Procekajte da Vas admin verificira.")
+    alert("Hvala na registraciji! Procekajte da Vas admin verificira.");
   };
 
   return (
@@ -130,6 +146,7 @@ export default function Registration() {
                   placeholder="Lozinka..."
                   {...register("password")}
                 />
+                <input type="oib" placeholder="OIB..." {...register("oib")} />
                 <p> {errors.password?.message} </p>
                 <button type="submit" onClick={handleDaljeButtonClick}>
                   Dalje
@@ -144,31 +161,79 @@ export default function Registration() {
                   računa
                 </span>
                 <br></br>
-                <input
-                  type="text"
-                  placeholder="Spol..."
-                  {...register("gender")}
-                />
-                <input
-                  type="text"
-                  placeholder="Krvna Grupa..."
-                  {...register("bloodType")}
-                />
+                <label>
+                  Spol:
+                  <select name="spol" id="spol">
+                    <option value="Žensko" onSelect={() => setSpol("Žensko")}>
+                      Žensko
+                    </option>
+                    <option value="Muško" onSelect={() => setSpol("Muško")}>
+                      Muško
+                    </option>
+                  </select>
+                </label>
+                <label>
+                  Krvna grupa:
+                  <select name="krvna-grupa" id="krvna-grupa">
+                    <option value="A+" onSelect={() => setKrvnaGrupa("A+")}>
+                      A+
+                    </option>
+                    <option value="B+" onSelect={() => setKrvnaGrupa("B+")}>
+                      B+
+                    </option>
+                    <option value="AB+" onSelect={() => setKrvnaGrupa("AB+")}>
+                      AB+
+                    </option>
+                    <option value="0+" onSelect={() => setKrvnaGrupa("0+")}>
+                      0+
+                    </option>
+                    <option value="A-" onSelect={() => setKrvnaGrupa("A-")}>
+                      A-
+                    </option>
+                    <option value="B-" onSelect={() => setKrvnaGrupa("B-")}>
+                      B-
+                    </option>
+                    <option value="AB-" onSelect={() => setKrvnaGrupa("AB-")}>
+                      AB-
+                    </option>
+                    <option value="0-" onSelect={() => setKrvnaGrupa("0-")}>
+                      0-
+                    </option>
+                  </select>
+                </label>
                 <input
                   type="number"
                   placeholder="Dob..."
                   {...register("age")}
                 />
+                <label>
+                  KBC:
+                  <select name="favKBC" id="favKBC">
+                    <option value="Hrvatski zavod za transfuzijsku medicinu Zagreb" onSelect={() => setFavkbc("Hrvatski zavod za transfuzijsku medicinu Zagreb")}>
+                    HZTM Zagreb
+                    </option><option value="KBC Osijek" onSelect={() => setFavkbc("KBC Osijek")}>KBC Osijek
+                    </option>
+                    <option value="KBC Rijeka" onSelect={() => setFavkbc("KBC Rijeka")}>KBC Rijeka
+                    </option>
+                    <option value="KBC Split" onSelect={() => setFavkbc("KBC Split")}>KBC Split
+                    </option>
+                    <option value="OB Dubrovnik" onSelect={() => setFavkbc("OB Dubrovnik")}>OB Dubrovnik
+                    </option>
+                    <option value="OB Varaždin" onSelect={() => setFavkbc("OB Varaždin")}>OB Varaždin
+                    </option>
+                    <option value="OB Zadar" onSelect={() => setFavkbc("OB Zadar")}>OB Zadar
+                    </option>
+                  </select>
+                </label>
                 <input
                   type="text"
-                  placeholder="KBC..."
-                  {...register("preferedKBC")}
+                  placeholder="Adresa..."
+                  {...register("adresa")}
                 />
                 <input type="text" placeholder="MBO..." {...register("MBO")} />
                 <button type="submit">Registriraj se</button>
 
-                  {/* //TODO dodati error messages lijepe */}
-                  
+                {/* //TODO dodati error messages lijepe */}
               </>
             )}
           </form>

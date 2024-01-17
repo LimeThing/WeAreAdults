@@ -3,9 +3,10 @@ import DropDown from "./DropDown";
 
 type DropDownMeniProps = {
   elementi: string[];
+  setSelected: React.Dispatch<React.SetStateAction<Date>>;
 }
 
-const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi}:DropDownMeniProps): JSX.Element => {
+const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi, setSelected}:DropDownMeniProps): JSX.Element => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
   const [izabraniElement, setSelectElem] = useState<string>("");
   
@@ -25,6 +26,7 @@ const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi}:DropDownMeniProps)
 
   const biranjeElemenata = (elem: string): void => {
     setSelectElem(elem);
+    setSelectElem(elem);
   };
 
   return (
@@ -43,7 +45,7 @@ const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi}:DropDownMeniProps)
           dismissHandler(e)
         }
       >
-        <div>{izabraniElement ? "Select: " + izabraniElement : "Select ..."} </div>
+        <div>{izabraniElement ? "Izabrano: " + izabraniElement : "Izaberite ..."} </div>
         {showDropDown && (
           <DropDown
             elementi={elementi}
