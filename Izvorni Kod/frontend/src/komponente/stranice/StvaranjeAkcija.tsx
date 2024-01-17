@@ -16,6 +16,7 @@ import { AkcijaSlanjeModel } from "../modeli";
 import { api } from "../../api";
 import { useMutation } from "@tanstack/react-query";
 import formatDate from "./udice/useFormatDate";
+import { resolve } from "path";
 
 interface FormData {
   imeLokacije: string;
@@ -33,14 +34,14 @@ export default function StvaranjeAkcija() {
 
   const fetchGeocode = async (adresa: string) => {
     try {
-      const apiKey = '65a1ea265ab61960287828igq31138d'; // Zamijenite sa stvarnim API ključem
+      const apiKey = '65a1ea265ab61960287828igq31138d'; 
       const address = encodeURIComponent(adresa);
       const apiUrl = `https://geocode.maps.co/search?q=${address}&api_key=${apiKey}`;
-
       const response = await fetch(apiUrl);
       const podaci = await response.json();
       console.log(podaci);
       if (podaci && podaci.length > 0) {
+        await new Promise(resolve => setTimeout(resolve, 1100));
         setDuzina(podaci[0].lon);
         setSirina(podaci[0].lat);
       }
@@ -48,17 +49,18 @@ export default function StvaranjeAkcija() {
       console.error('Došlo je do pogreške prilikom dohvaćanja podataka', error);
     }
   }; 
+
   const onSubmit = async (data: FormData) => {
     await fetchGeocode(data.adresa).then(() => {
     let akcija: AkcijaSlanjeModel = {
-      idAkcija: 0,
+      idAkcija: 37,
       imeLokacije: data.imeLokacije,
       adresa: data.adresa,
       datumPoc: formatDate(data.datumPoc),
       datumKraj: formatDate(data.datumKraj),
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
-      mail: "admin@hck.com",
+      mail: "admin@hck.hr",
       geo_sirina: sirina,
       geo_duzina: duzina,
     };
