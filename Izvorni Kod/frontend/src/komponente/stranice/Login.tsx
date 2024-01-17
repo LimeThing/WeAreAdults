@@ -48,7 +48,6 @@ export default function Login() {
   const { setToken } = useCookies();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
     setEmail(data.email);
     if (loginInfo?.lozinka === data.password) {
       setInvalidPassword(false);
