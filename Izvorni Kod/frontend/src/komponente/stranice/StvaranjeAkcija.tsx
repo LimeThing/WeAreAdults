@@ -49,7 +49,6 @@ export default function StvaranjeAkcija() {
     }
   }; 
   const onSubmit = async (data: FormData) => {
-    // TODO query za api i uvstit sirinu i duljinu ispod
     await fetchGeocode(data.adresa).then(() => {
     let akcija: AkcijaSlanjeModel = {
       idAkcija: 0,
