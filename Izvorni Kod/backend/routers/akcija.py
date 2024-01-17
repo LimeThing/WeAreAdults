@@ -93,7 +93,9 @@ async def update_akcija(id_rez, akcija: AkcijaModel, db: db_dependency):
         datumKraj=akcija.datumKraj,
         hitna=akcija.hitna,
         mail=akcija.mail,
-        krgrupa=akcija.krgrupa
+        krgrupa=akcija.krgrupa,
+        geo_sirina=akcija.geo_sirina,
+        geo_duzina=akcija.geo_duzina
     )
 
     db.add(updated_akcija)
