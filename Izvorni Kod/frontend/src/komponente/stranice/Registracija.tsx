@@ -71,7 +71,7 @@ export default function Registration() {
 
   const { mutate: postLoginInfo } = useMutation({
     mutationFn: (loginInfo: LoginInfoModel) => {
-      return api.patch("/loginInfo/create/", loginInfo);
+      return api.post("/loginInfo/create/", loginInfo);
     },
   });
 
