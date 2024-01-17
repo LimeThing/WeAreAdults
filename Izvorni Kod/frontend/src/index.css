@@ -147,11 +147,15 @@ code {
 }
 
 .brojcek {
-  font-size: 1.2em;
+  font-size: 1.5em;
   color: rgb(171, 51, 51);
+  padding: 5px;
 }
 
+.podatci {
+  font-weight: normal;
+}
 
-
-
-
+.modal-content label {
+  font-weight: bold;
+}
