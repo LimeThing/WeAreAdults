@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../api";
 import {
@@ -39,8 +39,8 @@ export default function PromjenaAkcijePopup({
 }: PromjenaAkcijePopupProps) {
   const queryClient = useQueryClient();
 
-  const [sirina, setSirina] = useState(0);
-  const [duzina, setDuzina] = useState(0);
+  const sirinaRef = useRef(akcija.geo_sirina);
+  const duzinaRef = useRef(akcija.geo_duzina);
 
   const fetchGeocode = async (adresa: string) => {
     try {
@@ -58,9 +58,8 @@ export default function PromjenaAkcijePopup({
   
       if (podaci && podaci.length > 0) {
         await new Promise(resolve => setTimeout(resolve, 1100));
-
-        setDuzina(podaci[0].lon);
-        setSirina(podaci[0].lat);
+        duzinaRef.current = podaci[0].lon;
+        sirinaRef.current = podaci[0].lat;
       }
       
     } catch (error) {
@@ -70,11 +69,10 @@ export default function PromjenaAkcijePopup({
 
   const onSubmit = async (data: FormData) => {
     console.log(data);
-    console.log(sirina, duzina)
+    console.log(sirinaRef.current, duzinaRef.current)
     if (data.Adresa) 
     await fetchGeocode(data.Adresa).then(() => {
-
-    console.log(sirina + " " + duzina);
+    console.log(sirinaRef.current + " " + duzinaRef.current);
 
     let updatedAkcija: AkcijaSlanjeModel = {
       idAkcija: akcija.idAkcija,
@@ -88,8 +86,8 @@ export default function PromjenaAkcijePopup({
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
       mail: akcija.mail,
-      geo_sirina: sirina,
-      geo_duzina: duzina,
+      geo_sirina: sirinaRef.current,
+      geo_duzina: duzinaRef.current,
     };
     mijenjajAkciju(updatedAkcija);
     queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
