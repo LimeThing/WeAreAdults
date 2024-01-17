@@ -45,10 +45,10 @@ INSERT INTO darivanjeKrvi.korisnik (ime, prezime, oib, krgrupa, mbo, spol, dob, 
 ('Marko', 'Babić', '55555555555', 'Bneg', '555555555', 'MUŠKO', 31, 'Osijek', 'KBC Osijek', False);
 
 INSERT INTO darivanjeKrvi.administrator VALUES
-('prvi@hck.com', 'lozinka1'),
-('drugi@hck.com', 'lozinka2'),
-('treci@hck.com', 'lozinka3'),
-('admin@hck.com', 'lozinka1');
+('prvi@hck.hr', 'lozinka1'),
+('drugi@hck.hr', 'lozinka2'),
+('treci@hck.hr', 'lozinka3'),
+('admin@hck.hr', 'lozinka1');
 
 INSERT INTO darivanjeKrvi.akcija (idAkcija, adresa, datumPoc, datumKraj, krgrupa, hitna, imeLokacije, mail, geo_sirina, geo_duzina) VALUES
 (0, 'Ul. Ivana Belostenca 2, 42000, Varaždin', str_to_date("2023,12,21", "%Y,%m,%d"), str_to_date("2024,1,21", "%Y,%m,%d"), 'ABneg', True, 'Dom zdravlja Varaždin', 'admin@hck.com', 46.00271, 16.12514),
