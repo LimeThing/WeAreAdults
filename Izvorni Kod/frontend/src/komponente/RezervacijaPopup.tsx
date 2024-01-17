@@ -1,9 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { api } from "../api";
 import DropDownMeni from "./DropDownMeni";
-import { TerminModel } from "./modeli";
+import { RezervacijaModel, TerminModel } from "./modeli";
 import { PopupContainer} from "./stilovi";
+import useToken from "./stranice/udice/useCookies";
 
 type RezervacijaPopupProps = {
   closeFun: React.Dispatch<React.SetStateAction<boolean>>,
@@ -25,12 +26,23 @@ export default function RezervacijaPopup({ closeFun, close, imeLokacije }: Rezer
     enabled: !!imeLokacije,
   });
 
+  const {token} = useToken();
+
+  const { mutate: postRezervacija } = useMutation({
+    mutationFn: (rezervacija: RezervacijaModel) => {
+      return api.post("/rezervacija/create/", rezervacija);
+    },
+  });
+
   const [terminLista, setTerminLista] = useState<string[]>([])
+  const [selectedTermin, setSelectedTermin] = useState<Date>(new Date())
 
   useEffect(() => {
     var help: string[] = [];
-    termini?.map((termin) => {if (!termin.zauzeto)
-      help.push(termin.vrijemePoc.toUTCString())
+    termini?.map((termin) => {if (!termin.zauzeto) {
+      let terminnew = new Date(termin.vrijemePoc)
+      help.push(terminnew.toUTCString())
+    }
     })
     setTerminLista(help)
   }, [isSuccess]);
@@ -38,8 +50,16 @@ export default function RezervacijaPopup({ closeFun, close, imeLokacije }: Rezer
   return (
     <PopupContainer>
       <div>Rezervacija termina</div>
-      <DropDownMeni elementi = {terminLista}/>
-      <button>Rezerviraj</button>
+      <DropDownMeni elementi = {terminLista} setSelected={setSelectedTermin}/>
+      <button onClick={() => {
+        let rezervacija: RezervacijaModel = {
+          idRezervacija: 0,
+          vrijemePoc: selectedTermin,
+          imeLokacije: imeLokacije ?? "",
+          mbo: token ?? "111111111"
+        };
+         postRezervacija(rezervacija);
+      }}>Rezerviraj</button>
       <button onClick={() => closeFun(!close)}>Zatvori</button>
     </PopupContainer>
   );
