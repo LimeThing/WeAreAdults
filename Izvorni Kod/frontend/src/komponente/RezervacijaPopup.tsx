@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { api } from "../api";
 import DropDownMeni from "./DropDownMeni";
 import { RezervacijaModel, TerminModel } from "./modeli";
-import { FlexBox, PopupContainer } from "./stilovi";
+import { ErrorDiv, FlexBox, PopupContainer } from "./stilovi";
 import useToken from "./stranice/udice/useCookies";
 import formatDate from "./stranice/udice/useFormatDate";
 
@@ -31,7 +31,7 @@ export default function RezervacijaPopup({
 
   const { token } = useToken();
 
-  const { mutate: postRezervacija } = useMutation({
+  const { mutate: postRezervacija, isError } = useMutation({
     mutationFn: (rezervacija: RezervacijaModel) => {
       return api.post("/rezervacija/create/", rezervacija);
     },
@@ -39,6 +39,7 @@ export default function RezervacijaPopup({
 
   const [terminLista, setTerminLista] = useState<string[]>([]);
   const [selectedTermin, setSelectedTermin] = useState<Date>(new Date());
+  const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
     var help: string[] = [];
@@ -59,12 +60,14 @@ export default function RezervacijaPopup({
       }
     });
     setTerminLista(help);
-  }, [isSuccess]);
+    setFetchError(isError);
+  }, [isSuccess, isError]);
 
   return (
     <PopupContainer style={{ padding: "1rem", borderRadius: "20px" }}>
       <div>Rezervacija termina</div>
       <DropDownMeni elementi={terminLista} setSelected={setSelectedTermin} />
+      {fetchError && <ErrorDiv>Već imate rezerviran termin za sutra</ErrorDiv>}
       <FlexBox>
         <button
           onClick={() => {
@@ -91,7 +94,6 @@ export default function RezervacijaPopup({
               mbo: token ?? "111111111",
             };
             postRezervacija(rezervacija);
-            closeFun(!close)
           }}
         >
           Rezerviraj
