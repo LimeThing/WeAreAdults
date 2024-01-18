@@ -30,6 +30,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [invalidPassword, setInvalidPassword] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
 
   const handleRegisterButtonClick = () => {
     navigate("/Registracija");
@@ -43,7 +44,7 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-  const { data: loginInfo } = useGetLoginInfo(email);
+  const { data: loginInfo, isError } = useGetLoginInfo(email);
   const queryClient = useQueryClient();
   const { setToken } = useCookies();
 
@@ -53,7 +54,7 @@ export default function Login() {
       setInvalidPassword(false);
       queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
     } else {
-      setInvalidPassword(true);
+      if (!!loginInfo) setInvalidPassword(true);
     }
   };
 
@@ -68,7 +69,9 @@ export default function Login() {
         navigate("/lokacije");
       }
     }
-  }, [invalidPassword, loginInfo, navigate, queryClient, setToken]);
+    setFetchError(isError);
+    console.log(isError)
+  }, [invalidPassword, loginInfo, navigate, queryClient, setToken, isError]);
 
   return (
     <OuterContainer>
@@ -89,6 +92,7 @@ export default function Login() {
             />
             <p> {errors.password?.message} </p>
             {invalidPassword && <ErrorDiv>Invalid password</ErrorDiv>}
+            {fetchError && <ErrorDiv>Nepostojeći email</ErrorDiv>}
             <button type="submit">Prijavi se</button>
           </form>
         </FormContainer2>
