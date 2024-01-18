@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export const api = axios.create({
-    baseURL: 'http://localhost:8000'
+    baseURL: 'https://we-are-adults-backend-px9q45r39-ivar998-gmailcom.vercel.app:8000'
 })
