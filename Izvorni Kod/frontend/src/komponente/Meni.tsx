@@ -52,6 +52,10 @@ export default function Meni() {
     return () => clearInterval(interval);
   });
 
+  const handleHomePage = () => {
+    navigate("/stranica-korisnika")
+  }
+
   return (
     <>
       <div
@@ -89,7 +93,7 @@ export default function Meni() {
                     style={{ color: "#ffffff" }}
                   />
                 </IconButton>
-                <TextBox $size="1.2" style={{cursor: "pointer"}}>{ime}</TextBox>
+                <MeniButton onClick={handleHomePage} style={{cursor: "pointer"}}>{ime}</MeniButton>
               </FlexBox>
             )}
           </HiddenOnMobileDiv>
