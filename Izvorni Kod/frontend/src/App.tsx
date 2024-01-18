@@ -6,7 +6,7 @@ import Login from "./komponente/stranice/Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StvaranjeAkcija from "./komponente/stranice/StvaranjeAkcija";
 import Verifikacija from "./komponente/stranice/Verifikacija";
-import StranicaKorisnika from "./komponente/StranicaKorisnika";
+import StranicaKorisnika from "./komponente/stranice/StranicaKorisnika";
 
 import Lokacije from "./komponente/stranice/Lokacije";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

@@ -1,5 +1,4 @@
 export default function formatDate(date: Date) {
-    console.log(date);
     date = new Date(date);
     if ((date.getMonth() + 1) <= 9) {
         if (date.getDate() <= 9) {
@@ -17,4 +16,17 @@ export default function formatDate(date: Date) {
             return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
         }
     } 
+}
+
+export function formatTime(date: Date) {
+    date = new Date(date);
+    return `${
+        date.getHours() <= 9
+          ? "0" + date.getHours()
+          : date.getHours()
+      }:${
+        date.getMinutes() <= 9
+          ? "0" + date.getMinutes()
+          : date.getMinutes()
+      }`
 }

@@ -3,7 +3,7 @@ import DropDown from "./DropDown";
 
 type DropDownMeniProps = {
   elementi: string[];
-  setSelected: React.Dispatch<React.SetStateAction<Date>>;
+  setSelected: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi, setSelected}:DropDownMeniProps): JSX.Element => {
@@ -26,7 +26,7 @@ const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi, setSelected}:DropD
 
   const biranjeElemenata = (elem: string): void => {
     setSelectElem(elem);
-    setSelectElem(elem);
+    setSelected(elem);
   };
 
   return (
