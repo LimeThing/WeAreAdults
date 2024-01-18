@@ -207,7 +207,7 @@ export default function Registration() {
                   {...register("age")}
                 />
                 <label>
-                  KBC:
+                  Omiljen:
                   <select name="favKBC" id="favKBC">
                     <option value="Hrvatski zavod za transfuzijsku medicinu Zagreb" onSelect={() => setFavkbc("Hrvatski zavod za transfuzijsku medicinu Zagreb")}>
                     HZTM Zagreb

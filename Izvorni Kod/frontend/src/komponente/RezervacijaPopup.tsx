@@ -38,7 +38,7 @@ export default function RezervacijaPopup({
   });
 
   const [terminLista, setTerminLista] = useState<string[]>([]);
-  const [selectedTermin, setSelectedTermin] = useState<Date>(new Date());
+  const [selectedTermin, setSelectedTermin] = useState<string>("08:00");
   const [fetchError, setFetchError] = useState(false);
 
   useEffect(() => {
@@ -73,23 +73,13 @@ export default function RezervacijaPopup({
           onClick={() => {
             let today = new Date();
             today.setDate(today.getDate() + 1);
+            let vrijeme = new Date(
+              `${formatDate(today)}T${selectedTermin}:00`
+            )
+            vrijeme.setHours(vrijeme.getHours() + 1)
             let rezervacija: RezervacijaModel = {
               idRezervacija: 0,
-              vrijemePoc: new Date(
-                `${formatDate(today)}T${
-                  selectedTermin.getHours() <= 9
-                    ? "0" + selectedTermin.getHours()
-                    : selectedTermin.getHours()
-                }:${
-                  selectedTermin.getMinutes() <= 9
-                    ? "0" + selectedTermin.getMinutes()
-                    : selectedTermin.getMinutes()
-                }:${
-                  selectedTermin.getMinutes() <= 9
-                    ? "0" + selectedTermin.getMinutes()
-                    : selectedTermin.getMinutes()
-                }.937Z`
-              ),
+              vrijemePoc: vrijeme,
               imeLokacije: imeLokacije ?? "",
               mbo: token ?? "111111111",
             };
