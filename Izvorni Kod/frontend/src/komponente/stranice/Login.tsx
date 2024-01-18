@@ -29,6 +29,7 @@ export default function Login() {
 
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
+  const [loadingState, setLoadingState] = useState(true);
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [fetchError, setFetchError] = useState(false);
 
@@ -56,10 +57,11 @@ export default function Login() {
     } else {
       setInvalidPassword(true);
     }
+    if (!!loginInfo) setLoadingState(false);
   };
 
   useEffect(() => {
-    if (!invalidPassword) {
+    if (!loadingState && !invalidPassword) {
       if (loginInfo?.mail.endsWith("@hck.hr")) {
         setToken("admin");
       } else setToken(loginInfo ? loginInfo.mbo : "");
@@ -70,7 +72,7 @@ export default function Login() {
       }
     }
     setFetchError(isError);
-  }, [invalidPassword, loginInfo, navigate, queryClient, setToken, isError]);
+  }, [loadingState, loginInfo, navigate, queryClient, setToken, isError]);
 
   return (
     <OuterContainer>
@@ -90,7 +92,7 @@ export default function Login() {
               {...register("password")}
             />
             <p> {errors.password?.message} </p>
-            {invalidPassword && <ErrorDiv>Invalid password</ErrorDiv>}
+            {invalidPassword && !loadingState && <ErrorDiv>Invalid password</ErrorDiv>}
             {fetchError && <ErrorDiv>Nepostojeći email</ErrorDiv>}
             <button type="submit">Prijavi se</button>
           </form>
