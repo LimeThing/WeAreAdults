@@ -30,12 +30,10 @@ const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi, setSelected}:DropD
   };
 
   return (
-    <>
+    <div style={{height: "10rem", width: "20rem", overflow: "scroll"}}>
       <div className="announcement">
         <div>
-          {izabraniElement
-            ? `Izabrali ste: ${izabraniElement}`
-            : "Izaberite."}
+          Izaberite sutrašnji termin.
         </div>
       </div>
       <button
@@ -55,7 +53,7 @@ const DropDownMeni: React.FC<DropDownMeniProps> = ({elementi, setSelected}:DropD
           />
         )}
       </button>
-    </>
+    </div>
   );
 };
 
