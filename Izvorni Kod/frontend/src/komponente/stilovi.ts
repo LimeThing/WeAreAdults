@@ -537,6 +537,7 @@ export const ErrorDiv = styled.div`
   background: #dd4444;
   color: white;
   align: center;
+  width: 15rem;
   border-radius: 0.25rem;
   padding: 0.5rem
 `;

@@ -23,7 +23,7 @@ const DropDown: React.FC<DropDownProps> = ({
   }, [showDropDown]);
 
   return (
-      <div style={{overflow: "scroll"}} className={showDropDown ? 'dropdown' : 'dropdown active'}>
+      <div className={showDropDown ? 'dropdown' : 'dropdown active'}>
         {elementi.map(
           (elem: string, index: number): JSX.Element => {
             return (

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Container,
+  ErrorDiv,
   FormContainer,
   NoAccess,
   OuterContainer,
@@ -16,7 +17,6 @@ import { AkcijaSlanjeModel } from "../modeli";
 import { api } from "../../api";
 import { useMutation } from "@tanstack/react-query";
 import formatDate from "./udice/useFormatDate";
-import { resolve } from "path";
 
 interface FormData {
   imeLokacije: string;
@@ -28,8 +28,14 @@ interface FormData {
 
 export default function StvaranjeAkcija() {
   const token = useToken();
-  const [sirina, setSirina] = useState(0);
-  const [duzina, setDuzina] = useState(0);
+
+  const sirinaRef = useRef(0.0);
+  const duzinaRef = useRef(0.0);
+  const [success, setSuccess] = useState(false)
+  const [hitnaAkcija, setHitnaAkcija] = useState(false);
+  const [krvnaGrupa, setKrvnaGrupa] = useState<
+    "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-"
+  >("A+");
  
 
   const fetchGeocode = async (adresa: string) => {
@@ -42,8 +48,8 @@ export default function StvaranjeAkcija() {
       console.log(podaci);
       if (podaci && podaci.length > 0) {
         await new Promise(resolve => setTimeout(resolve, 1100));
-        setDuzina(podaci[0].lon);
-        setSirina(podaci[0].lat);
+        duzinaRef.current = podaci[0].lon;
+        sirinaRef.current = podaci[0].lat;
       }
     } catch (error) {
       console.error('Došlo je do pogreške prilikom dohvaćanja podataka', error);
@@ -51,9 +57,9 @@ export default function StvaranjeAkcija() {
   }; 
 
   const onSubmit = async (data: FormData) => {
-    await fetchGeocode(data.adresa).then(() => {
+    await fetchGeocode(data.adresa)
     let akcija: AkcijaSlanjeModel = {
-      idAkcija: 37,
+      idAkcija: 0,
       imeLokacije: data.imeLokacije,
       adresa: data.adresa,
       datumPoc: formatDate(data.datumPoc),
@@ -61,12 +67,11 @@ export default function StvaranjeAkcija() {
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
       mail: "admin@hck.hr",
-      geo_sirina: sirina,
-      geo_duzina: duzina,
+      geo_sirina: sirinaRef.current,
+      geo_duzina: duzinaRef.current,
     };
     postAkcija(akcija);
     generateTermin(data.imeLokacije);
-  })
   };
 
   const schema = yup.object().shape({
@@ -79,16 +84,20 @@ export default function StvaranjeAkcija() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
 
-  const { mutate: postAkcija } = useMutation({
+  const { mutate: postAkcija, isSuccess } = useMutation({
     mutationFn: (akcija: AkcijaSlanjeModel) => {
       return api.post("/akcija/create", akcija);
     },
   });
+
+  useEffect(() => {
+    setSuccess(isSuccess);
+  }, [isSuccess]);
 
   const { mutate: generateTermin } = useMutation({
     mutationFn: (imeLokacije: string) => {
@@ -96,10 +105,7 @@ export default function StvaranjeAkcija() {
     },
   });
 
-  const [hitnaAkcija, setHitnaAkcija] = useState(false);
-  const [krvnaGrupa, setKrvnaGrupa] = useState<
-    "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-" | undefined
-  >();
+
 
   const handleCheckboxChange = (e: {
     target: { checked: boolean | ((prevState: boolean) => boolean) };
@@ -177,6 +183,8 @@ export default function StvaranjeAkcija() {
               )}
               <br />
               <br />
+              {(!!errors.datumPoc?.message || !!errors.datumKraj?.message) && <ErrorDiv><p>{errors.datumPoc?.message ?? "" + errors.datumKraj?.message ?? ""}</p></ErrorDiv>}
+                {success && <p>Uspiješno stvoreno!</p>}
               <button type="submit">Stvori akciju</button>
             </form>
           </FormContainer>
