@@ -54,7 +54,7 @@ export default function Login() {
       setInvalidPassword(false);
       queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
     } else {
-      if (!!loginInfo) setInvalidPassword(true);
+      setInvalidPassword(true);
     }
   };
 
