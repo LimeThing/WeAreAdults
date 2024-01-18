@@ -29,7 +29,10 @@ export default function Login() {
 
   const navigate = useNavigate();
   const [email, setEmail] = useState<string>("");
+  const [pass, setPass] = useState<string>("");
   const [loadingState, setLoadingState] = useState(true);
+
+  const [prijava, setPrijava] = useState(true);
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [fetchError, setFetchError] = useState(false);
 
@@ -45,19 +48,14 @@ export default function Login() {
     resolver: yupResolver(schema),
   });
 
-  const { data: loginInfo, isError } = useGetLoginInfo(email);
+  const { data: loginInfo, isError, isSuccess } = useGetLoginInfo(email);
   const queryClient = useQueryClient();
   const { setToken } = useCookies();
 
   const onSubmit = (data: FormData) => {
     setEmail(data.email);
-    if (loginInfo?.lozinka === data.password) {
-      setInvalidPassword(false);
-      queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
-    } else {
-      setInvalidPassword(true);
-    }
-    if (!!loginInfo) setLoadingState(false);
+    setPass(data.password);
+    setPrijava(!prijava)
   };
 
   useEffect(() => {
@@ -73,6 +71,27 @@ export default function Login() {
     }
     setFetchError(isError);
   }, [loadingState, loginInfo, navigate, queryClient, setToken, isError]);
+
+  useEffect(() => {
+    if (loginInfo?.lozinka === pass) {
+      setInvalidPassword(false);
+      queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
+    } else {
+      setInvalidPassword(true);
+    }
+    if (!!loginInfo) setLoadingState(false);
+    if (!loadingState && !invalidPassword) {
+      if (loginInfo?.mail.endsWith("@hck.hr")) {
+        setToken("admin");
+      } else setToken(loginInfo ? loginInfo.mbo : "");
+      console.log("set to " + loginInfo?.mbo);
+      queryClient.invalidateQueries({ queryKey: ["getKorisnikIme"] });
+      if (loginInfo !== undefined) {
+        navigate("/lokacije");
+      }
+    }
+    setFetchError(isError);
+  }, [isSuccess, prijava])
 
   return (
     <OuterContainer>
