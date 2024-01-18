@@ -34,8 +34,8 @@ export default function StvaranjeAkcija() {
   const [success, setSuccess] = useState(false)
   const [hitnaAkcija, setHitnaAkcija] = useState(false);
   const [krvnaGrupa, setKrvnaGrupa] = useState<
-    "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-"
-  >("A+");
+    "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-" | undefined
+  >();
  
 
   const fetchGeocode = async (adresa: string) => {
@@ -153,7 +153,12 @@ export default function StvaranjeAkcija() {
               {hitnaAkcija && (
                 <label>
                   Krvna grupa:{" "}
-                  <select name="krvna-grupa" id="krvna-grupa">
+                  <select
+                  name="krvna-grupa"
+                  id="krvna-grupa"
+                  onChange={(e) => setKrvnaGrupa(e.target.value as "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-" | undefined)}
+                  value={krvnaGrupa}
+                >
                     <option value="A+" onSelect={() => setKrvnaGrupa("A+")}>
                       A+
                     </option>

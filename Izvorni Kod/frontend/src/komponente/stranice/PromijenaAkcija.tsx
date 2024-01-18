@@ -22,14 +22,14 @@ export default function Akcije() {
   const fetchAkcija = (): Promise<AkcijaModel[]> =>
     api.get("/akcija/get_all/").then((response: any) => response.data);
 
-  const { isLoading, data } = useQuery<AkcijaModel[]>({
+  const { isLoading, data, isSuccess } = useQuery<AkcijaModel[]>({
     queryKey: ["getAkcija"],
     queryFn: fetchAkcija,
   });
 
   useEffect(() => {
     setAkcije(data ? data : []);
-  }, [data]);
+  }, [data, isSuccess]);
 
   if (isLoading) return <></>;
   else if (token.token === "admin")
