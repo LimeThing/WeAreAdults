@@ -32,7 +32,7 @@ export default function Lokacije() {
     .then((Response: any) => Response.data);
 
   const { isLoading: isLoadingAktivne, data: dataAktivne } = useQuery<AkcijaModel[]>({
-    queryKey: ["getAkcija"],
+    queryKey: ["getAkcija", mbo],
     queryFn: fetchAkcije,
   });
 
