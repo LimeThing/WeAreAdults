@@ -23,7 +23,7 @@ async def rezervacija_create(rezervacija: RezervacijaModel, db: db_dependency):
     #vrijemePoc_as_datetime = datetime.fromisoformat(str(rezervacija.vrijemePoc))
     db_rezervacija = models.Rezervacija(**rezervacija.dict())
     vecNapravljene = db.query(models.Rezervacija).filter(models.Rezervacija.mbo == rezervacija.mbo).filter(models.Rezervacija.vrijemePoc > date.today()).first()
-    if vecNapravljene in None:
+    if vecNapravljene is None:
         db.add(db_rezervacija)
         db.commit()
     else:
