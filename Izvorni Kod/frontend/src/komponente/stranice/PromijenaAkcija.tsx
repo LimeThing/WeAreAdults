@@ -32,7 +32,7 @@ export default function Akcije() {
   }, [data]);
 
   if (isLoading) return <></>;
-  else if (token.token === 'admin')
+  else if (token.token === "admin")
     return (
       <>
         <br />
@@ -50,11 +50,12 @@ export default function Akcije() {
                     <PersonalInformation>
                       <Name>{`Početak: ${akcija.datumPoc}`}</Name>
                       <Name>{`Kraj: ${akcija.datumKraj}`}</Name>
-                      {akcija.hitna &&
-                      <>
-                      <Name>{`Hitna akcija`}</Name>
-                      <Name>{`Krvna grupa: ${akcija.krgrupa}`}</Name>
-                      </>}
+                      {akcija.hitna && (
+                        <>
+                          <Name>{`Hitna akcija`}</Name>
+                          <Name>{`Krvna grupa: ${akcija.krgrupa}`}</Name>
+                        </>
+                      )}
                     </PersonalInformation>
                     <PersonalInformation>
                       <VerifyButton
@@ -74,6 +75,7 @@ export default function Akcije() {
                   <>
                     {showPopup && (
                       <PromjenaAkcijePopup
+                        key={akcija.idAkcija}
                         closeFun={setShowPopup}
                         close={showPopup}
                         idAkcije={akcija.idAkcija}
@@ -89,9 +91,10 @@ export default function Akcije() {
         </OverFlowDiv>
       </>
     );
-    else return (
-    <>
-    <NoAccess>Nemate pristup ovoj web lokaciji!</NoAccess>
-    </>
-    )
+  else
+    return (
+      <>
+        <NoAccess>Nemate pristup ovoj web lokaciji!</NoAccess>
+      </>
+    );
 }

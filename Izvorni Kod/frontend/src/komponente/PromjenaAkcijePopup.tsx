@@ -41,6 +41,10 @@ export default function PromjenaAkcijePopup({
 
   const sirinaRef = useRef(akcija.geo_sirina);
   const duzinaRef = useRef(akcija.geo_duzina);
+  const [hitnaAkcija, setHitnaAkcija] = useState(akcija.hitna);
+  const [krvnaGrupa, setKrvnaGrupa] = useState(akcija.krgrupa);
+
+  
   const [arhiviraj, setArhiviraj] = useState(false);
 
   const fetchGeocode = async (adresa: string) => {
@@ -72,7 +76,7 @@ export default function PromjenaAkcijePopup({
     console.log(data);
     console.log(sirinaRef.current, duzinaRef.current)
     if (data.Adresa) 
-    await fetchGeocode(data.Adresa).then(() => {
+    await fetchGeocode(data.Adresa)
     console.log(sirinaRef.current + " " + duzinaRef.current);
       console.log(arhiviraj);
       let kraj = new Date(!data.Kraj ? akcija.datumKraj : data.Kraj ?? akcija.datumKraj)
@@ -98,7 +102,7 @@ export default function PromjenaAkcijePopup({
     mijenjajAkciju(updatedAkcija);
     queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
     closeFun(!close);
-    setAkcije(-1);})
+    setAkcije(-1);
   };
 
   const schema = yup.object().shape({
@@ -119,9 +123,6 @@ export default function PromjenaAkcijePopup({
       return api.put("/akcija/edit/" + akcija.idAkcija, akcija);
     },
   });
-
-  const [hitnaAkcija, setHitnaAkcija] = useState(akcija.hitna);
-  const [krvnaGrupa, setKrvnaGrupa] = useState(akcija.krgrupa);
 
   const handleCheckboxChange = (e: {
     target: { checked: boolean | ((prevState: boolean) => boolean) };

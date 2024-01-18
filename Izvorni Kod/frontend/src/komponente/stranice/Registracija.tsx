@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import {
   Container,
+  ErrorDiv,
   FormContainer,
   OuterContainer,
   Toggle,
@@ -21,9 +22,7 @@ interface FormData {
   lastName: string;
   email: string;
   password: string;
-  gender: string;
   age: number;
-  bloodType: string;
   adresa: string;
   MBO: string;
   oib: string;
@@ -35,15 +34,14 @@ export default function Registration() {
     lastName: yup.string().required(),
     email: yup.string().email().required(),
     password: yup.string().min(4).max(10).required(),
-    gender: yup.string().required(),
     age: yup.number().integer().min(18).max(65).required(),
-    bloodType: yup.string().required(),
     adresa: yup.string().required(),
     MBO: yup.string().length(9).required(),
     oib: yup.string().length(11).required(),
   });
 
   const navigate = useNavigate();
+  const [success, setSuccess] = useState(false)
 
   const handleLoginButtonClick = () => {
     navigate("/Login");
@@ -79,7 +77,7 @@ export default function Registration() {
     resolver: yupResolver(schema),
   });
 
-  const { mutate: postKorisnik } = useMutation({
+  const { mutate: postKorisnik, isSuccess } = useMutation({
     mutationFn: (korisnik: KorisnikModel) => {
       return api.post("/korisnik/create", korisnik);
     },
@@ -111,8 +109,11 @@ export default function Registration() {
       mbo: data.MBO,
     };
     postLoginInfo(login);
-    alert("Hvala na registraciji! Procekajte da Vas admin verificira.");
   };
+
+  useEffect(() => {
+    setSuccess(isSuccess);
+  }, [isSuccess])
 
   return (
     <OuterContainer>
@@ -146,8 +147,8 @@ export default function Registration() {
                   {...register("password")}
                 />
                 <input type="oib" placeholder="OIB..." {...register("oib")} />
-                <p> {errors.password?.message} </p>
-                <button type="submit" onClick={handleDaljeButtonClick}>
+                <p> {(errors.password?.message || errors.oib?.message || errors.email?.message) && <p>{errors.password?.message ?? "" + errors.oib?.message ?? "" + errors.email?.message ?? ""}</p>} </p>
+                <button onClick={handleDaljeButtonClick}>
                   Dalje
                 </button>
               </>
@@ -163,10 +164,10 @@ export default function Registration() {
                 <label>
                   Spol:
                   <select name="spol" id="spol">
-                    <option value="Žensko" onSelect={() => setSpol("Žensko")}>
+                    <option value="Muško" onSelect={() => setSpol("Muško")}>
                       Žensko
                     </option>
-                    <option value="Muško" onSelect={() => setSpol("Muško")}>
+                    <option value="Žensko" onSelect={() => setSpol("Žensko")}>
                       Muško
                     </option>
                   </select>
@@ -230,9 +231,10 @@ export default function Registration() {
                   {...register("adresa")}
                 />
                 <input type="text" placeholder="MBO..." {...register("MBO")} />
-                <button type="submit">Registriraj se</button>
 
-                {/* //TODO dodati error messages lijepe */}
+              {(!!errors.MBO?.message || !!errors.age?.message) && <ErrorDiv><p>{errors.MBO?.message ?? "" + errors.age?.message ?? ""}</p></ErrorDiv>}
+              {success && <p>Uspiješna registracija!</p>}
+                <button type="submit">Registriraj se</button>
               </>
             )}
           </form>
