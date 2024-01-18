@@ -1,6 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { api } from "../api";
 import {
@@ -120,10 +120,13 @@ export default function PromjenaAkcijePopup({
     resolver: yupResolver(schema),
   });
 
-  const { mutate: mijenjajAkciju, isSuccess } = useMutation({
+  const { mutate: mijenjajAkciju } = useMutation({
     mutationFn: (akcija: AkcijaSlanjeModel) => {
       return api.put("/akcija/edit/" + akcija.idAkcija, akcija);
     },
+    onSuccess: () => {
+    queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
+    }
   });
 
   const handleCheckboxChange = (e: {
@@ -132,9 +135,6 @@ export default function PromjenaAkcijePopup({
     setHitnaAkcija(e.target.checked);
   };
 
-  useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
-  }, [isSuccess, queryClient]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
