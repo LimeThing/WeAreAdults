@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends, status, APIRouter
 from pydantic import BaseModel
-from datetime import datetime, time
+from datetime import datetime, time, date
 
 import models
 from dependencies import db_dependency
@@ -22,8 +22,12 @@ class RezervacijaModel(BaseModel):
 async def rezervacija_create(rezervacija: RezervacijaModel, db: db_dependency):
     #vrijemePoc_as_datetime = datetime.fromisoformat(str(rezervacija.vrijemePoc))
     db_rezervacija = models.Rezervacija(**rezervacija.dict())
-    db.add(db_rezervacija)
-    db.commit()
+    vecNapravljene = db.query(models.Rezervacija).filter(models.Rezervacija.mbo == rezervacija.mbo).filter(models.Rezervacija.vrijemePoc > date.today()).first()
+    if vecNapravljene in None:
+        db.add(db_rezervacija)
+        db.commit()
+    else:
+        raise HTTPException(status_code=404, detail='Rezervacija vec postoji')
 
 @router.get("/get_one/{id_rez}", status_code=status.HTTP_200_OK)
 async def rezervacija_get_one(id_rez, db: db_dependency):
