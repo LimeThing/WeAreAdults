@@ -70,7 +70,6 @@ export default function Login() {
       }
     }
     setFetchError(isError);
-    console.log(isError)
   }, [invalidPassword, loginInfo, navigate, queryClient, setToken, isError]);
 
   return (
