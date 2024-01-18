@@ -82,8 +82,8 @@ async def korisnik_delete(mbo, db: db_dependency):
     db.commit()
 
 
-@router.put("/edit/")
-async def update_korisnik(mbo: str, korisnik: KorisnikModel, db: db_dependency):
+@router.put("/edit/{mbo}")
+async def update_korisnik(mbo, korisnik: KorisnikModel, db: db_dependency):
     existing_korisnik = db.query(models.Korisnik).filter(models.Korisnik.mbo == mbo).first()
 
     if existing_korisnik is None:
