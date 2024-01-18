@@ -5,7 +5,7 @@ import models
 from dependencies import db_dependency
 import enum
 from datetime import datetime, date
-from typing import Optional
+from typing import Optional, Union
 
 router = APIRouter(
     prefix="/akcija"
@@ -19,7 +19,7 @@ class AkcijaModel(BaseModel):
     datumPoc: date
     datumKraj: date
     hitna: bool
-    krgrupa: models.KrvnaGrupa | None = None
+    krgrupa: Union[models.KrvnaGrupa, None] = None
     mail: str
     geo_duzina: float 
     geo_sirina: float
