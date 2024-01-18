@@ -12,5 +12,6 @@ export const useGetLoginInfo = (email:string) => {
     return useQuery<LoginInfoModel>({
         queryKey: ["getLoginInfo", email],
         queryFn: () => getLoginInfo(email),
+        enabled: email !== "",
         })
 }
