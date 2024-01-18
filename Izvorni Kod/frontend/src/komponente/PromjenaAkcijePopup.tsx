@@ -44,54 +44,57 @@ export default function PromjenaAkcijePopup({
   const [hitnaAkcija, setHitnaAkcija] = useState(akcija.hitna);
   const [krvnaGrupa, setKrvnaGrupa] = useState(akcija.krgrupa);
 
-  
   const [arhiviraj, setArhiviraj] = useState(false);
 
   const fetchGeocode = async (adresa: string) => {
     try {
-      const apiKey = '65a1ea265ab61960287828igq31138d';
+      const apiKey = "65a1ea265ab61960287828igq31138d";
       const address = encodeURIComponent(adresa);
       const apiUrl = `https://geocode.maps.co/search?q=${address}&api_key=${apiKey}`;
-  
-      console.log('API URL:', apiUrl);
-  
+
+      console.log("API URL:", apiUrl);
+
       const response = await fetch(apiUrl);
-      console.log('Response:', response);
-  
+      console.log("Response:", response);
+
       const podaci = await response.json();
-      console.log('Geocoding Data:', podaci);
-  
+      console.log("Geocoding Data:", podaci);
+
       if (podaci && podaci.length > 0) {
-        await new Promise(resolve => setTimeout(resolve, 1100));
+        await new Promise((resolve) => setTimeout(resolve, 1100));
         duzinaRef.current = podaci[0].lon;
         sirinaRef.current = podaci[0].lat;
       }
-      
     } catch (error) {
-      console.error('Error fetching geocoding data:', error);
+      console.error("Error fetching geocoding data:", error);
     }
   };
 
   const onSubmit = async (data: FormData) => {
     console.log(data);
-    console.log(sirinaRef.current, duzinaRef.current)
-    if (data.Adresa) 
-    await fetchGeocode(data.Adresa)
+    console.log(sirinaRef.current, duzinaRef.current);
+    if (data.Adresa) await fetchGeocode(data.Adresa);
     console.log(sirinaRef.current + " " + duzinaRef.current);
-      console.log(arhiviraj);
-      let kraj = new Date(!data.Kraj ? akcija.datumKraj : data.Kraj ?? akcija.datumKraj)
-      if (arhiviraj) {
-        kraj = new Date();
-        kraj.setDate(kraj.getDate() - 1);
-      }
-      let updatedAkcija: AkcijaSlanjeModel = {
+    console.log(arhiviraj);
+    let kraj = new Date(
+      !data.Kraj ? akcija.datumKraj : data.Kraj ?? akcija.datumKraj
+    );
+    if (arhiviraj) {
+      kraj = new Date();
+      kraj.setDate(kraj.getDate() - 1);
+    }
+    let updatedAkcija: AkcijaSlanjeModel = {
       idAkcija: akcija.idAkcija,
       imeLokacije:
         data.Lokacija === ""
           ? akcija.imeLokacije
           : data.Lokacija ?? akcija.imeLokacije,
       adresa: data.Adresa === "" ? akcija.adresa : data.Adresa ?? akcija.adresa,
-      datumPoc: formatDate(new Date(!data.Početak ? akcija.datumPoc : data.Početak ?? akcija.datumPoc)),
+      datumPoc: formatDate(
+        new Date(
+          !data.Početak ? akcija.datumPoc : data.Početak ?? akcija.datumPoc
+        )
+      ),
       datumKraj: formatDate(kraj),
       hitna: hitnaAkcija,
       krgrupa: krvnaGrupa,
@@ -100,7 +103,6 @@ export default function PromjenaAkcijePopup({
       geo_duzina: duzinaRef.current,
     };
     mijenjajAkciju(updatedAkcija);
-    queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
     closeFun(!close);
     setAkcije(-1);
   };
@@ -118,7 +120,7 @@ export default function PromjenaAkcijePopup({
     resolver: yupResolver(schema),
   });
 
-  const { mutate: mijenjajAkciju } = useMutation({
+  const { mutate: mijenjajAkciju, isSuccess } = useMutation({
     mutationFn: (akcija: AkcijaSlanjeModel) => {
       return api.put("/akcija/edit/" + akcija.idAkcija, akcija);
     },
@@ -129,6 +131,10 @@ export default function PromjenaAkcijePopup({
   }) => {
     setHitnaAkcija(e.target.checked);
   };
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ["getAkcija"] });
+  }, [isSuccess, queryClient]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -151,23 +157,37 @@ export default function PromjenaAkcijePopup({
         </PersonalInformation>
         <PersonalInformation>
           <Name>
-            <Input type="date" defaultValue={formatDate(akcija.datumPoc)} {...register("Početak")} />
+            <Input
+              type="date"
+              defaultValue={formatDate(akcija.datumPoc)}
+              {...register("Početak")}
+            />
           </Name>
           <Name>
-            <Input type="date" defaultValue={formatDate(akcija.datumKraj)} {...register("Kraj")} />
+            <Input
+              type="date"
+              defaultValue={formatDate(akcija.datumKraj)}
+              {...register("Kraj")}
+            />
           </Name>
           <Name>
             <Input
               type="checkbox"
               checked={hitnaAkcija}
               onChange={handleCheckboxChange}
-            /> hitna akcija
+            />{" "}
+            hitna akcija
           </Name>
           <Name>
             {hitnaAkcija && (
               <label>
                 Krvna grupa:{" "}
-                <select name="krvna-grupa" id="krvna-grupa">
+                <select
+                  name="krvna-grupa"
+                  id="krvna-grupa"
+                  onChange={(e) => setKrvnaGrupa(e.target.value as "A+" | "A-" | "B+" | "B-" | "AB+" | "AB-" | "0+" | "0-" | undefined)}
+                  value={krvnaGrupa}
+                >
                   <option value="A+" onSelect={() => setKrvnaGrupa("A+")}>
                     A+
                   </option>
@@ -198,9 +218,13 @@ export default function PromjenaAkcijePopup({
           </Name>
         </PersonalInformation>
         <PersonalInformation>
-          <FlexBox $direction="column" style={{gap:"0"}}>
-            <VerifyButton type="submit" onClick={() => setArhiviraj(false)}>Spremi</VerifyButton>
-            <VerifyButton type="submit" onClick={() => setArhiviraj(true)}>Arhiviraj</VerifyButton>
+          <FlexBox $direction="column" style={{ gap: "0" }}>
+            <VerifyButton type="submit" onClick={() => setArhiviraj(false)}>
+              Spremi
+            </VerifyButton>
+            <VerifyButton type="submit" onClick={() => setArhiviraj(true)}>
+              Arhiviraj
+            </VerifyButton>
             <VerifyButton
               $delete
               onClick={() => {
