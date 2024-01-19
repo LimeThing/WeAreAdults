@@ -25,12 +25,12 @@ origins = [
     "http://localhost:3000",
     "http://sql11.freesqldatabase.com",
     "http://sql11.freesqldatabase.com:3306",
-    "https://we-are-adults.vercel.app/",
-    "https://we-are-adults.vercel.app:3000/",
-    "https://we-are-adults.vercel.app:8000/",
-    "https://we-are-adults-backend.vercel.app/",
-    "https://we-are-adults-backend.vercel.app:3000/",
-    "https://we-are-adults-backend.vercel.app:8000/"
+    "https://we-are-adults.vercel.app",
+    "https://we-are-adults.vercel.app:3000",
+    "https://we-are-adults.vercel.app:8000",
+    "https://we-are-adults-backend.vercel.app",
+    "https://we-are-adults-backend.vercel.app:3000",
+    "https://we-are-adults-backend.vercel.app:8000"
 ]
 
 app.add_middleware(
