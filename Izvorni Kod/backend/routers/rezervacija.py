@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException, Depends, status, APIRouter
 from pydantic import BaseModel
-from datetime import datetime, time, date
+from datetime import datetime, time, date, timedelta
 
 import models
 from dependencies import db_dependency
@@ -22,7 +22,7 @@ class RezervacijaModel(BaseModel):
 async def rezervacija_create(rezervacija: RezervacijaModel, db: db_dependency):
     #vrijemePoc_as_datetime = datetime.fromisoformat(str(rezervacija.vrijemePoc))
     db_rezervacija = models.Rezervacija(**rezervacija.dict())
-    vecNapravljene = db.query(models.Rezervacija).filter(models.Rezervacija.mbo == rezervacija.mbo).filter(models.Rezervacija.vrijemePoc > date.today()).first()
+    vecNapravljene = db.query(models.Rezervacija).filter(models.Rezervacija.mbo == rezervacija.mbo).filter(models.Rezervacija.vrijemePoc > (date.today() + datetime.timedelta(days = 1))).first()
     if vecNapravljene is None:
         db.add(db_rezervacija)
         db.commit()
