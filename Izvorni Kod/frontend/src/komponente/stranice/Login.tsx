@@ -113,7 +113,7 @@ export default function Login() {
             <p> {errors.password?.message} </p>
             {invalidPassword && !loadingState && <ErrorDiv>Invalid password</ErrorDiv>}
             {fetchError && <ErrorDiv>Nepostojeći email</ErrorDiv>}
-            <button name="prijaviSe" type="submit" onClick={alert}>Prijavi se</button>
+            <button name="prijaviSe" type="submit">Prijavi se</button>
           </form>
         </FormContainer2>
 
