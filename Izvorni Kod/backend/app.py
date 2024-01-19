@@ -17,8 +17,7 @@ from routers import termin
 from routers import loginInfo
 from routers import kbc
 
-app = Flask(__name__)
-CORS(app, origins=["http://localhost", "http://localhost:8000", "http://localhost:3000", "http://sql11.freesqldatabase.com", "http://sql11.freesqldatabase.com:3306", "https://we-are-adults.vercel.app/", "https://we-are-adults.vercel.app:3000/", "https://we-are-adults.vercel.app:8000/", "https://we-are-adults-backend.vercel.app/", "https://we-are-adults-backend.vercel.app:3000/", "https://we-are-adults-backend.vercel.app:8000/", "https://we-are-adults.vercel.app"])
+app = FastAPI()
 models.Base.metadata.create_all(bind=engine)
 
 
