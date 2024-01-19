@@ -5,6 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 import models
 from database import engine
 
+from flask import Flask, request, jsonify
+from flask.helpers import make_response
+
 # importati svaku novu klasu
 from routers import korisnik
 from routers import rezervacija
@@ -14,6 +17,7 @@ from routers import loginInfo
 from routers import kbc
 
 app = FastAPI()
+CORS(app, origins=['https://we-are-adults.vercel.app'])
 models.Base.metadata.create_all(bind=engine)
 
 
