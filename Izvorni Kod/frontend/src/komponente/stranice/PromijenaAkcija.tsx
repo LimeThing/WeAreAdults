@@ -44,7 +44,7 @@ export default function Akcije() {
                   <ListItem key={akcija.idAkcija}>
                     <PersonalInformation>
                       <Name>{`ID: ${akcija.idAkcija}`}</Name>
-                      <Name>{`Lokacija: ${akcija.imeLokacije}`}</Name>
+                      <Name className="lokacija">{`Lokacija: ${akcija.imeLokacije}`}</Name>
                       <Name>{`Adresa: ${akcija.adresa}`}</Name>
                     </PersonalInformation>
                     <PersonalInformation>
@@ -58,7 +58,7 @@ export default function Akcije() {
                       )}
                     </PersonalInformation>
                     <PersonalInformation>
-                      <VerifyButton
+                      <VerifyButton name="promijeni"
                         onClick={() => {
                           setShowPopup(!showPopup);
                           setAktualnaAkcija(akcija.idAkcija);

@@ -271,7 +271,7 @@ export default function StranicaKorisnika() {
               <ul>
                 {futureReservations.map((reservation) => (
                   <li key={reservation.idRezervacija}>
-                    <p>
+                    <p className="paragraf">
                       Lokacija: {reservation.imeLokacije}
                       <br></br> Vrijeme:
                       {" " +
@@ -282,7 +282,7 @@ export default function StranicaKorisnika() {
                   </li>
                 ))}
               </ul>
-              <button onClick={handleOtkažiTermin}>Otkaži termin</button>
+              <button name='otkazi' onClick={handleOtkažiTermin}>Otkaži termin</button>
             </div>
           )}
         </div>
