@@ -26,6 +26,9 @@ origins = [
     "https://we-are-adults.vercel.app/"
     "https://we-are-adults.vercel.app:3000/"
     "https://we-are-adults.vercel.app:8000/"
+    "https://we-are-adults-backend-git-deploy-ivar998-gmailcom.vercel.app",
+    "https://we-are-adults-backend-git-deploy-ivar998-gmailcom.vercel.app:3000",
+    "https://we-are-adults-backend-git-deploy-ivar998-gmailcom.vercel.app:8000"
 ]
 
 app.add_middleware(
