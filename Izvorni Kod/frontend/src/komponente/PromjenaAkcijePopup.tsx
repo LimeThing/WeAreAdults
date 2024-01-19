@@ -219,7 +219,7 @@ export default function PromjenaAkcijePopup({
         </PersonalInformation>
         <PersonalInformation>
           <FlexBox $direction="column" style={{ gap: "0" }}>
-            <VerifyButton type="submit" onClick={() => setArhiviraj(false)}>
+            <VerifyButton name='spremiGumb' type="submit" onClick={() => setArhiviraj(false)}>
               Spremi
             </VerifyButton>
             <VerifyButton type="submit" onClick={() => setArhiviraj(true)}>

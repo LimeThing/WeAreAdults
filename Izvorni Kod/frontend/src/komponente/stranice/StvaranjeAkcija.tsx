@@ -188,7 +188,7 @@ export default function StvaranjeAkcija() {
               <br />
               <br />
               {(!!errors.datumPoc?.message || !!errors.datumKraj?.message) && <ErrorDiv><p>{errors.datumPoc?.message ?? "" + errors.datumKraj?.message ?? ""}</p></ErrorDiv>}
-                {success && <p>Uspiješno stvoreno!</p>}
+                {success && <p className="uspijeh">Uspiješno stvoreno!</p>}
               <button type="submit">Stvori akciju</button>
             </form>
           </FormContainer>

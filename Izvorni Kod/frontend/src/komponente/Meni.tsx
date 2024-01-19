@@ -93,31 +93,31 @@ export default function Meni() {
                     style={{ color: "#ffffff" }}
                   />
                 </IconButton>
-                <MeniButton onClick={handleHomePage} style={{cursor: "pointer"}}>{ime}</MeniButton>
+                <MeniButton name="korisnikIme" onClick={handleHomePage} style={{cursor: "pointer"}}>{ime}</MeniButton>
               </FlexBox>
             )}
           </HiddenOnMobileDiv>
           <TextBox onClick={() => navigate("/")} style={{cursor: "pointer"}}>DraculaCharity</TextBox>
           <HiddenOnMobileDiv>
             <FlexBox>
-              <MeniButton onClick={() => navigate("/info")}>O nama</MeniButton>
-              <MeniButton onClick={() => navigate("/lokacije")}>
+              <MeniButton name="info" onClick={() => navigate("/info")}>O nama</MeniButton>
+              <MeniButton name="lokacije" onClick={() => navigate("/lokacije")}>
                 Lokacije
               </MeniButton>
               {!prijavljen && (
-                <MeniButton onClick={() => navigate("/login")}>
+                <MeniButton name='login/reg' onClick={() => navigate("/login")}>
                   Registracija/Prijava
                 </MeniButton>
               )}
               {admin && (
                 <>
-                  <MeniButton onClick={() => navigate("/verifikacija")}>
+                  <MeniButton name="verify" onClick={() => navigate("/verifikacija")}>
                     Verificiraj korisnike
                   </MeniButton>
-                  <MeniButton onClick={() => navigate("/stvaranje-akcija")}>
+                  <MeniButton name="createEmergency" onClick={() => navigate("/stvaranje-akcija")}>
                     Stvori novu akciju
                   </MeniButton>
-                  <MeniButton onClick={() => navigate("/promijena-akcija")}>
+                  <MeniButton name="editEmergency" onClick={() => navigate("/promijena-akcija")}>
                     Promijeni akciju
                   </MeniButton>
                   </>
