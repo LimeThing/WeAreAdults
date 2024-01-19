@@ -5,9 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import models
 from database import engine
 
-from flask import Flask, request, jsonify
-from flask.helpers import make_response
-from flask_cors import CORS
+
 
 # importati svaku novu klasu
 from routers import korisnik
